@@ -1,6 +1,6 @@
 import {HttpErrorResponse, HttpEvent,HttpHandler,HttpHeaders,HttpInterceptor,HttpRequest, HttpResponse,} from '@angular/common/http';
 import { Injectable} from '@angular/core';
-import { NotificationsService } from 'angular2-notifications';
+import { NotifierService } from 'angular-notifier';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Observable, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
@@ -8,7 +8,7 @@ import { catchError, tap } from 'rxjs/operators';
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor{
 
-  constructor(private spinner: NgxSpinnerService,private message: NotificationsService) {
+  constructor(private spinner: NgxSpinnerService,private notifier: NotifierService) {
   }
 
   intercept(request: HttpRequest<any>,next: HttpHandler): Observable<HttpEvent<any>> {
@@ -22,12 +22,7 @@ export class ErrorInterceptor implements HttpInterceptor{
         if (event instanceof HttpResponse && event.status === 200) {
           this.hideLoader();
           if(event && event.body  && event.body.message){
-            this.message.success('',event.body.message, {
-              timeOut: 3000,
-              showProgressBar: true,
-              pauseOnHover: true,
-              clickToClose: true
-            });
+            this.notifier.notify("success", event.body.message );
           }
         }
       }),
@@ -39,12 +34,7 @@ export class ErrorInterceptor implements HttpInterceptor{
           sessionStorage.clear();
         }
           
-        this.message.error('Errore', error && error.error && error.error.message, {
-          timeOut: 3000,
-          showProgressBar: true,
-          pauseOnHover: true,
-          clickToClose: true
-        });
+        this.notifier.notify('error', error && error.error && error.error.message );
         
         return  throwError(error);
       })

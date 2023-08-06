@@ -1,6 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 @import url("https://fonts.googleapis.com/css2?family=Muli&display=swap");
 @import '~@fortawesome/fontawesome-free/css/all.min.css';
+@import "node_modules/angular-notifier/styles";
 
 *{
     box-sizing: border-box;
@@ -139,6 +140,13 @@ label{
 a{
     color: lightblue !important;
     cursor: pointer !important;
+}
+
+.btn{
+    font-size: 1.2em;
+    background: #95b1e4;
+    border-radius: 25px;
+    color: #8f8f8f;
 }
 
 
