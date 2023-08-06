@@ -1,0 +1,8 @@
+<span>{{titolo}}</span>
+
+<div auth class="input-group form-floating"  [formGroup]="formParent" style="padding-top: 12px;">    
+    <div *ngFor="let item of items">
+        <input  type="radio" formControlName="{{formField}}" value="{{item.value}}" [required]="required" [readonly]="readonly" (click)="changeItem($event)">
+        <label  for="name" style="margin-right:10px;">{{conf.getLable(item.description)}}</label>
+    </div>
+</div>

@@ -1,0 +1,12 @@
+<div auth class=""  [formGroup]="formParent">
+    <label  for="name">{{titolo}}</label>
+    <ng-select 
+        [items]="items" 
+        bindLabel="{{bindLabel}}" 
+        bindValue="{{bindValue}}" 
+        formControlName="{{formField}}"
+        [readonly]="readonly"
+        (change)="change($event)"
+        ></ng-select>
+    
+</div>

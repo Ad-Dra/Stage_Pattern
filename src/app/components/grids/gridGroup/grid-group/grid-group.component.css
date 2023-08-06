@@ -1,0 +1,15 @@
+.scrollable{
+    max-height: 400px !important;
+    overflow-y: auto;
+}
+
+table  { border-collapse: collapse; width: 100%;background-color: #343a40; color: white;}
+th, td { padding: 8px 16px; }
+th     { background:#4d7275; }
+th{
+    position: sticky; top: 0; z-index: 1;
+}
+
+.azioni{
+    cursor: pointer;
+}

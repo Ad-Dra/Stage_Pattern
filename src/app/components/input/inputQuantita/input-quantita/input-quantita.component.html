@@ -1,0 +1,12 @@
+<div class="input-counter input-group form-floating" *ngIf="formField==''">
+    <button style="border-color: azure;" class="minus-btn" (click)="changeQuantita(false,index)">-</button>
+    <input type="text" [id]="'number'+index"  value="0" >
+    <button style="border-color: azure;" class="plus-btn" (click)="changeQuantita(true,index)">+</button>
+</div>
+
+<div auth class="input-counter input-group form-floating" *ngIf="formField!=''"  [formGroup]="formParent">
+    <button style="border-color: azure;" class="minus-btn" (click)="changeQuantita(false)">-</button>
+    <input type="text" formControlName="{{formField}}"  value="0">
+    <button style="border-color: azure;" class="plus-btn" (click)="changeQuantita(true)">+</button>
+</div>
+

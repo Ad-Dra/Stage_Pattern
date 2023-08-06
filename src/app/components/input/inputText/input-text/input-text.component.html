@@ -1,0 +1,9 @@
+<div auth class="form-floating"  [formGroup]="formParent" *ngIf="type!='check'">
+    <input  class="form-control shadow-none" [type]="type" placeholder=" " formControlName="{{formField}}" [maxlength]="maxLen" [minlength]="minLen"  (change)="change($event)">
+    <label  for="name">{{titolo}}</label>
+</div>
+
+<div *ngIf="type=='check'" auth class="input-group"  [formGroup]="formParent">    
+    <input  type="checkbox" formControlName="{{formField}}" value="{{value}}"  [readonly]="readonly" (click)="changeItem($event)">
+    <label  for="name" style="margin-left:10px;margin-top: 1%;">{{titolo}}</label>
+</div>

@@ -1,0 +1,5 @@
+
+<div auth class="form-floating"  [formGroup]="formParent">
+    <span>{{titolo}}</span>
+    <textarea class="form-control shadow-none"formControlName="{{formField}}" [rows]="rows" [cols]="cols" [maxlength]="maxLen" [minlength]="minLen"  [readonly]="readonly"  (change)="change($event)"></textarea>
+</div>

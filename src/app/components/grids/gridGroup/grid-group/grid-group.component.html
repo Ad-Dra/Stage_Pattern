@@ -1,0 +1,21 @@
+<div class="table-responsive-sm scrollable"  (scroll)="onScroll($event)">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col" *ngFor="let col of colonne">{{col.name}}</th>
+            </tr>
+          </thead>
+          <tbody> 
+            <tr *ngFor="let item of dati;let i=index">
+                <td *ngFor="let col of colonne;">
+                    <i class="fa fa-plus azioni" style="visibility: hidden;" [id]="'plus'+i" aria-hidden="true" *ngIf="col.field=='idOrdine' && item.idOrdine" (click)="azione('moreData',item,i)"></i>
+                    <i class="fa fa-minus azioni" [id]="'minus'+i" aria-hidden="true"  *ngIf="col.field=='idOrdine' && item.idOrdine" (click)="azione('hideData',item,i)"></i>
+                    <span *ngIf="col.isDate">{{item[col.field] | date:"dd/MM/YYYY"}}</span>
+                    <span *ngIf="!col.isDate">{{item[col.field]}}</span>
+                    <span *ngIf="col.isCurrency && item[col.field]">€</span>
+                    <span *ngIf="col.isQuantita && item[col.field]">cl</span>
+                </td>
+            </tr>
+          </tbody>
+    </table>
+  </div>
