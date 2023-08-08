@@ -1,0 +1,68 @@
+
+<div class="boxCreaAcc">
+    <div class="formLogin">
+        <h1>Crea account</h1>
+        <form id="formId" [formGroup]="form">
+            <div class="col-sm-12 col-md-12">
+                <div class="row">
+                    <div class="col-md-4">
+                        <app-input-text [title]="'cognome'" [formField]="'cognome'" [formId]="'formId'" [formParent]="form" [required]="true" [maxLen]="'45'"></app-input-text>        
+                    </div>
+                    <div class=" col-md-4">
+                        <app-input-text [title]="'nome'" [formField]="'nome'" [formId]="'formId'" [formParent]="form" [required]="true" [maxLen]="'45'"></app-input-text>
+                    </div>
+                    <div class=" col-md-4">
+                        <app-input-text [type]="'date'" [title]="'dataNascita'" [formField]="'dataNascita'" [formId]="'formId'" [formParent]="form" [required]="true" [maxLen]="'10'"></app-input-text>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <app-input-text [title]="'indirizzo'" [formField]="'via'" [formId]="'formId'" [formParent]="form" [required]="true" [maxLen]="'45'"></app-input-text>        
+                    </div>
+                    <div class="col-md-4">
+                        <app-input-text [title]="'comune'" [formField]="'comune'" [formId]="'formId'" [formParent]="form" [required]="true" [maxLen]="'55'"></app-input-text>
+                    </div>
+                    <div class="col-md-4">
+                        <app-input-text [title]="'numCivico'" [formField]="'numCivico'" [formId]="'formId'" [formParent]="form" [required]="true" [maxLen]="'5'"></app-input-text>        
+                    </div>
+                </div>
+    
+                <div class="row">
+                    <div class="col-md-4">
+                        <app-input-text [title]="'cap'" [formField]="'cap'" [formId]="'formId'" [formParent]="form" [required]="true" [maxLen]="'5'" [minLen]="'4'"></app-input-text>
+                    </div>
+                    <div class="col-md-4">
+                        <app-input-text [title]="'provincia'" [formField]="'provincia'" [formId]="'formId'" [formParent]="form" [required]="true" [maxLen]="'2'"></app-input-text>
+                    </div>
+                    <!--<div class="col-md-4">
+                        <app-input-text [title]="'cellulare'" [formField]="'cellulare'" [formId]="'formId'" [formParent]="creaAccountForm" [required]="true" [maxLen]="'10'"></app-input-text>
+                    </div>-->
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <app-input-text [title]="'username'" [formField]="'username'" [formId]="'formId'" [formParent]="form" [required]="true" [maxLen]="'45'"></app-input-text>        
+                    </div>
+                    <div class="col-md-4">
+                        <app-input-text [type]="'email'" [title]="'email'" [formField]="'email'" [formId]="'formId'" [formParent]="form" [required]="true" [maxLen]="'55'"></app-input-text>
+                    </div>
+                    <div class="col-md-4">
+                        <app-show-hide-psw [title]="'password'" [formField]="'passwordUtente'" [formId]="'formId'" [formParent]="form" [required]="true" [maxLen]="'25'"></app-show-hide-psw>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <p  class="centerDiv" *ngIf="!form.valid">Compilare i campi obbligatori</p>
+                </div>
+
+                <div class="row centerDiv">
+                    <div class="col-md-2">
+                        <button class="btn" (click)="creaAccount()" title="Crea account">Crea account</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
