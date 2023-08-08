@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { InjectionToken, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -12,14 +12,20 @@ import { ShowHidePswComponent } from './components/input/show-hide-psw/show-hide
 import { ErrorInterceptor } from './components/interceptor/error-interceptor';
 import { NotifierModule } from 'angular-notifier';
 import { NgxSpinnerModule } from 'ngx-spinner';
-
+import { NavBarComponent } from './components/nav-bar/nav-bar.component';
+import { RipristinaCredenzialiComponent } from './ripristina-credenziali/ripristina-credenziali.component';
+import { CreaUtenzaComponent } from './crea-utenza/crea-utenza.component';
+export const COMPONENT_B_TOKEN = new InjectionToken<any>('ComponentBToken');
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     DashboardComponent,
     InputTextComponent,
-    ShowHidePswComponent
+    ShowHidePswComponent,
+    NavBarComponent,
+    RipristinaCredenzialiComponent,
+    CreaUtenzaComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +49,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
       },
     })
   ],
-  providers: [LoginComponent,DashboardComponent,{ provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor,multi: true}],
+  providers: [LoginComponent,DashboardComponent,RipristinaCredenzialiComponent,{ provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor,multi: true},{ provide: COMPONENT_B_TOKEN, useValue: LoginComponent}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

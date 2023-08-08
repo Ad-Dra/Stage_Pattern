@@ -2,6 +2,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Muli&display=swap");
 @import '~@fortawesome/fontawesome-free/css/all.min.css';
 @import "node_modules/angular-notifier/styles";
+@import "~bootstrap/dist/css/bootstrap.css";
 
 *{
     box-sizing: border-box;
@@ -72,7 +73,14 @@ body{
 
 h1{
     color: #45f3ff;
-    font-weight: 500;
+    font-weight: 400;
+    text-align: center;
+    letter-spacing: 0.1em;
+}
+
+h4{
+    color: #45f3ff;
+    font-weight: 400;
     text-align: center;
     letter-spacing: 0.1em;
 }

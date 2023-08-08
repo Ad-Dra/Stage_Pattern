@@ -1,2 +1,4 @@
 <app-login  *ngIf="type.name=='LoginComponent'" (changeType)="refreshTypeObject($event)"></app-login>
-<app-dashboard *ngIf="type.name=='DashboardComponent'"></app-dashboard>
+<app-dashboard *ngIf="type.name=='DashboardComponent'" (changeType)="refreshTypeObject($event)"></app-dashboard>
+<app-ripristina-credenziali *ngIf="type.name=='RipristinaCredenzialiComponent'" (changeType)="refreshTypeObject($event)"></app-ripristina-credenziali>
+<app-nav-bar *ngIf=""></app-nav-bar>
