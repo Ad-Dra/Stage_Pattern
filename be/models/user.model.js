@@ -86,7 +86,7 @@ InfoUser.update=async (body,result)=>{
     if(body.flag!=1)
       query=`UPDATE utente set utenzaAttiva="${body.utenzaAttiva}" where email="${body.email}"`;
     else
-      query=`UPDATE utente set passwordUtente=aes_encrypt('${body.passwordUtente}',"${passwordConfig.KEY}") where email="${body.email}"`;
+      query=`UPDATE utente set password=aes_encrypt('${body.passwordUtente}',"${passwordConfig.KEY}") where email="${body.email}"`;
       
     sql.query(query,(err, res) => {
       if (err) {

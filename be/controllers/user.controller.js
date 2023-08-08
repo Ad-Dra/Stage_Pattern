@@ -121,7 +121,7 @@ function updateAnagrafica(dati,idUtente){
 
 exports.ripristinaPassword=async (req,result)=>{
 
-    let risp=await Utility.isExist(null,req.body.email,null);
+    let risp=await Utility.isExist(null,req.body.email);
    
     if(risp.length>0){
         let risp=await Utility.isActiveUser(null,req.body.email);
@@ -139,7 +139,6 @@ exports.ripristinaPassword=async (req,result)=>{
         }
         else
             result.status(500).send({message:risp.message});
-        
     }
     else
         result.status(500).send({message:"Utenza non trovata"});

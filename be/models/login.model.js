@@ -1,5 +1,6 @@
 const sql = require("../config/db.js");
-var jwt = require('jsonwebtoken');
+const Utility = require("../controllers/utility.controller.js");
+const passwordConfig = require("../config/password.config");
 
 const UtenzaLogin=function(utenzaLogin){
     this.identificativo=utenzaLogin.identificativo;
@@ -15,7 +16,7 @@ const UtenzaLogin=function(utenzaLogin){
  */
 UtenzaLogin.login = (utenzaLogin,result) => {
       
-  	sql.query(`select idRuolo,password from utente where (email= BINARY "${utenzaLogin.identificativo}" or username= BINARY "${utenzaLogin.identificativo}") and password=aes_encrypt("${utenzaLogin.password}", "${passwordConfig.KEY}")`, (err, res) => {
+  	sql.query(`select idRuolo,password from utente where (email= BINARY "${utenzaLogin.identificativo}" or username= BINARY "${utenzaLogin.identificativo}") and password=aes_encrypt("${utenzaLogin.password}", "${passwordConfig.KEY}")`, async (err, res) => {
 		if(err) {
       		console.log("error: ", err);
       		result(err, null);
@@ -31,8 +32,9 @@ UtenzaLogin.login = (utenzaLogin,result) => {
 			else
 				desc='User';
 
-			let token = jwt.sign({identificativo:utenzaLogin.identificativo,ruolo:desc},'secret', {expiresIn : '3h'});
-			result(null, {status:'200',token: token});
+			let token = await Utility.createToken({identificativo:utenzaLogin.identificativo,ruolo:desc},'3h');
+      
+      result(null, {status:'200',token: token});
 		}
 	});
 }
