@@ -4,11 +4,11 @@
         <h1>Sign in</h1>
         <form id="formId" [formGroup]="loginForm">
             <div class="row">
-                <app-input-text [type]="'text'" [title]="'emailUsername'" [formField]="'identificativo'" [formId]="'formId'" [formParent]="loginForm" [required]="true"></app-input-text>
+                <app-input-text [type]="'text'" [title]="'emailUsername'" [formField]="'identificativo'" [formId]="'formId'" [formParent]="loginForm" [required]="true" [maxLen]="'30'"></app-input-text>
             </div>
             
             <div class="row">
-                <app-show-hide-psw [title]="'password'" [formField]="'password'" [formId]="'formId'" [formParent]="loginForm" [required]="true"></app-show-hide-psw>
+                <app-show-hide-psw [title]="'password'" [formField]="'password'" [formId]="'formId'" [formParent]="loginForm" [required]="true" [maxLen]="'25'"></app-show-hide-psw>
             </div>
             
             <div class="row">
