@@ -9,6 +9,8 @@ router.use(express.json());
 router.use(express.urlencoded({ extended: true }));
 
 const login = require("../controllers/login.controller");
+const utente = require("../controllers/user.controller");
+
 const utility = require("../controllers/utility.controller");
 
 router.get("*",utility.verifyToken);
@@ -18,6 +20,10 @@ router.delete("*",utility.verifyToken);
 
 //router.post("/api/createUtenza.json", utente.create);
 //router.post("/api/ripristinaPassword.json", utente.ripristinaPassword); 
-router.post("/api/login.json",login.login); 
+router.post("/api/login.json",login.login);
+
+router.post("/api/auth/createUtenza.json",       utente.create); 
+router.post("/api/auth/ripristinaPassword.json", utente.ripristinaPassword); 
+router.post("/api/auth/aggiornaUtenza.json",     utente.update); 
 
 module.exports = router;

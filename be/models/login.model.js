@@ -15,26 +15,25 @@ const UtenzaLogin=function(utenzaLogin){
  */
 UtenzaLogin.login = (utenzaLogin,result) => {
       
-  sql.query(`select idRuolo,password from utente where (email= BINARY "${utenzaLogin.identificativo}" or username= BINARY "${utenzaLogin.identificativo}") and password=aes_encrypt("${utenzaLogin.password}",'key123')`, (err, res) => {
-    if(err) {
-      console.log("error: ", err);
-      result(err, null);
-    }
+  	sql.query(`select idRuolo,password from utente where (email= BINARY "${utenzaLogin.identificativo}" or username= BINARY "${utenzaLogin.identificativo}") and password=aes_encrypt("${utenzaLogin.password}", "${passwordConfig.KEY}")`, (err, res) => {
+		if(err) {
+      		console.log("error: ", err);
+      		result(err, null);
+    	}
     
-    res=JSON.parse(JSON.stringify(res))[0];
+		res=JSON.parse(JSON.stringify(res))[0];
 
-    if(res==undefined){
-      result({ message: 'Password errata'});
-    }
-    else{
-      if(res.idRuolo==1)
-        desc="Admin";
-      else
-        desc='User';
+		if (res==undefined) {
+			result({ message: 'Password errata'});
+		} else {
+			if (res.idRuolo==1)
+				desc="Admin";
+			else
+				desc='User';
 
-      let token = jwt.sign({identificativo:utenzaLogin.identificativo,ruolo:desc},'secret', {expiresIn : '3h'});
-      result(null, {status:'200',token: token});
-    }
-  });
+			let token = jwt.sign({identificativo:utenzaLogin.identificativo,ruolo:desc},'secret', {expiresIn : '3h'});
+			result(null, {status:'200',token: token});
+		}
+	});
 }
 module.exports=UtenzaLogin;
