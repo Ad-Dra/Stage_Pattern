@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { DashboardComponent } from '../dashboard/dashboard.component';
 import { NotifierService } from 'angular-notifier';
 import { RipristinaCredenzialiComponent } from '../ripristina-credenziali/ripristina-credenziali.component';
+import { CreaUtenzaComponent } from '../crea-utenza/crea-utenza.component';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +17,7 @@ export class LoginComponent implements Stage{
   public loginForm:FormGroup;
   @Output() changeType: EventEmitter<any>= new EventEmitter<any>();
   
-  constructor(private notifier: NotifierService,private fb:FormBuilder,private http:HttpClient,private dashboard:DashboardComponent,private ripristinaCred:RipristinaCredenzialiComponent){
+  constructor(private notifier: NotifierService,private fb:FormBuilder,private http:HttpClient,private dashboard:DashboardComponent,private ripristinaCred:RipristinaCredenzialiComponent,private creaUtenza:CreaUtenzaComponent){
     this.loginForm =  this.fb.group({
       identificativo: [null,Validators.required],
       password: [null,Validators.required]
@@ -47,5 +48,7 @@ export class LoginComponent implements Stage{
   }
 
   creaAccount(){
+    this.renew(this.creaUtenza);
+    this.changeType.emit(CreaUtenzaComponent);
   }
 }
