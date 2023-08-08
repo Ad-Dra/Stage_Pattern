@@ -26,6 +26,17 @@ body{
     overflow: hidden;
 }
 
+.boxCreaAcc{
+    background: #1c1c1c;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.centerDiv{
+    display: flex;
+    justify-content: center;
+}
+
 .box::before{
     content: '';
     position: absolute;

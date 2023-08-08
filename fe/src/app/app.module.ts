@@ -49,7 +49,7 @@ export const COMPONENT_B_TOKEN = new InjectionToken<any>('ComponentBToken');
       },
     })
   ],
-  providers: [LoginComponent,DashboardComponent,RipristinaCredenzialiComponent,{ provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor,multi: true},{ provide: COMPONENT_B_TOKEN, useValue: LoginComponent}],
+  providers: [LoginComponent,DashboardComponent,RipristinaCredenzialiComponent,CreaUtenzaComponent,{ provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor,multi: true},{ provide: COMPONENT_B_TOKEN, useValue: LoginComponent}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
