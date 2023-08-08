@@ -18,8 +18,7 @@ router.post("*",utility.verifyToken);
 router.put("*",utility.verifyToken);
 router.delete("*",utility.verifyToken);
 
-//router.post("/api/createUtenza.json", utente.create);
-//router.post("/api/ripristinaPassword.json", utente.ripristinaPassword); 
+
 router.post("/api/login.json",login.login);
 
 router.post("/api/auth/createUtenza.json",       utente.create); 
