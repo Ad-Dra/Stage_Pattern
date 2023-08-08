@@ -1,0 +1,35 @@
+
+<div class="box">
+    <div class="formLogin">
+        <h4>Ripristina password</h4>
+        <form id="formId" [formGroup]="form" *ngIf="ripristinaPasswordFlag">
+            <div class="row">
+                <app-input-text [type]="'text'" [title]="'email'" [formField]="'email'" [formId]="'formId'" [formParent]="form" [required]="true" [maxLen]="'30'"></app-input-text>
+            </div>
+
+            <div class="row">
+                <p  *ngIf="!form.valid">Compilare i campi obbligatori</p>
+            </div>
+            
+            <div class="row">
+                <button class="btn" (click)="inviaEmail()" title="Invia email">Invia email</button>
+            </div>
+        </form>
+        <form id="formId" [formGroup]="formRipristinaPsw" *ngIf="!ripristinaPasswordFlag">
+            <div class="row">
+                <app-show-hide-psw [title]="'password'" [formField]="'password'" [formId]="'formId'" [formParent]="formRipristinaPsw" [required]="true" [maxLen]="'25'"></app-show-hide-psw>
+                <app-show-hide-psw [title]="'ripetiPassword'" [formField]="'passwordConferma'" [formId]="'formId'" [formParent]="formRipristinaPsw" [required]="true" [maxLen]="'25'" (keyupEvent)="changePswConferma($event)"></app-show-hide-psw>
+                <p *ngIf="flagPswNonCorrisp">Password non corrispondenti</p>
+            </div>
+
+            <div class="row">
+                <p  *ngIf="!formRipristinaPsw.valid">Compilare i campi obbligatori</p>
+            </div>
+            
+            <div class="row">
+                <button class="btn" (click)="ripristinaPassword()" title="Riemposta password">Riemposta password</button>
+            </div>
+        </form>
+    </div>
+</div>
+
