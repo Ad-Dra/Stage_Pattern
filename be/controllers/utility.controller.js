@@ -60,9 +60,9 @@ exports.isActiveUser=(dati,email)=>{
   
     return new Promise(resolve =>{
       if(email)
-        query=`select email,id from utente where email= BINARY "${email}"`
+        query=`select email,idUtente from utente where email= BINARY "${email}"`
       else
-        query=`select email,id from utente where email= BINARY "${dati.identificativo}" or username= BINARY "${dati.identificativo}"`
+        query=`select email,idUtente from utente where email= BINARY "${dati.identificativo}" or username= BINARY "${dati.identificativo}"`
   
       sql.query(query,(err, res) => {
         if (err) {

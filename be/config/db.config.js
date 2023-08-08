@@ -2,6 +2,6 @@ module.exports = {
     HOST: "localhost",
     USER: "root",
     PASSWORD: "root",
-    DB: "contoCorrente",
+    DB: "banca",
     PORT:3306,
 };

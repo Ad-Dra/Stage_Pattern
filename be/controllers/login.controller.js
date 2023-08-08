@@ -1,6 +1,6 @@
 
 const UtenzaLogin = require("../models/login.model.js");
-//const sql = require("../models/db.js");
+const sql = require("../config/db.js");
 const Utility = require("../controllers/utility.controller.js");
 
 /**
@@ -54,7 +54,7 @@ exports.login=async (req,res)=>{
  * @returns 200 se l'accesso è autorizzato altrimenti 401
  */
 function checkRuolo(req) {
-  /*return new Promise(resolve =>{
+  return new Promise(resolve =>{
     sql.query(`select idRuolo from utente where (email= BINARY "${req.body.identificativo}" or username= BINARY "${req.body.identificativo}")`, (err, res) => {
       if(err) {
         console.log("error: ", err);
@@ -68,5 +68,5 @@ function checkRuolo(req) {
       }
       else
         resolve({status:200,ruolo:res.idRuolo});
-  })});*/
+  })});
 }

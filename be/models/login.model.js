@@ -15,7 +15,7 @@ const UtenzaLogin=function(utenzaLogin){
  */
 UtenzaLogin.login = (utenzaLogin,result) => {
       
-  sql.query(`select idRuolo,passwordUtente from utente where (email= BINARY "${utenzaLogin.identificativo}" or username= BINARY "${utenzaLogin.identificativo}") and passwordUtente=aes_encrypt("${utenzaLogin.password}",'key123')`, (err, res) => {
+  sql.query(`select idRuolo,password from utente where (email= BINARY "${utenzaLogin.identificativo}" or username= BINARY "${utenzaLogin.identificativo}") and password=aes_encrypt("${utenzaLogin.password}",'key123')`, (err, res) => {
     if(err) {
       console.log("error: ", err);
       result(err, null);
