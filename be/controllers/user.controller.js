@@ -67,7 +67,6 @@ exports.create = async (req,res) => {
                 res.status(500).send({ message: err.message || "Some error occurred while creating the user."});
             else {
                 await createAnagrafica(dati,data.insertId);
-                let risp=await createResidenza(dati,data.insertId);
                 let token = await Utility.createToken({email:utenza.email},'3h');
 
                 let subject='Benvenuto in City Safe Bank';
