@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginComponent } from './login/login.component';
 import { RipristinaCredenzialiComponent } from './ripristina-credenziali/ripristina-credenziali.component';
+import { ConfermaCreazioneAccountComponent } from './conferma-creazione-account/conferma-creazione-account.component';
 
 @Component({
   selector: 'app-root',
@@ -14,6 +15,8 @@ export class AppComponent implements OnInit{
   ngOnInit(): void {
     if(location.hash.includes('#/ripristinaPassword'))
       this.type=RipristinaCredenzialiComponent;
+    else if(location.hash.includes('#/confermaEmail'))
+      this.type=ConfermaCreazioneAccountComponent;
   }
 
   refreshTypeObject(typeObject:any){

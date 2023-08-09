@@ -1,0 +1,17 @@
+
+<div class="box">
+    <div class="formConfermaCreazAcc">
+        <h5>Conferma la creazione account</h5>
+        <div class="row">
+            <p>Gentile {{username}},vuoi confermare la creazione del suo account?</p>
+        </div>
+        <div class="row">
+            <div class="col-md-2 col-sm-2">
+                <button class="btn btn-primary" (click)="confermaAccount('si')"  title="Si">Si</button>
+            </div>
+            <div class="col-md-1 col-sm-1">
+                <button class="btn btn-danger"  (click)="confermaAccount('no')"  title="No">No</button>   
+            </div>
+        </div>
+    </div>
+</div>

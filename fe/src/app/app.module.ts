@@ -15,6 +15,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { RipristinaCredenzialiComponent } from './ripristina-credenziali/ripristina-credenziali.component';
 import { CreaUtenzaComponent } from './crea-utenza/crea-utenza.component';
+import { ConfermaCreazioneAccountComponent } from './conferma-creazione-account/conferma-creazione-account.component';
 export const COMPONENT_B_TOKEN = new InjectionToken<any>('ComponentBToken');
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ export const COMPONENT_B_TOKEN = new InjectionToken<any>('ComponentBToken');
     ShowHidePswComponent,
     NavBarComponent,
     RipristinaCredenzialiComponent,
-    CreaUtenzaComponent
+    CreaUtenzaComponent,
+    ConfermaCreazioneAccountComponent
   ],
   imports: [
     BrowserModule,
@@ -49,7 +51,7 @@ export const COMPONENT_B_TOKEN = new InjectionToken<any>('ComponentBToken');
       },
     })
   ],
-  providers: [LoginComponent,DashboardComponent,RipristinaCredenzialiComponent,CreaUtenzaComponent,{ provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor,multi: true},{ provide: COMPONENT_B_TOKEN, useValue: LoginComponent}],
+  providers: [LoginComponent,DashboardComponent,RipristinaCredenzialiComponent,CreaUtenzaComponent,ConfermaCreazioneAccountComponent,{ provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor,multi: true},{ provide: COMPONENT_B_TOKEN, useValue: LoginComponent}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
