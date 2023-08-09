@@ -30,7 +30,7 @@ export class CreaUtenzaComponent implements Stage{
       cap:[null,[Validators.required,Validators.pattern('[0-9]{1,5}')]],
       numCivico:[null,[Validators.required,Validators.pattern('[0-9]{1,5}')]],
       provincia:[null,[Validators.required,Validators.pattern('^[a-zA-Z ]*$')]],
-      cellulare:[null,[Validators.required,Validators.pattern('[0-9]{1,10}')]],
+      //cellulare:[null,[Validators.required,Validators.pattern('[0-9]{1,10}')]],
     });
   }
 
