@@ -10,25 +10,38 @@ import { ConfermaCreazioneAccountComponent } from './conferma-creazione-account/
 })
 export class AppComponent implements OnInit{
   title = 'Stage_Pattern';
-  public type:any=LoginComponent;
+  public type:any=LoginComponent.name;
   public showNavBar:boolean=false;
 
   ngOnInit(): void {
     if(location.hash.includes('#/ripristinaPassword'))
-      this.type=RipristinaCredenzialiComponent;
+      this.type=RipristinaCredenzialiComponent.name;
     else if(location.hash.includes('#/confermaEmail'))
-      this.type=ConfermaCreazioneAccountComponent;
+      this.type=ConfermaCreazioneAccountComponent.name;
+
+    if(sessionStorage.getItem("statusObject") && sessionStorage.getItem("statusObject")!=null && sessionStorage.getItem("statusObject")!='undefined')
+      this.type=sessionStorage.getItem("statusObject");
 
     this.showOrHideNavBar();
+
+    this.setStatusObject();
   }
 
   showOrHideNavBar(){
-    if(this.type.name!="LoginComponent" && this.type.name!="RipristinaCredenzialiComponent" && this.type.name!="CreaUtenzaComponent" && this.type.name!="ConfermaCreazioneAccountComponent")
+    if(this.type!="LoginComponent" && this.type!="RipristinaCredenzialiComponent" && this.type!="CreaUtenzaComponent" && this.type!="ConfermaCreazioneAccountComponent")
       this.showNavBar=true;
+    else
+      this.showNavBar=false;
   }
 
   refreshTypeObject(typeObject:any){
-    this.type=typeObject;
+    this.type=typeObject.name;
     this.showOrHideNavBar();
+    this.setStatusObject();
+  }
+
+  setStatusObject(){
+    if(this.type && this.type!="")
+      sessionStorage.setItem("statusObject",this.type);
   }
 }

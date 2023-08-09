@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row" >
   <div class="col-md-12 col-sm-12" style="margin-bottom:15px !important ;">
     <nav class="navbar navbar-expand-lg fixed-top navbar-light bg-light">
       <div class="container-fluid">
@@ -6,83 +6,90 @@
           <img src="https://my-pizza.fr/wp-content/uploads/2021/08/cropped-LOGO_MYPIZZA_2020_TRANSPARENT_01.png" height="30" alt="" loading="lazy" />
         </a>
 
-        <button class="navbar-toggler"  type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        <button class="navbar-toggler"  (click)="isNavbarCollapsed = !isNavbarCollapsed"  type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
           aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <i class="navbar-toggler-icon"></i>
         </button>
     
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div [ngbCollapse]="isNavbarCollapsed" class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="/#/dashboard">Home</a>
+              <a class="nav-link active"  type="button" aria-current="page" (mousedown)="home()">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" data-toggle="collapse" data-target="#navbarSupportedContent" (click)="ordina()">Chi siamo</a>
+              <a class="nav-link active"  type="button" aria-current="page" data-toggle="collapse" data-target="#navbarSupportedContent" (mousedown)="chiSiamo()">Chi siamo</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" data-toggle="collapse" data-target="#navbarSupportedContent" (click)="segnalazioni()">Bonifico</a>
+              <a class="nav-link active"  type="button" aria-current="page" data-toggle="collapse" data-target="#navbarSupportedContent" (mousedown)="bonifico()">Bonifico</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" data-toggle="collapse" data-target="#navbarSupportedContent" (click)="segnalazioni()">Mutuo</a>
+              <a class="nav-link active"  type="button" aria-current="page" data-toggle="collapse" data-target="#navbarSupportedContent" (mousedown)="mutuo()">Mutuo</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" data-toggle="collapse" data-target="#navbarSupportedContent" (click)="segnalazioni()">Prestito</a>
+              <a class="nav-link active"  type="button" aria-current="page" data-toggle="collapse" data-target="#navbarSupportedContent" (mousedown)="prestito()">Prestito</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" data-toggle="collapse" data-target="#navbarSupportedContent" (click)="segnalazioni()">Ricarica telefonica</a>
+              <a class="nav-link active"  type="button" aria-current="page" data-toggle="collapse" data-target="#navbarSupportedContent" (mousedown)="ricaricaTelefonica()">Ricarica telefonica</a>
             </li>
           </ul>
-    
-          <ul class="navbar-nav ">
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-auto-close="outside" data-toggle="dropdown" aria-expanded="false">
+      
+          <ul class="navbar-nav mb-2 mb-lg-0" (focusout)="close()"  data-bs-toggle="collapse" >
+            <li class="nav-item dropdown" (click)="clickNotifica()">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                
                   <i class="fa fa-bell">
                     <span class="badge badge-info"><span *ngIf="numNotifiche>0">{{numNotifiche}}</span></span>
                   </i>
                 </a>
-                <div class="dropdown-menu   notifications" aria-labelledby="navbarDropdown">
-                  <form>
-                    <div class="notification-heading" *ngIf="notifiche.length>0">
-                      <h4 class="menu-title" (click)="visualizzaAllNotifiche()"><i class="fa fa-check" aria-hidden="true" title="Visualizza tutti le notifiche"></i></h4>
-                      <h4 class="menu-title pull-right" (click)="cancellaAllNotifiche()"><i class="fa fa-times" aria-hidden="true" title="Cancella tutte le notifiche"></i></h4>
-                    </div>
-                    <li class="divider"></li>
-                    
-                    <div class="notifications-wrapper">
-                      <a class="content" *ngFor="let notifica of notifiche">
-                        
-                        <div class="notification-item" [ngStyle]="notifica.visualizzata==1 ? {'background': 'white'}  : {'background': '#ccc'}">
-                          <h4 class="item-title">
-                            Ordine Confermato  · {{notifica.dataCreazione | date: 'dd/MM/yyyy'}} 
-                            <i class="fa fa-trash alignRight marginLeft5" aria-hidden="true" (click)="cancella(notifica.id)"  title="Cancella"></i>
-                            <i *ngIf="notifica.visualizzata==0" class="fa fa-eye alignRight" aria-hidden="true" (click)="visualizza(notifica.id)" title="Visualizza"></i>
-                          </h4>
-                          <p class="item-info">{{notifica.descrizione}}</p>
-                        </div>
-                      </a>
-                      <a *ngIf="notifiche.length==0">
-                        <div class="notification-item">
-                          <h2 class="item-title">Nessuna notifica presente</h2>
-                        </div>
-                      </a>
-                    </div>
-                  </form>
+                <div class="dropdown-menu notifications" aria-labelledby="navbarDropdown" [ngbCollapse]="isNotificheCollapsed" >
+                    <form>
+                      <div class="notification-heading" *ngIf="notifiche.length>0">
+                        <h4 class="menu-title" (click)="visualizzaAllNotifiche()"><i class="fa fa-check" aria-hidden="true" title="Visualizza tutti le notifiche"></i></h4>
+                        <h4 class="menu-title pull-right" (click)="cancellaAllNotifiche()"><i class="fa fa-times" aria-hidden="true" title="Cancella tutte le notifiche"></i></h4>
+                      </div>
+                      <li class="divider"></li>
+                      
+                      <div class="notifications-wrapper">
+                        <a class="content" *ngFor="let notifica of notifiche">
+                          
+                          <div class="notification-item" [ngStyle]="notifica.visualizzata==1 ? {'background': 'white'}  : {'background': '#ccc'}">
+                            <h4 class="item-title">
+                              Ordine Confermato  · {{notifica.dataCreazione | date: 'dd/MM/yyyy'}} 
+                              <i class="fa fa-trash alignRight marginLeft5" aria-hidden="true" (click)="cancella(notifica.id)"  title="Cancella"></i>
+                              <i *ngIf="notifica.visualizzata==0" class="fa fa-eye alignRight" aria-hidden="true" (click)="visualizza(notifica.id)" title="Visualizza"></i>
+                            </h4>
+                            <p class="item-info">{{notifica.descrizione}}</p>
+                          </div>
+                        </a>
+                        <a *ngIf="notifiche.length==0">
+                          <div class="notification-item">
+                            <h2 class="item-title">Nessuna notifica presente</h2>
+                          </div>
+                        </a>
+                      </div>
+                    </form>
                 </div>
-              </li>
+            </li>
           </ul>
 
-          <ul class="navbar-nav mb-2 mb-lg-0">
-              <li class="nav-item dropdown">
-                 
-                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <li (click)="getInfAccount()"><i class="fa fa-user marginLeft4"  aria-hidden="true"> Your Account <span class="dropdown-item paddingLeft10"></span></i></li>
-                    <li (click)="getInfAccount()"><i class="fa fa-user marginLeft4"  aria-hidden="true"> Movimenti <span class="dropdown-item paddingLeft10"></span></i></li>
-                    <li (click)="logOut()"><i class="fa fa-sign-out marginLeft4"  aria-hidden="true">Log out <span class="dropdown-item paddingLeft10"></span></i></li>
-
-                  <!-- <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="#">Something else here</a>-->
-                  </div>
-              </li>
+          <ul class="navbar-nav mb-2 mb-lg-0" (focusout)="close()"  data-bs-toggle="collapse" >
+            <li class="nav-item dropdown" (click)="clickInfo()">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                
+                <!--<img
+                    [src]="avatar"
+                    class="rounded-circle"
+                    height="30"
+                    alt=""
+                    loading="lazy"
+                />-->
+                </a>
+                <div class="dropdown-menu"  aria-labelledby="navbarDropdown" [ngbCollapse]="isInfoCollapsed" >
+                  <li  type="button" (mousedown)="getInfAccount()"><i class="fa fa-user marginLeft4"  aria-hidden="true" data-bs-toggle="collapse">Info account<span class="dropdown-item paddingLeft10"></span></i></li>
+                  <li  type="button" (mousedown)="getMovimenti()"><i class="fa fa-user marginLeft4"  aria-hidden="true" data-bs-toggle="collapse">Movimenti<span class="dropdown-item paddingLeft10"></span></i></li>
+                  <li  type="button" (mousedown)="logOut()"><i class="fa fa-sign-out marginLeft4"  aria-hidden="true" data-bs-toggle="collapse">Log out <span class="dropdown-item paddingLeft10"></span></i></li>
+                </div>
+            </li>
           </ul>
         </div>
       </div>

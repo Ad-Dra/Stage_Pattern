@@ -1,41 +1,34 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
+import { DashboardComponent } from 'src/app/dashboard/dashboard.component';
+import { LoginComponent } from 'src/app/login/login.component';
+import { Stage } from 'src/app/stage/stage';
 
 @Component({
   selector: 'app-nav-bar',
   templateUrl: './nav-bar.component.html',
   styleUrls: ['./nav-bar.component.css']
 })
-export class NavBarComponent implements OnInit {
+export class NavBarComponent implements Stage,OnInit {
 
-  public cont:any;
-  public avatar:string="";
   public notifiche:any=[];
   public numNotifiche:number=0;
-  public responseOk:boolean=false;
+  public isNavbarCollapsed:boolean=true;
+  public isNotificheCollapsed:boolean=true;
+  public isInfoCollapsed:boolean=true;
 
-  constructor() { 
+  @Output() changeType: EventEmitter<any>= new EventEmitter<any>();
+
+  constructor(private dashboard:DashboardComponent,private login:LoginComponent) { 
   }
 
   ngOnInit(): void {
-    //this.refreshCarrello();
-    this.getAvatar();
+
     //this.getNotifiche();
-    
-    /*this.infUtente.name.subscribe(()=>{
-      this.getAvatar();
-    })*/
 
    /* this.ordine.name.subscribe((val) => {
       this.refreshCarrello();
       this.getNotifiche();
-    });*/
-  }
-
-  getAvatar(){
-   /* this.service.get("getAvatar.json").subscribe(data => {
-      if(data && data.length>0)
-        this.avatar=data[0].avatar;
     });*/
   }
 
@@ -49,45 +42,44 @@ export class NavBarComponent implements OnInit {
     });*/
   }
 
-  ordina(){
-    //if(location.hash!='#/ordina')
-     // this.route.navigate(["/ordina"]);
+  home(){
+    this.close();
+    this.renew(this.dashboard);
+    this.changeType.emit(DashboardComponent);
+  }
+  
+  chiSiamo(){
+
   }
 
-  logOut(){
-    //this.loginService.logout();
-    sessionStorage.clear();
-    this.cont=0;
-    //this.route.navigate(["/login"]);
+  bonifico(){
+
   }
 
-  refreshCarrello(){
-   // this.service.get("getNumProdCarrello.json").subscribe(response=>{this.cont=response[0].numeroOggetti;});
+  mutuo(){
+
   }
 
-  segnalazioni(){
-   // this.route.navigate(["/segnalazioni"])
-  }
+  prestito(){
 
-  getCarrello(){
-    /*if(this.cont>0)
-      this.route.navigate(["/riepilogoOrdine"])
-    else{
-      this.message.warn('Carrello vuoto','',{
-        timeOut: 3000,
-        showProgressBar: true,
-        pauseOnHover: true,
-        clickToClose: true
-      });
-    }*/
-  }
+  } 
+  
+  ricaricaTelefonica(){
 
+  }
+  
   getInfAccount(){
     //this.ngxSmartModalService.open("informazioniAccount");
   }
 
-  help(){
-    //this.ngxSmartModalService.open("helpUtente");
+  getMovimenti(){
+
+  }
+
+  logOut(){
+    sessionStorage.clear();
+    this.renew(this.login);
+    this.changeType.emit(LoginComponent);
   }
 
   visualizza(idNotifica:number){
@@ -107,5 +99,24 @@ export class NavBarComponent implements OnInit {
 
   cancellaAllNotifiche(){
     //.service.delete("cancellaAllNotifiche.json").subscribe(data=>{this.getNotifiche();});
+  }
+
+  clickNotifica(){
+    this.isNotificheCollapsed = !this.isNotificheCollapsed;
+    this.isInfoCollapsed=true;
+  }
+
+  clickInfo(){
+    this.isInfoCollapsed = !this.isInfoCollapsed;
+    this.isNotificheCollapsed=true;
+  }
+
+  close(){
+    this.isNotificheCollapsed= true;
+    this.isInfoCollapsed=true;
+  }
+
+  renew(newType: Stage): void {
+    Object.setPrototypeOf(this, newType);
   }
 }

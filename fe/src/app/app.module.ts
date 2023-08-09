@@ -17,6 +17,8 @@ import { RipristinaCredenzialiComponent } from './ripristina-credenziali/riprist
 import { CreaUtenzaComponent } from './crea-utenza/crea-utenza.component';
 import { ConfermaCreazioneAccountComponent } from './conferma-creazione-account/conferma-creazione-account.component';
 export const COMPONENT_B_TOKEN = new InjectionToken<any>('ComponentBToken');
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { GridComponent } from './components/grids/grid/grid/grid.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,7 +29,8 @@ export const COMPONENT_B_TOKEN = new InjectionToken<any>('ComponentBToken');
     NavBarComponent,
     RipristinaCredenzialiComponent,
     CreaUtenzaComponent,
-    ConfermaCreazioneAccountComponent
+    ConfermaCreazioneAccountComponent,
+    GridComponent
   ],
   imports: [
     BrowserModule,
@@ -35,6 +38,7 @@ export const COMPONENT_B_TOKEN = new InjectionToken<any>('ComponentBToken');
     HttpClientModule,
     ReactiveFormsModule,
     NgxSpinnerModule,
+    NgbModule,
     NotifierModule.withConfig({
       position: {
         horizontal: {
