@@ -33,8 +33,21 @@ InfoUser.getInfoAccount=(idUtente,result)=>{
   sql.query(`select 
                 username, email, 
                 nome, cognome, dataNascita, comune,
-                provincia, cap, via, numCivico, 
+                provincia, cap, via, numCivico
               from utente inner join anagrafica on utente.idUtente=anagrafica.idUtente
+              where utente.idUtente=${idUtente}`, (err, res) => {
+    if (err) {
+      console.log("error: ", err);
+      result(err, null);
+      return;
+    }
+    result(null, res);
+  }); 
+}
+
+InfoUser.getSaldo=(idUtente,result)=>{
+  sql.query(`select * 
+              from utente inner join contocorrente on utente.idUtente=contocorrente.idUtente
               where utente.idUtente=${idUtente}`, (err, res) => {
     if (err) {
       console.log("error: ", err);

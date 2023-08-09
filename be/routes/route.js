@@ -21,6 +21,9 @@ router.delete("*",utility.verifyToken);
 
 router.post("/api/login.json",login.login);
 
+router.get("/api/getInfoAccount.json",utente.getInfoAccount);
+router.get("/api/getSaldo.json",utente.getSaldoContoCorrente);
+
 router.post("/api/auth/createUtenza.json",       utente.create); 
 router.post("/api/auth/ripristinaPassword.json", utente.ripristinaPassword); 
 router.post("/api/auth/aggiornaUtenza.json",     utente.update); 

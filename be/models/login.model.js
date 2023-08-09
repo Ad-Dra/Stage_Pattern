@@ -34,7 +34,7 @@ UtenzaLogin.login = (utenzaLogin,result) => {
 
 			let token = await Utility.createToken({identificativo:utenzaLogin.identificativo,ruolo:desc},'3h');
       
-      result(null, {status:'200',token: token});
+      		result(null, {status:'200',token: token});
 		}
 	});
 }

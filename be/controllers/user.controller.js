@@ -19,6 +19,21 @@ exports.getInfoAccount=async (req,res)=>{
     });
 }
 
+exports.getSaldoContoCorrente=async (req,res)=>{
+
+    const utente = new User({
+        idUtente: await Utility.getIdUtente(req)
+    });
+
+    User.getSaldo(utente.idUtente,(err, data) => {
+        if (err)
+            res.status(500).send({message:err.message});
+        else{ 
+            res.send(data);
+        }
+    });
+}
+
 exports.checkPswUtente=async (req,res)=>{
 
     const utente = new User({
@@ -53,9 +68,7 @@ exports.create = async (req,res) => {
     if (!req.body)
       res.status(400).send({ message: "Content can not be empty!"});
 
-    let risultato=await this.upload(req,res);
-
-    let dati=JSON.parse(req.body.dati);
+    let dati=req.body;
 
     let isExist=await Utility.isExist(null,dati.email,dati.username);
 
@@ -77,9 +90,9 @@ exports.create = async (req,res) => {
                 let rispEmail=await Utility.sendMail(subject,html,utenza.email);
                 
                 if(rispEmail)
-                    risp.message="Controlla la posta per conferma la creazione dell'account";
+                    rispEmail.message="Controlla la posta per conferma la creazione dell'account";
                     
-                res.send(risp);
+                res.send(rispEmail);
             }
         });
     }
