@@ -10,7 +10,7 @@ const Utenza = function(utenza) {
 
 Utenza.create = (newUtenza,result) => {
   sql.query(`INSERT INTO utente (email, username, password) 
-       values ("${newUtenza.email}","${newUtenza.username}",aes_encrypt("${newUtenza.passwordUtente}","${passwordConfig.KEY}"))`, (err, res) => {
+       values ("${newUtenza.email}","${newUtenza.username}",aes_encrypt("${newUtenza.password}","${passwordConfig.KEY}"))`, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(err, null);
