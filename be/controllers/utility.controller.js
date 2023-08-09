@@ -118,3 +118,42 @@ exports.isActiveUser=(dati,email)=>{
         resolve(tokendata);
     })}); 
   }
+
+  exports.getDatiUtente=(identificativo)=>{
+    return new Promise(resolve =>{
+      sql.query(`select email,idUtente from utente where email= BINARY "${identificativo}" or username= BINARY "${identificativo}"`,(err, res) => {
+        if (err) {
+          console.log("error: ", err);
+          res.status(500).send({message:err.message})
+        }
+      // console.log("Resssss",JSON.parse(JSON.stringify(res)))
+      // console.log("Resssss",JSON.parse(JSON.stringify(res))[0])
+        resolve(res);
+    })}); 
+  }
+
+  /**
+ * trova l'id dell'utente
+ * 
+ * @param {*} req parametri richiesti
+ * @returns l'id dell'utente
+ */
+exports.getIdUtente=async (req)=>{
+  let datiUtente= await this.getDatiUtente(getToken(req).identificativo);
+
+  return JSON.parse(JSON.stringify(datiUtente))[0].idUtente;
+}
+
+/**
+ * restituisce il token passato alla richiesta
+ * 
+ * @param {*} req parametri richiesti
+ * @returns il token
+ */
+function getToken(req){
+  let token=JSON.parse(JSON.stringify(req.headers)).authorization;
+
+  token=JSON.parse(Buffer.from(token.split('.')[1], 'base64'));
+
+  return token;
+}
