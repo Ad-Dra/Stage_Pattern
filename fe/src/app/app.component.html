@@ -3,4 +3,4 @@
 <app-ripristina-credenziali *ngIf="type.name=='RipristinaCredenzialiComponent'" (changeType)="refreshTypeObject($event)"></app-ripristina-credenziali>
 <app-crea-utenza  *ngIf="type.name=='CreaUtenzaComponent'" (changeType)="refreshTypeObject($event)"></app-crea-utenza>
 <app-conferma-creazione-account *ngIf="type.name=='ConfermaCreazioneAccountComponent'" (changeType)="refreshTypeObject($event)"></app-conferma-creazione-account>
-<app-nav-bar ></app-nav-bar>
+<app-nav-bar *ngIf="showNavBar"></app-nav-bar>
