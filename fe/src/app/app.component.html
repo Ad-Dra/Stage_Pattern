@@ -1,6 +1,7 @@
-<app-login  *ngIf="type.name=='LoginComponent'" (changeType)="refreshTypeObject($event)"></app-login>
-<app-dashboard *ngIf="type.name=='DashboardComponent'" (changeType)="refreshTypeObject($event)"></app-dashboard>
-<app-ripristina-credenziali *ngIf="type.name=='RipristinaCredenzialiComponent'" (changeType)="refreshTypeObject($event)"></app-ripristina-credenziali>
-<app-crea-utenza  *ngIf="type.name=='CreaUtenzaComponent'" (changeType)="refreshTypeObject($event)"></app-crea-utenza>
-<app-conferma-creazione-account *ngIf="type.name=='ConfermaCreazioneAccountComponent'" (changeType)="refreshTypeObject($event)"></app-conferma-creazione-account>
-<app-nav-bar *ngIf="showNavBar"></app-nav-bar>
+<app-login  *ngIf="type=='LoginComponent'" (changeType)="refreshTypeObject($event)"></app-login>
+<app-dashboard *ngIf="type=='DashboardComponent'" (changeType)="refreshTypeObject($event)"></app-dashboard>
+<app-ripristina-credenziali *ngIf="type=='RipristinaCredenzialiComponent'" (changeType)="refreshTypeObject($event)"></app-ripristina-credenziali>
+<app-crea-utenza  *ngIf="type=='CreaUtenzaComponent'" (changeType)="refreshTypeObject($event)"></app-crea-utenza>
+<app-conferma-creazione-account *ngIf="type=='ConfermaCreazioneAccountComponent'" (changeType)="refreshTypeObject($event)"></app-conferma-creazione-account>
+<app-nav-bar *ngIf="showNavBar" (changeType)="refreshTypeObject($event)"></app-nav-bar>
+<notifier-container></notifier-container>
