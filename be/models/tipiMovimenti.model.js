@@ -4,7 +4,7 @@ const TipiMovimenti = function (data) {
     
 };
 
-TipiMovimenti.getBonifico = () => {
+TipiMovimenti.getBonifico = (result) => {
     sql.query("SELECT idTipoMovimento, nome, descrizione FROM TipoMovimento WHERE nome LIKE %bonifico%", (err, res) => {
         if (err) {
             console.log("error: ", err);
