@@ -11,6 +11,7 @@ router.use(express.urlencoded({ extended: true }));
 const login = require("../controllers/login.controller");
 const utente = require("../controllers/user.controller");
 const tipiMovimento = require('../controllers/tipiMovimenti.controller');
+const movimento = require('../controllers/movimento.controller');
 
 const utility = require("../controllers/utility.controller");
 
@@ -30,5 +31,6 @@ router.post("/api/auth/ripristinaPassword.json", utente.ripristinaPassword);
 router.post("/api/auth/aggiornaUtenza.json",     utente.update); 
 
 router.get("/api/getTipiBonifico.json", tipiMovimento.getTipiBonifico);
+router.get("/api/getMovimenti.json", movimento.getMovimentiUtente);
 
 module.exports = router;
