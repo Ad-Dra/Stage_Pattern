@@ -7,6 +7,8 @@
 <app-bonifico  *ngIf="type=='BonificoComponent'" (changeType)="refreshTypeObject($event)"></app-bonifico>
 <app-ricarica-telefonica *ngIf="type=='RicaricaTelefonicaComponent'" (changeType)="refreshTypeObject($event)"></app-ricarica-telefonica>
 <app-info-account *ngIf="type=='InfoAccountComponent'" (changeType)="refreshTypeObject($event)"></app-info-account>
+<app-movimenti *ngIf="type=='MovimentiComponent'" (changeType)="refreshTypeObject($event)"></app-movimenti>
+
 
 <app-nav-bar *ngIf="showNavBar" (changeType)="refreshTypeObject($event)"></app-nav-bar>
 <notifier-container></notifier-container>

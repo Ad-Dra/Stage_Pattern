@@ -5,6 +5,7 @@ import { ChiSiamoComponent } from 'src/app/chi-siamo/chi-siamo.component';
 import { DashboardComponent } from 'src/app/dashboard/dashboard.component';
 import { InfoAccountComponent } from 'src/app/info-account/info-account.component';
 import { LoginComponent } from 'src/app/login/login.component';
+import { MovimentiComponent } from 'src/app/movimenti/movimenti.component';
 import { RicaricaTelefonicaComponent } from 'src/app/ricarica-telefonica/ricarica-telefonica.component';
 import { Stage } from 'src/app/stage/stage';
 
@@ -23,7 +24,7 @@ export class NavBarComponent implements Stage,OnInit {
 
   @Output() changeType: EventEmitter<any>= new EventEmitter<any>();
 
-  constructor(private dashboard:DashboardComponent,private login:LoginComponent,private chiSiamoC:ChiSiamoComponent,private bonificoC:BonificoComponent,private ricaricaTelefonicaC:RicaricaTelefonicaComponent,private infoAccount:InfoAccountComponent) { 
+  constructor(private dashboard:DashboardComponent,private login:LoginComponent,private chiSiamoC:ChiSiamoComponent,private bonificoC:BonificoComponent,private ricaricaTelefonicaC:RicaricaTelefonicaComponent,private infoAccount:InfoAccountComponent,private movimentiC:MovimentiComponent) { 
   }
 
   ngOnInit(): void {
@@ -85,7 +86,9 @@ export class NavBarComponent implements Stage,OnInit {
   }
 
   getMovimenti(){
-
+    this.close();
+    this.renew(this.movimentiC);
+    this.changeType.emit(MovimentiComponent);
   }
 
   logOut(){
