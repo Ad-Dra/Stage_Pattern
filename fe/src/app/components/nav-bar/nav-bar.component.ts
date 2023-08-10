@@ -3,7 +3,9 @@ import { Router } from '@angular/router';
 import { BonificoComponent } from 'src/app/bonifico/bonifico.component';
 import { ChiSiamoComponent } from 'src/app/chi-siamo/chi-siamo.component';
 import { DashboardComponent } from 'src/app/dashboard/dashboard.component';
+import { InfoAccountComponent } from 'src/app/info-account/info-account.component';
 import { LoginComponent } from 'src/app/login/login.component';
+import { RicaricaTelefonicaComponent } from 'src/app/ricarica-telefonica/ricarica-telefonica.component';
 import { Stage } from 'src/app/stage/stage';
 
 @Component({
@@ -21,7 +23,7 @@ export class NavBarComponent implements Stage,OnInit {
 
   @Output() changeType: EventEmitter<any>= new EventEmitter<any>();
 
-  constructor(private dashboard:DashboardComponent,private login:LoginComponent,private chiSiamoC:ChiSiamoComponent,private bonificoC:BonificoComponent) { 
+  constructor(private dashboard:DashboardComponent,private login:LoginComponent,private chiSiamoC:ChiSiamoComponent,private bonificoC:BonificoComponent,private ricaricaTelefonicaC:RicaricaTelefonicaComponent,private infoAccount:InfoAccountComponent) { 
   }
 
   ngOnInit(): void {
@@ -71,11 +73,15 @@ export class NavBarComponent implements Stage,OnInit {
   } 
   
   ricaricaTelefonica(){
-
+    this.close();
+    this.renew(this.ricaricaTelefonicaC);
+    this.changeType.emit(RicaricaTelefonicaComponent);
   }
   
   getInfAccount(){
-    //this.ngxSmartModalService.open("informazioniAccount");
+    this.close();
+    this.renew(this.infoAccount);
+    this.changeType.emit(InfoAccountComponent);
   }
 
   getMovimenti(){

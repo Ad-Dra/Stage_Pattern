@@ -189,6 +189,10 @@ label{
     color:#8f8f8f !important; 
 }
 
+.form input{
+    color: black !important;
+}
+
 a{
     color: lightblue !important;
     cursor: pointer !important;
@@ -237,5 +241,5 @@ input:focus ~ i{
 }
 
 .ng-select.ng-valid .ng-select-container{
-    border-bottom: 2px blue solid !important;
+    border-bottom: 2px #45f3ff  solid !important;
 }

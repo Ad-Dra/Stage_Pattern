@@ -24,6 +24,9 @@ import { BonificoComponent } from './bonifico/bonifico.component';
 import { SelectComponent } from './components/select/select/select.component';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { TextAreaComponent } from './components/input/textArea/text-area/text-area.component';
+import { RicaricaTelefonicaComponent } from './ricarica-telefonica/ricarica-telefonica.component';
+import { MovimentiComponent } from './movimenti/movimenti.component';
+import { InfoAccountComponent } from './info-account/info-account.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,7 +42,10 @@ import { TextAreaComponent } from './components/input/textArea/text-area/text-ar
     ChiSiamoComponent,
     BonificoComponent,
     SelectComponent,
-    TextAreaComponent
+    TextAreaComponent,
+    RicaricaTelefonicaComponent,
+    MovimentiComponent,
+    InfoAccountComponent
   ],
   imports: [
     BrowserModule,
@@ -65,7 +71,7 @@ import { TextAreaComponent } from './components/input/textArea/text-area/text-ar
       },
     })
   ],
-  providers: [LoginComponent,DashboardComponent,RipristinaCredenzialiComponent,CreaUtenzaComponent,ConfermaCreazioneAccountComponent,ChiSiamoComponent,BonificoComponent,{ provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor,multi: true},{ provide: COMPONENT_B_TOKEN, useValue: LoginComponent}],
+  providers: [LoginComponent,DashboardComponent,RipristinaCredenzialiComponent,CreaUtenzaComponent,ConfermaCreazioneAccountComponent,ChiSiamoComponent,BonificoComponent,RicaricaTelefonicaComponent,InfoAccountComponent,{ provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor,multi: true},{ provide: COMPONENT_B_TOKEN, useValue: LoginComponent}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,4 +1,4 @@
-<div auth class="form-floating"  [formGroup]="formParent">
+<div auth class="form-floating" style="padding-top:20px" [formGroup]="formParent">
    
     <ng-select 
         [items]="items" 
@@ -8,5 +8,5 @@
         [readonly]="readonly"
         (change)="change($event)"
     ></ng-select>
-    <label  for="name">{{titolo}}</label>
+    <label  for="name" style="padding:0">{{titolo}}</label>
 </div>
