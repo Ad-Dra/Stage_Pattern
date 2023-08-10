@@ -1,7 +1,45 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Stage } from '../stage/stage';
 import { HttpClient } from '@angular/common/http';
 import { Colonne } from '../components/grids/grid/grid/grid.component';
+
+interface dashboardInterface extends Stage{
+  home(): void;
+  chiSiamo(): void;
+  mutuo(): void;
+  prestito(): void;
+  getInfAccount(): void;
+  getMovimenti(): void;
+  logOut(): void;
+  renew(t:any):void;
+}
+/*
+const dashboardSaldoPassivo: dashboardInterface = {
+
+  home() {
+    this.renew(DashboardComponent);
+    //this.changeType.emit(DashboardComponent);
+  },
+  chiSiamo() {
+    
+  },
+  mutuo() {
+    
+  },
+  prestito() {
+    
+  },
+  getInfAccount() {
+    
+  },
+  getMovimenti() {
+    
+  },
+  logOut() {
+    
+  },
+};
+*/
 
 @Component({
   selector: 'app-dashboard',
@@ -20,6 +58,10 @@ export class DashboardComponent implements Stage,OnInit{
     {name:"Data creazione", field:'dataCreazione',isCurrency:false,isDate:true, persIcon:false}
   ]
 
+  @Output() changeType: EventEmitter<any>= new EventEmitter<any>();
+  
+  public lamp: dashboardInterface | undefined;
+
   constructor(private http:HttpClient){
 
   }
@@ -27,6 +69,7 @@ export class DashboardComponent implements Stage,OnInit{
   ngOnInit(): void {
     this.getInfoAccount();
     this.getSaldo();
+   // (this.lamp as any).da();
   }
 
   getInfoAccount(){
@@ -39,7 +82,7 @@ export class DashboardComponent implements Stage,OnInit{
 
   getSaldo(){
     this.http.get("/api/getSaldo.json").subscribe((res:any)=>{
-      if(res && res.length>0){
+      if(res){
         this.contiCorrente=res;
         this.responseOk=true;
         this.contiCorrente=[...this.contiCorrente,{saldo:12.3,descrizione:"mio"}];

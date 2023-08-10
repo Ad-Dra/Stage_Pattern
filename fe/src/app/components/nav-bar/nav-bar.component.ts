@@ -1,5 +1,7 @@
 import { Component, ElementRef, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
+import { BonificoComponent } from 'src/app/bonifico/bonifico.component';
+import { ChiSiamoComponent } from 'src/app/chi-siamo/chi-siamo.component';
 import { DashboardComponent } from 'src/app/dashboard/dashboard.component';
 import { LoginComponent } from 'src/app/login/login.component';
 import { Stage } from 'src/app/stage/stage';
@@ -19,7 +21,7 @@ export class NavBarComponent implements Stage,OnInit {
 
   @Output() changeType: EventEmitter<any>= new EventEmitter<any>();
 
-  constructor(private dashboard:DashboardComponent,private login:LoginComponent) { 
+  constructor(private dashboard:DashboardComponent,private login:LoginComponent,private chiSiamoC:ChiSiamoComponent,private bonificoC:BonificoComponent) { 
   }
 
   ngOnInit(): void {
@@ -49,11 +51,15 @@ export class NavBarComponent implements Stage,OnInit {
   }
   
   chiSiamo(){
-
+    this.close();
+    this.renew(this.chiSiamoC);
+    this.changeType.emit(ChiSiamoComponent);
   }
 
   bonifico(){
-
+    this.close();
+    this.renew(this.bonificoC);
+    this.changeType.emit(BonificoComponent);
   }
 
   mutuo(){

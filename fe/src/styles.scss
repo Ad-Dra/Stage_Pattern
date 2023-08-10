@@ -3,6 +3,7 @@
 @import '~@fortawesome/fontawesome-free/css/all.min.css';
 @import "node_modules/angular-notifier/styles";
 @import "~bootstrap/dist/css/bootstrap.css";
+@import "~@ng-select/ng-select/themes/default.theme.css";
 
 *{
     box-sizing: border-box;
@@ -120,6 +121,9 @@ h5{
     letter-spacing: 0.1em;
 }
 
+p{
+    color:#8f8f8f !important; 
+}
 /*
 input{
     position: relative;
@@ -223,3 +227,15 @@ input:valid ~ i,
 input:focus ~ i{
     height: 44px;
 }*/
+
+.ng-select .ng-select-container .ng-value-container .ng-input>input{
+    border-bottom: 0 !important;
+}
+
+.ng-select.ng-invalid .ng-select-container{
+    border-bottom: 2px red solid !important;
+}
+
+.ng-select.ng-valid .ng-select-container{
+    border-bottom: 2px blue solid !important;
+}
