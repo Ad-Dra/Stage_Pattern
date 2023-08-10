@@ -19,6 +19,11 @@ import { ConfermaCreazioneAccountComponent } from './conferma-creazione-account/
 export const COMPONENT_B_TOKEN = new InjectionToken<any>('ComponentBToken');
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { GridComponent } from './components/grids/grid/grid/grid.component';
+import { ChiSiamoComponent } from './chi-siamo/chi-siamo.component';
+import { BonificoComponent } from './bonifico/bonifico.component';
+import { SelectComponent } from './components/select/select/select.component';
+import { NgSelectModule } from '@ng-select/ng-select';
+import { TextAreaComponent } from './components/input/textArea/text-area/text-area.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,7 +35,11 @@ import { GridComponent } from './components/grids/grid/grid/grid.component';
     RipristinaCredenzialiComponent,
     CreaUtenzaComponent,
     ConfermaCreazioneAccountComponent,
-    GridComponent
+    GridComponent,
+    ChiSiamoComponent,
+    BonificoComponent,
+    SelectComponent,
+    TextAreaComponent
   ],
   imports: [
     BrowserModule,
@@ -39,6 +48,7 @@ import { GridComponent } from './components/grids/grid/grid/grid.component';
     ReactiveFormsModule,
     NgxSpinnerModule,
     NgbModule,
+    NgSelectModule,
     NotifierModule.withConfig({
       position: {
         horizontal: {
@@ -55,7 +65,7 @@ import { GridComponent } from './components/grids/grid/grid/grid.component';
       },
     })
   ],
-  providers: [LoginComponent,DashboardComponent,RipristinaCredenzialiComponent,CreaUtenzaComponent,ConfermaCreazioneAccountComponent,{ provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor,multi: true},{ provide: COMPONENT_B_TOKEN, useValue: LoginComponent}],
+  providers: [LoginComponent,DashboardComponent,RipristinaCredenzialiComponent,CreaUtenzaComponent,ConfermaCreazioneAccountComponent,ChiSiamoComponent,BonificoComponent,{ provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor,multi: true},{ provide: COMPONENT_B_TOKEN, useValue: LoginComponent}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

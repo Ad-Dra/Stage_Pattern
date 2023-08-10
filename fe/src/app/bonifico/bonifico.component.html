@@ -1,0 +1,40 @@
+<div class="col-md-12 col-sm-12">
+    <div class="card">
+        <div class="row">
+            <h5 class="card-header">Bonifico</h5>
+            <div class="card-body">
+                <form id="formId" [formGroup]="form">
+                    <div class="row">
+                        <div class="col-md-6 col-md-6">
+                            <app-input-text [title]="'beneficiario'" [formField]="'beneficiario'" [formId]="'formId'" [formParent]="form" [required]="true" [maxLen]="'55'"></app-input-text>        
+                        </div>
+                        <div class="col-md-6 col-md-6">
+                            <app-input-text [title]="'ibanBeneficiario'" [formField]="'ibanBeneficiario'" [formId]="'formId'" [formParent]="form" [required]="true" [maxLen]="'27'"></app-input-text>        
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 col-md-6">
+                            <app-select [title]="'tipologiaBonifico'" [items]="tipologieBonfico"   [bindLabel]="'descrizione'" [bindValue]="'id'"  [formField]="'tipologiaBonifico'" [formId]="'formId'" [formParent]="form" [required]="true" [maxLen]="'45'"></app-select>        
+                        </div>
+                        <div class="col-md-6 col-md-6">
+                            <app-input-text [title]="'importoBonifico'" [formField]="'importo'" [formId]="'formId'" [formParent]="form" [required]="true" [maxLen]="'15'"></app-input-text>        
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12">
+                            <app-text-area [title]="'causaleBonifico'" [cols]="65" [formField]="'causale'" [formId]="'formId'" [formParent]="form" [required]="true" [maxLen]="'500'" ></app-text-area>
+                        </div>
+                    </div>
+
+                    <div class="row centerDiv">
+                        <div class="col-md-5 col-sm-5">
+                            <button class="btn" (click)="effettuaIlBonifico()" title="Procedi con il bonifico">Procedi con il bonifico</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
