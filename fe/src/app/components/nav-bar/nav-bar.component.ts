@@ -1,30 +1,24 @@
-import { Component, ElementRef, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
-import { BonificoComponent } from 'src/app/bonifico/bonifico.component';
-import { ChiSiamoComponent } from 'src/app/chi-siamo/chi-siamo.component';
-import { DashboardComponent } from 'src/app/dashboard/dashboard.component';
-import { InfoAccountComponent } from 'src/app/info-account/info-account.component';
-import { LoginComponent } from 'src/app/login/login.component';
-import { MovimentiComponent } from 'src/app/movimenti/movimenti.component';
-import { RicaricaTelefonicaComponent } from 'src/app/ricarica-telefonica/ricarica-telefonica.component';
-import { Stage } from 'src/app/stage/stage';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-nav-bar',
   templateUrl: './nav-bar.component.html',
   styleUrls: ['./nav-bar.component.css']
 })
-export class NavBarComponent implements Stage,OnInit {
-
+export class NavBarComponent implements OnInit {
   public notifiche:any=[];
   public numNotifiche:number=0;
-  public isNavbarCollapsed:boolean=true;
-  public isNotificheCollapsed:boolean=true;
-  public isInfoCollapsed:boolean=true;
 
-  @Output() changeType: EventEmitter<any>= new EventEmitter<any>();
-
-  constructor(private dashboard:DashboardComponent,private login:LoginComponent,private chiSiamoC:ChiSiamoComponent,private bonificoC:BonificoComponent,private ricaricaTelefonicaC:RicaricaTelefonicaComponent,private infoAccount:InfoAccountComponent,private movimentiC:MovimentiComponent) { 
+  @Output() homeEmitter: EventEmitter<any>= new EventEmitter<any>();
+  @Output() chiSiamoEmitter: EventEmitter<any>= new EventEmitter<any>();
+  @Output() getInfAccountEmitter: EventEmitter<any>= new EventEmitter<any>();
+  @Output() getMovimentiEmitter: EventEmitter<any>= new EventEmitter<any>();
+  @Output() logOutEmitter: EventEmitter<any>= new EventEmitter<any>();
+  @Output() bonificoEmitter: EventEmitter<any>= new EventEmitter<any>();
+  @Output() ricaricaTelefonicaEmitter: EventEmitter<any>= new EventEmitter<any>();
+  @Output() prestitoEmitter: EventEmitter<any>= new EventEmitter<any>();
+  
+  constructor() { 
   }
 
   ngOnInit(): void {
@@ -48,53 +42,35 @@ export class NavBarComponent implements Stage,OnInit {
   }
 
   home(){
-    this.close();
-    this.renew(this.dashboard);
-    this.changeType.emit(DashboardComponent);
+    this.homeEmitter.emit();
   }
   
   chiSiamo(){
-    this.close();
-    this.renew(this.chiSiamoC);
-    this.changeType.emit(ChiSiamoComponent);
+    this.chiSiamoEmitter.emit();
   }
 
   bonifico(){
-    this.close();
-    this.renew(this.bonificoC);
-    this.changeType.emit(BonificoComponent);
-  }
-
-  mutuo(){
-
+    this.bonificoEmitter.emit();
   }
 
   prestito(){
-
+    this.prestitoEmitter.emit();
   } 
   
   ricaricaTelefonica(){
-    this.close();
-    this.renew(this.ricaricaTelefonicaC);
-    this.changeType.emit(RicaricaTelefonicaComponent);
+    this.ricaricaTelefonicaEmitter.emit();
   }
   
   getInfAccount(){
-    this.close();
-    this.renew(this.infoAccount);
-    this.changeType.emit(InfoAccountComponent);
+    this.getInfAccountEmitter.emit();
   }
 
   getMovimenti(){
-    this.close();
-    this.renew(this.movimentiC);
-    this.changeType.emit(MovimentiComponent);
+    this.getMovimentiEmitter.emit();
   }
 
   logOut(){
-    sessionStorage.clear();
-    this.renew(this.login);
-    this.changeType.emit(LoginComponent);
+    this.logOutEmitter.emit();
   }
 
   visualizza(idNotifica:number){
@@ -114,24 +90,5 @@ export class NavBarComponent implements Stage,OnInit {
 
   cancellaAllNotifiche(){
     //.service.delete("cancellaAllNotifiche.json").subscribe(data=>{this.getNotifiche();});
-  }
-
-  clickNotifica(){
-    this.isNotificheCollapsed = !this.isNotificheCollapsed;
-    this.isInfoCollapsed=true;
-  }
-
-  clickInfo(){
-    this.isInfoCollapsed = !this.isInfoCollapsed;
-    this.isNotificheCollapsed=true;
-  }
-
-  close(){
-    this.isNotificheCollapsed= true;
-    this.isInfoCollapsed=true;
-  }
-
-  renew(newType: Stage): void {
-    Object.setPrototypeOf(this, newType);
   }
 }

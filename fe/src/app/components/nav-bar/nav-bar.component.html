@@ -6,42 +6,39 @@
           <img src="https://my-pizza.fr/wp-content/uploads/2021/08/cropped-LOGO_MYPIZZA_2020_TRANSPARENT_01.png" height="30" alt="" loading="lazy" />
         </a>
 
-        <button class="navbar-toggler"  (click)="isNavbarCollapsed = !isNavbarCollapsed"  type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
           aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <i class="navbar-toggler-icon"></i>
         </button>
     
-        <div [ngbCollapse]="isNavbarCollapsed" class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link active"  type="button" aria-current="page" (mousedown)="home()">Home</a>
+              <a class="nav-link active"  type="button" aria-current="page" data-toggle="collapse" data-target="#navbarSupportedContent" (click)="home()">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active"  type="button" aria-current="page" data-toggle="collapse" data-target="#navbarSupportedContent" (mousedown)="chiSiamo()">Chi siamo</a>
+              <a class="nav-link active"  type="button" aria-current="page" data-toggle="collapse" data-target="#navbarSupportedContent" (click)="chiSiamo()">Chi siamo</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active"  type="button" aria-current="page" data-toggle="collapse" data-target="#navbarSupportedContent" (mousedown)="bonifico()">Bonifico</a>
+              <a class="nav-link active"  type="button" aria-current="page" data-toggle="collapse" data-target="#navbarSupportedContent" (click)="bonifico()">Bonifico</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active"  type="button" aria-current="page" data-toggle="collapse" data-target="#navbarSupportedContent" (mousedown)="mutuo()">Mutuo</a>
+              <a class="nav-link active"  type="button" aria-current="page" data-toggle="collapse" data-target="#navbarSupportedContent" (click)="prestito()">Prestito</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active"  type="button" aria-current="page" data-toggle="collapse" data-target="#navbarSupportedContent" (mousedown)="prestito()">Prestito</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active"  type="button" aria-current="page" data-toggle="collapse" data-target="#navbarSupportedContent" (mousedown)="ricaricaTelefonica()">Ricarica telefonica</a>
+              <a class="nav-link active"  type="button" aria-current="page" data-toggle="collapse" data-target="#navbarSupportedContent" (click)="ricaricaTelefonica()">Ricarica telefonica</a>
             </li>
           </ul>
       
-          <ul class="navbar-nav mb-2 mb-lg-0" (focusout)="close()"  data-bs-toggle="collapse" >
-            <li class="nav-item dropdown" (click)="clickNotifica()">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <ul class="navbar-nav mb-2 mb-lg-0"  data-toggle="collapse" data-target="#navbarSupportedContent" >
+            <li class="nav-item dropdown" >
+                <a class="nav-link dropdown-toggle"  id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 
                   <i class="fa fa-bell">
                     <span class="badge badge-info"><span *ngIf="numNotifiche>0">{{numNotifiche}}</span></span>
                   </i>
                 </a>
-                <div class="dropdown-menu notifications" aria-labelledby="navbarDropdown" [ngbCollapse]="isNotificheCollapsed" >
+                <div class="dropdown-menu notifications" aria-labelledby="navbarDropdown"  >
                     <form>
                       <div class="notification-heading" *ngIf="notifiche.length>0">
                         <h4 class="menu-title" (click)="visualizzaAllNotifiche()"><i class="fa fa-check" aria-hidden="true" title="Visualizza tutti le notifiche"></i></h4>
@@ -72,22 +69,14 @@
             </li>
           </ul>
 
-          <ul class="navbar-nav mb-2 mb-lg-0" (focusout)="close()"  data-bs-toggle="collapse" >
-            <li class="nav-item dropdown" (click)="clickInfo()">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                
-                <!--<img
-                    [src]="avatar"
-                    class="rounded-circle"
-                    height="30"
-                    alt=""
-                    loading="lazy"
-                />-->
+          <ul class="navbar-nav mb-2 mb-lg-0" data-toggle="collapse" data-target="#navbarSupportedContent"> 
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 </a>
-                <div class="dropdown-menu"  aria-labelledby="navbarDropdown" [ngbCollapse]="isInfoCollapsed" >
-                  <li  type="button" (mousedown)="getInfAccount()"><i class="fa fa-user marginLeft4"  aria-hidden="true" data-bs-toggle="collapse">Info account<span class="dropdown-item paddingLeft10"></span></i></li>
-                  <li  type="button" (mousedown)="getMovimenti()"><i class="fa fa-user marginLeft4"  aria-hidden="true" data-bs-toggle="collapse">Movimenti<span class="dropdown-item paddingLeft10"></span></i></li>
-                  <li  type="button" (mousedown)="logOut()"><i class="fa fa-sign-out marginLeft4"  aria-hidden="true" data-bs-toggle="collapse">Log out <span class="dropdown-item paddingLeft10"></span></i></li>
+                <div class="dropdown-menu"  aria-labelledby="navbarDropdown">
+                  <li  data-target="#navbarSupportedContent" type="button" (click)="getInfAccount()"><i class="fa fa-user marginLeft4"  aria-hidden="true" data-bs-toggle="collapse" data-target="#navbarSupportedContent"><span class="dropdown-item paddingLeft10"></span></i>Info account</li>
+                  <li  data-target="#navbarSupportedContent" type="button" (click)="getMovimenti()"><i class="fa fa-exchange marginLeft4"  aria-hidden="true" data-bs-toggle="collapse" data-target="#navbarSupportedContent"><span class="dropdown-item paddingLeft10"></span></i>Movimenti</li>
+                  <li  data-target="#navbarSupportedContent" type="button" (click)="logOut()"><i class="fa fa-sign-out marginLeft4"  aria-hidden="true" data-bs-toggle="collapse" data-target="#navbarSupportedContent"><span class="dropdown-item paddingLeft10"></span></i>Log out</li>
                 </div>
             </li>
           </ul>
