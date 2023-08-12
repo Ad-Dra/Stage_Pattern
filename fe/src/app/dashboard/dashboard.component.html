@@ -1,21 +1,31 @@
-<h1>Benvenuto {{identificativo}} in City Safe Bank!</h1>
+<app-nav-bar  (homeEmitter)="home()" (chiSiamoEmitter)="chiSiamo()" (getInfAccountEmitter)="getInfAccount()" (getMovimentiEmitter)="getMovimenti()" (logOutEmitter)="logOut()" (bonificoEmitter)="bonifico()" (ricaricaTelefonicaEmitter)="ricaricaTelefonica()" (prestitoEmitter)="prestito()"></app-nav-bar>
 
-<br><br>
+<div *ngIf="type=='DashboardComponent'">
+    <h1>Benvenuto {{identificativo}} in City Safe Bank!</h1>
 
-<div class="row" *ngIf="contiCorrente.length==0">
-    <h4 class="white">Non ha nessun conto corrente vieni a trovarci in filiale</h4>
-</div>
+    <br><br>
 
-<h4 *ngIf="contiCorrente.length==1">Il suo conto corrente: ha il seguente saldo: {{contiCorrente[0].saldo}} €</h4>
+    <div class="row" *ngIf="contiCorrente.length==0">
+        <h4 class="white">Non ha nessun conto corrente vieni a trovarci in filiale</h4>
+    </div>
+
+    <h4 *ngIf="contiCorrente.length==1">Il suo conto corrente: ha il seguente saldo: {{contiCorrente[0].saldo}} €</h4>
 
 
-<div class="col-md-12 col-sm-12" *ngIf="contiCorrente && contiCorrente.length>1">
-    <div class="card">
-        <div class="row">
-            <h5 class="card-header">Info sui suoi conti correnti</h5>
-            <div class="card-body">
-              <app-grid [colonne]="colonne" [dati]="contiCorrente"  *ngIf="responseOk"></app-grid>
+    <div class="col-md-12 col-sm-12" *ngIf="contiCorrente && contiCorrente.length>1">
+        <div class="card">
+            <div class="row">
+                <h5 class="card-header">Info sui suoi conti correnti</h5>
+                <div class="card-body">
+                <app-grid [colonne]="colonne" [dati]="contiCorrente"  *ngIf="responseOk"></app-grid>
+                </div>
             </div>
         </div>
-    </div>
-</div>  
+    </div>  
+</div>
+
+<app-chi-siamo *ngIf="type=='ChiSiamoComponent'"></app-chi-siamo>
+<app-bonifico  *ngIf="type=='BonificoComponent'"></app-bonifico>
+<app-ricarica-telefonica *ngIf="type=='RicaricaTelefonicaComponent'"></app-ricarica-telefonica>
+<app-info-account *ngIf="type=='InfoAccountComponent'"></app-info-account>
+<app-movimenti *ngIf="type=='MovimentiComponent'"></app-movimenti>
