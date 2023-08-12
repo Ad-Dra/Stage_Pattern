@@ -19,13 +19,13 @@ exports.getInfoAccount=async (req,res)=>{
     });
 }
 
-exports.getSaldoContoCorrente=async (req,res)=>{
+exports.getDettagliContoCorrente=async (req,res)=>{
 
     const utente = new User({
         idUtente: await Utility.getIdUtente(req)
     });
 
-    User.getSaldo(utente.idUtente,(err, data) => {
+    User.getInfoContoCorrente(utente.idUtente,(err, data) => {
         if (err)
             res.status(500).send({message:err.message});
         else{ 

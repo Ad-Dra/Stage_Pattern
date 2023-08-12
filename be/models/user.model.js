@@ -45,7 +45,7 @@ InfoUser.getInfoAccount=(idUtente,result)=>{
   }); 
 }
 
-InfoUser.getSaldo=(idUtente,result)=>{
+InfoUser.getInfoContoCorrente=(idUtente,result)=>{
   sql.query(`select * 
               from utente inner join contocorrente on utente.idUtente=contocorrente.idUtente
               where utente.idUtente=${idUtente}`, (err, res) => {
