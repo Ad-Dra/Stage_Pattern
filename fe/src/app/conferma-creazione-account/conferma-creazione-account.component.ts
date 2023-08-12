@@ -43,7 +43,7 @@ export class ConfermaCreazioneAccountComponent implements Stage{
           if(parametri.utenzaAttiva==1){
             this.locations.replaceState("");
             this.renew(this.login);
-            this.changeType.emit(LoginComponent);
+            this.changeType.emit({comp:LoginComponent});
           }
           else{
             window.close();

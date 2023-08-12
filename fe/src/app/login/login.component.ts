@@ -33,7 +33,7 @@ export class LoginComponent implements Stage{
       if(res){
         sessionStorage.setItem("token",res.token);
         this.renew(this.dashboard);
-        this.changeType.emit(DashboardComponent);
+        this.changeType.emit({comp:DashboardComponent});
       }
     })
   }
@@ -44,11 +44,11 @@ export class LoginComponent implements Stage{
 
   ripristinaPassword(){
     this.renew(this.ripristinaCred);
-    this.changeType.emit(RipristinaCredenzialiComponent);
+    this.changeType.emit({comp:RipristinaCredenzialiComponent});
   }
 
   creaAccount(){
     this.renew(this.creaUtenza);
-    this.changeType.emit(CreaUtenzaComponent);
+    this.changeType.emit({comp:CreaUtenzaComponent});
   }
 }

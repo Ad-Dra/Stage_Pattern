@@ -41,7 +41,7 @@ export class CreaUtenzaComponent implements Stage{
     this.http.post("/api/auth/createUtenza.json",this.form.value).subscribe(data => {
       if(data){
         this.renew(this.login);
-        this.changeType.emit(LoginComponent);
+        this.changeType.emit({comp:LoginComponent});
       }
     });
   }

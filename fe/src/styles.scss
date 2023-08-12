@@ -16,6 +16,8 @@ body{
     align-items: center;
     min-height: 100vh;
     background: #23242a;
+    overflow-x: hidden !important;
+    padding-top: 40px;
 }
 
 .box{

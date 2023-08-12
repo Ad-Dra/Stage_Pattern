@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild, ViewContainerRef } from '@angular/core';
 import { LoginComponent } from './login/login.component';
 import { RipristinaCredenzialiComponent } from './ripristina-credenziali/ripristina-credenziali.component';
 import { ConfermaCreazioneAccountComponent } from './conferma-creazione-account/conferma-creazione-account.component';
@@ -13,6 +13,9 @@ export class AppComponent implements OnInit{
   public type:any=LoginComponent.name;
   public showNavBar:boolean=false;
 
+  constructor(private viewContainerRef: ViewContainerRef){
+  }
+
   ngOnInit(): void {
     if(location.hash.includes('#/ripristinaPassword'))
       this.type=RipristinaCredenzialiComponent.name;
@@ -23,8 +26,10 @@ export class AppComponent implements OnInit{
       this.type=sessionStorage.getItem("statusObject");
 
     this.showOrHideNavBar();
-
     this.setStatusObject();
+
+    if(this.type.includes("DashboardComponent"))
+      this.type="DashboardComponent";
   }
 
   showOrHideNavBar(){
@@ -35,13 +40,19 @@ export class AppComponent implements OnInit{
   }
 
   refreshTypeObject(typeObject:any){
-    this.type=typeObject.name;
+    this.type=typeObject.comp.name;
     this.showOrHideNavBar();
-    this.setStatusObject();
+    this.setStatusObject(typeObject.isDashboard);
+
+    if(typeObject.isDashboard)
+      this.type="DashboardComponent";
   }
 
-  setStatusObject(){
+  setStatusObject(isDashboard?:boolean){
     if(this.type && this.type!="")
-      sessionStorage.setItem("statusObject",this.type);
+      if(isDashboard)
+        sessionStorage.setItem("statusObject","DashboardComponent_"+this.type);
+      else
+        sessionStorage.setItem("statusObject",this.type);
   }
 }

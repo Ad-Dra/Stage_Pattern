@@ -3,12 +3,7 @@
 <app-ripristina-credenziali *ngIf="type=='RipristinaCredenzialiComponent'" (changeType)="refreshTypeObject($event)"></app-ripristina-credenziali>
 <app-crea-utenza  *ngIf="type=='CreaUtenzaComponent'" (changeType)="refreshTypeObject($event)"></app-crea-utenza>
 <app-conferma-creazione-account *ngIf="type=='ConfermaCreazioneAccountComponent'" (changeType)="refreshTypeObject($event)"></app-conferma-creazione-account>
-<app-chi-siamo *ngIf="type=='ChiSiamoComponent'" (changeType)="refreshTypeObject($event)"></app-chi-siamo>
-<app-bonifico  *ngIf="type=='BonificoComponent'" (changeType)="refreshTypeObject($event)"></app-bonifico>
-<app-ricarica-telefonica *ngIf="type=='RicaricaTelefonicaComponent'" (changeType)="refreshTypeObject($event)"></app-ricarica-telefonica>
-<app-info-account *ngIf="type=='InfoAccountComponent'" (changeType)="refreshTypeObject($event)"></app-info-account>
-<app-movimenti *ngIf="type=='MovimentiComponent'" (changeType)="refreshTypeObject($event)"></app-movimenti>
 
 
-<app-nav-bar *ngIf="showNavBar" (changeType)="refreshTypeObject($event)"></app-nav-bar>
+<!--<app-nav-bar *ngIf="showNavBar" (changeType)="refreshTypeObject($event)"></app-nav-bar>-->
 <notifier-container></notifier-container>

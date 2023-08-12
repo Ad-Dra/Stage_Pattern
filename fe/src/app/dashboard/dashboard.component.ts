@@ -48,22 +48,26 @@ interface notContoCorrenteDashboardInterface extends Stage{
 const dashboardSaldoPassivo: dashboardInterface = {
   home() {
     this.type=DashboardComponent.name;
+    this.changeType.emit({comp:DashboardComponent});
   },
   chiSiamo() {
     this.type=ChiSiamoComponent.name;
+    this.changeType.emit({comp:ChiSiamoComponent,isDashboard:true});
   },
   prestito() {
   },
   getInfAccount() {
+    this.changeType.emit({comp:InfoAccountComponent,isDashboard:true});
     this.type=InfoAccountComponent.name;
   },
   getMovimenti() {
     this.type=MovimentiComponent.name;
+    this.changeType.emit({comp:MovimentiComponent,isDashboard:true});
   },
   logOut() {
     sessionStorage.clear();
     this.renew(LoginComponent);
-    this.changeType.emit(LoginComponent);
+    this.changeType.emit({comp:LoginComponent});
   },
   renew(t: Stage) {
     Object.setPrototypeOf(this, t);
@@ -75,28 +79,34 @@ const dashboardSaldoPassivo: dashboardInterface = {
 const dashboardSaldoAttivo: dashboardInterfaceAttiva = {
   home() {
     this.type=DashboardComponent.name;
+    this.changeType.emit({comp:DashboardComponent});
   },
   chiSiamo() {
     this.type=ChiSiamoComponent.name;
+    this.changeType.emit({comp:ChiSiamoComponent,isDashboard:true});
   },
   bonifico() {
     this.type=BonificoComponent.name;
+    this.changeType.emit({comp:BonificoComponent,isDashboard:true});
   },
   prestito() {
   },
   ricaricaTelefonica() {
     this.type=RicaricaTelefonicaComponent.name;
+    this.changeType.emit({comp:RicaricaTelefonicaComponent,isDashboard:true});
   },
   getInfAccount() {
     this.type=InfoAccountComponent.name;
+    this.changeType.emit({comp:InfoAccountComponent,isDashboard:true});
   },
   getMovimenti() {
    this.type=MovimentiComponent.name;
+   this.changeType.emit({comp:MovimentiComponent,isDashboard:true});
   },
   logOut() {
     sessionStorage.clear();
     this.renew(LoginComponent);
-    this.changeType.emit(LoginComponent);
+    this.changeType.emit({comp:LoginComponent});
   },
   renew(t: Stage) {
     Object.setPrototypeOf(this, t);
@@ -108,17 +118,20 @@ const dashboardSaldoAttivo: dashboardInterfaceAttiva = {
 const notContoCorrenteDashboard: notContoCorrenteDashboardInterface = {
   home() {
     this.type=DashboardComponent.name;
+    this.changeType.emit({comp:DashboardComponent});
   },
   chiSiamo() {
     this.type=ChiSiamoComponent.name;
+    this.changeType.emit({comp:ChiSiamoComponent,isDashboard:true});
   },
   getInfAccount() {
+    this.changeType.emit({comp:InfoAccountComponent,isDashboard:true});
     this.type=InfoAccountComponent.name;
   },
   logOut() {
     sessionStorage.clear();
     this.renew(LoginComponent);
-    this.changeType.emit(LoginComponent);
+    this.changeType.emit({comp:LoginComponent});
   },
   renew(t: Stage) {
     Object.setPrototypeOf(this, t);
@@ -155,6 +168,9 @@ export class DashboardComponent implements Stage,OnInit{
   }
 
   ngOnInit(): void {
+    if(sessionStorage.getItem("statusObject") && sessionStorage.getItem("statusObject")!=null && sessionStorage.getItem("statusObject")!='undefined')
+      this.type=sessionStorage.getItem("statusObject")!='DashboardComponent' ? sessionStorage.getItem("statusObject")?.split("_")[1] : sessionStorage.getItem("statusObject");
+
     this.getInfoAccount();
     this.getInfoContoCorrente();
   }

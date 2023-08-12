@@ -40,7 +40,7 @@ export class RipristinaCredenzialiComponent implements Stage{
     this.http.post("/api/auth/ripristinaPassword.json",this.form.value).subscribe((res:any)=>{
       if(res){
         this.renew(this.login);
-        this.changeType.emit(LoginComponent);
+        this.changeType.emit({comp:LoginComponent});
       }
     })
   }
@@ -63,7 +63,7 @@ export class RipristinaCredenzialiComponent implements Stage{
         if(response){
           this.locations.replaceState("");
           this.renew(this.login);
-          this.changeType.emit(LoginComponent);
+          this.changeType.emit({comp:LoginComponent});
         }
       });
     }
