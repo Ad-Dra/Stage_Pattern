@@ -33,6 +33,24 @@ exports.verifyToken=async (req,res,next)=>{
         next();
 }
 
+exports.checkRuolo=async(req,result,next)=> {
+  let idUtente = await this.getIdUtente(req);
+
+  sql.query(`select idRuolo from utente where idUtente= "${idUtente}"`, (err, res) => {
+    if(err) {
+      console.log("error: ", err);
+      next(err);
+    }
+    res=JSON.parse(JSON.stringify(res))[0];
+
+    if(res.idRuolo!=1){
+      result.status(401).send({ message:"Non ha i permessi per eseguire la seguente operazione"});
+    }
+    else
+      next();
+  })
+}
+
 exports.isActiveUser=(dati,email)=>{
     let query="";
   
@@ -132,7 +150,7 @@ exports.isActiveUser=(dati,email)=>{
     })}); 
   }
 
-  /**
+/**
  * trova l'id dell'utente
  * 
  * @param {*} req parametri richiesti
