@@ -1,4 +1,4 @@
-import { Component, OnInit, TemplateRef, ViewChild, ViewContainerRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { LoginComponent } from './login/login.component';
 import { RipristinaCredenzialiComponent } from './ripristina-credenziali/ripristina-credenziali.component';
 import { ConfermaCreazioneAccountComponent } from './conferma-creazione-account/conferma-creazione-account.component';
@@ -13,7 +13,7 @@ export class AppComponent implements OnInit{
   public type:any=LoginComponent.name;
   public showNavBar:boolean=false;
 
-  constructor(private viewContainerRef: ViewContainerRef){
+  constructor(){
   }
 
   ngOnInit(): void {
@@ -28,7 +28,9 @@ export class AppComponent implements OnInit{
     this.showOrHideNavBar();
     this.setStatusObject();
 
-    if(this.type.includes("DashboardComponent"))
+    if(this.type.includes("DashboardAdminComponent"))
+      this.type="DashboardAdminComponent";
+    else if(this.type.includes("DashboardComponent"))
       this.type="DashboardComponent";
   }
 
@@ -45,13 +47,13 @@ export class AppComponent implements OnInit{
     this.setStatusObject(typeObject.isDashboard);
 
     if(typeObject.isDashboard)
-      this.type="DashboardComponent";
+      this.type=typeObject.isDashboard;
   }
 
-  setStatusObject(isDashboard?:boolean){
+  setStatusObject(isDashboard?:string){
     if(this.type && this.type!="")
       if(isDashboard)
-        sessionStorage.setItem("statusObject","DashboardComponent_"+this.type);
+        sessionStorage.setItem("statusObject",isDashboard+"_"+this.type);
       else
         sessionStorage.setItem("statusObject",this.type);
   }

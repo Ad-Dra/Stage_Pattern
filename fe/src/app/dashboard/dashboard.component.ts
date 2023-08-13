@@ -52,17 +52,17 @@ const dashboardSaldoPassivo: dashboardInterface = {
   },
   chiSiamo() {
     this.type=ChiSiamoComponent.name;
-    this.changeType.emit({comp:ChiSiamoComponent,isDashboard:true});
+    this.changeType.emit({comp:ChiSiamoComponent,isDashboard:"DashboardComponent"});
   },
   prestito() {
   },
   getInfAccount() {
-    this.changeType.emit({comp:InfoAccountComponent,isDashboard:true});
+    this.changeType.emit({comp:InfoAccountComponent,isDashboard:"DashboardComponent"});
     this.type=InfoAccountComponent.name;
   },
   getMovimenti() {
     this.type=MovimentiComponent.name;
-    this.changeType.emit({comp:MovimentiComponent,isDashboard:true});
+    this.changeType.emit({comp:MovimentiComponent,isDashboard:"DashboardComponent"});
   },
   logOut() {
     sessionStorage.clear();
@@ -83,25 +83,25 @@ const dashboardSaldoAttivo: dashboardInterfaceAttiva = {
   },
   chiSiamo() {
     this.type=ChiSiamoComponent.name;
-    this.changeType.emit({comp:ChiSiamoComponent,isDashboard:true});
+    this.changeType.emit({comp:ChiSiamoComponent,isDashboard:"DashboardComponent"});
   },
   bonifico() {
     this.type=BonificoComponent.name;
-    this.changeType.emit({comp:BonificoComponent,isDashboard:true});
+    this.changeType.emit({comp:BonificoComponent,isDashboard:"DashboardComponent"});
   },
   prestito() {
   },
   ricaricaTelefonica() {
     this.type=RicaricaTelefonicaComponent.name;
-    this.changeType.emit({comp:RicaricaTelefonicaComponent,isDashboard:true});
+    this.changeType.emit({comp:RicaricaTelefonicaComponent,isDashboard:"DashboardComponent"});
   },
   getInfAccount() {
     this.type=InfoAccountComponent.name;
-    this.changeType.emit({comp:InfoAccountComponent,isDashboard:true});
+    this.changeType.emit({comp:InfoAccountComponent,isDashboard:"DashboardComponent"});
   },
   getMovimenti() {
    this.type=MovimentiComponent.name;
-   this.changeType.emit({comp:MovimentiComponent,isDashboard:true});
+   this.changeType.emit({comp:MovimentiComponent,isDashboard:"DashboardComponent"});
   },
   logOut() {
     sessionStorage.clear();
@@ -122,10 +122,10 @@ const notContoCorrenteDashboard: notContoCorrenteDashboardInterface = {
   },
   chiSiamo() {
     this.type=ChiSiamoComponent.name;
-    this.changeType.emit({comp:ChiSiamoComponent,isDashboard:true});
+    this.changeType.emit({comp:ChiSiamoComponent,isDashboard:"DashboardComponent"});
   },
   getInfAccount() {
-    this.changeType.emit({comp:InfoAccountComponent,isDashboard:true});
+    this.changeType.emit({comp:InfoAccountComponent,isDashboard:"DashboardComponent"});
     this.type=InfoAccountComponent.name;
   },
   logOut() {

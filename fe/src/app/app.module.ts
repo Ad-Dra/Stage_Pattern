@@ -27,6 +27,10 @@ import { TextAreaComponent } from './components/input/textArea/text-area/text-ar
 import { RicaricaTelefonicaComponent } from './ricarica-telefonica/ricarica-telefonica.component';
 import { MovimentiComponent } from './movimenti/movimenti.component';
 import { InfoAccountComponent } from './info-account/info-account.component';
+import { DashboardAdminComponent } from './dashboard-admin/dashboard-admin.component';
+import { NavBarAdminComponent } from './components/nav-bar-admin/nav-bar-admin.component';
+import { CreaContoCorrenteClienteComponent } from './crea-conto-corrente-cliente/crea-conto-corrente-cliente.component';
+import { NgxSmartModalModule } from 'ngx-smart-modal';
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,7 +49,10 @@ import { InfoAccountComponent } from './info-account/info-account.component';
     TextAreaComponent,
     RicaricaTelefonicaComponent,
     MovimentiComponent,
-    InfoAccountComponent
+    InfoAccountComponent,
+    DashboardAdminComponent,
+    NavBarAdminComponent,
+    CreaContoCorrenteClienteComponent
   ],
   imports: [
     BrowserModule,
@@ -55,6 +62,7 @@ import { InfoAccountComponent } from './info-account/info-account.component';
     NgxSpinnerModule,
     NgbModule,
     NgSelectModule,
+    NgxSmartModalModule.forRoot(),
     NotifierModule.withConfig({
       position: {
         horizontal: {
@@ -71,7 +79,7 @@ import { InfoAccountComponent } from './info-account/info-account.component';
       },
     })
   ],
-  providers: [LoginComponent,DashboardComponent,RipristinaCredenzialiComponent,CreaUtenzaComponent,ConfermaCreazioneAccountComponent,ChiSiamoComponent,BonificoComponent,RicaricaTelefonicaComponent,InfoAccountComponent,MovimentiComponent,{ provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor,multi: true},{ provide: COMPONENT_B_TOKEN, useValue: LoginComponent}],
+  providers: [LoginComponent,DashboardComponent,RipristinaCredenzialiComponent,CreaUtenzaComponent,ConfermaCreazioneAccountComponent,ChiSiamoComponent,BonificoComponent,RicaricaTelefonicaComponent,InfoAccountComponent,MovimentiComponent,DashboardAdminComponent,{ provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor,multi: true},{ provide: COMPONENT_B_TOKEN, useValue: LoginComponent}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

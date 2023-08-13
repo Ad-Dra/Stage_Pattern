@@ -1,5 +1,6 @@
 <app-login  *ngIf="type=='LoginComponent'" (changeType)="refreshTypeObject($event)"></app-login>
 <app-dashboard *ngIf="type=='DashboardComponent'" (changeType)="refreshTypeObject($event)"></app-dashboard>
+<app-dashboard-admin *ngIf="type=='DashboardAdminComponent'" (changeType)="refreshTypeObject($event)"></app-dashboard-admin>
 <app-ripristina-credenziali *ngIf="type=='RipristinaCredenzialiComponent'" (changeType)="refreshTypeObject($event)"></app-ripristina-credenziali>
 <app-crea-utenza  *ngIf="type=='CreaUtenzaComponent'" (changeType)="refreshTypeObject($event)"></app-crea-utenza>
 <app-conferma-creazione-account *ngIf="type=='ConfermaCreazioneAccountComponent'" (changeType)="refreshTypeObject($event)"></app-conferma-creazione-account>

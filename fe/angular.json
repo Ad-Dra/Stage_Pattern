@@ -33,6 +33,7 @@
               "node_modules/bootstrap/scss/bootstrap.scss",
               "node_modules/angular-notifier/styles/core.scss",
               "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
+              "node_modules/ngx-smart-modal/styles/ngx-smart-modal.scss",
               "src/styles.scss"
             ],
             "scripts": [
