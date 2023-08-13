@@ -1,0 +1,21 @@
+<app-nav-bar-admin (homeEmitter)="home()" (getInfAccountEmitter)="getInfAccount()"  (logOutEmitter)="logOut()"></app-nav-bar-admin>
+
+<div *ngIf="type=='DashboardAdminComponent'">
+    <h1>Benvenuto {{identificativo}} in City Safe Bank!</h1>
+
+
+    <div class="col-md-12 col-sm-12" *ngIf="clienti && clienti.length>0">
+        <div class="card">
+            <div class="row">
+                <h5 class="card-header">Clienti registrati</h5>
+                <div class="card-body">
+                <app-grid [colonne]="colonne" [dati]="clienti"  *ngIf="responseOk" (action)="azione($event)"></app-grid>
+                </div>
+            </div>
+        </div>
+    </div> 
+</div>
+
+
+<app-info-account *ngIf="type=='InfoAccountComponent'"></app-info-account>
+<app-crea-conto-corrente-cliente ></app-crea-conto-corrente-cliente>

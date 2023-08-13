@@ -1,0 +1,33 @@
+<ngx-smart-modal #creaContoCorrente [identifier]="'creaContoCorrente'" (onClose)="onClose()" (onOpenFinished)="onDataLoaded()">
+    <div class="col-md-12 col-sm-12 form">
+        <div class="modal-header">
+            <h5 style="text-align: center;"><b>Crea conto corrente</b></h5>
+        </div>
+        <div class="modal-body">
+            <form id="formId" [formGroup]="form">
+                <div class="col-sm-12 col-md-12">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <app-input-text [title]="'iban'" [formField]="'iban'" [formId]="'formId'" [formParent]="form" [required]="true" [maxLen]="'27'"></app-input-text>        
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-8">
+                            <app-input-text [title]="'descrizioneConto'" [formField]="'descrizione'" [formId]="'formId'" [formParent]="form"  [maxLen]="'45'"></app-input-text>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <p  class="centerDiv" *ngIf="!form.valid">Compilare i campi obbligatori</p>
+                    </div>
+
+                    <div class="row centerDiv">
+                        <div class="col-md-6">
+                            <button class="btn" (click)="createContoCorrente()" title="Crea conto corrente">Crea conto corrente</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</ngx-smart-modal>

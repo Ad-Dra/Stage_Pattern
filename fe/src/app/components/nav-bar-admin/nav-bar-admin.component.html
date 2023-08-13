@@ -1,0 +1,35 @@
+<div class="row" >
+    <div class="col-md-12 col-sm-12" style="margin-bottom:15px !important ;">
+      <nav class="navbar navbar-expand-lg fixed-top navbar-light bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" >
+            <img src="https://my-pizza.fr/wp-content/uploads/2021/08/cropped-LOGO_MYPIZZA_2020_TRANSPARENT_01.png" height="30" alt="" loading="lazy" />
+          </a>
+  
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="navbar-toggler-icon"></i>
+          </button>
+      
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active"  type="button" aria-current="page" data-toggle="collapse" data-target="#navbarSupportedContent" (click)="home()">Home</a>
+              </li>
+            </ul>
+  
+            <ul class="navbar-nav mb-2 mb-lg-0" data-toggle="collapse" data-target="#navbarSupportedContent"> 
+              <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  </a>
+                  <div class="dropdown-menu"  aria-labelledby="navbarDropdown">
+                    <li  data-target="#navbarSupportedContent" type="button" (click)="getInfAccount()"><i class="fa fa-user marginLeft4"  aria-hidden="true" data-bs-toggle="collapse" data-target="#navbarSupportedContent"><span class="dropdown-item paddingLeft10"></span></i>Info account</li>
+                    <li  data-target="#navbarSupportedContent" type="button" (click)="logOut()"><i class="fa fa-sign-out marginLeft4"  aria-hidden="true" data-bs-toggle="collapse" data-target="#navbarSupportedContent"><span class="dropdown-item paddingLeft10"></span></i>Log out</li>
+                  </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </div>

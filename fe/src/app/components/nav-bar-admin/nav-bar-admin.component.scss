@@ -1,0 +1,103 @@
+.navbar-dark .nav-item .nav-link {
+    color: #fff;
+  }
+  
+  .navbar-dark .nav-item .nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+    border-radius: 0.25rem;
+    color: #fff;
+  }
+  .navbar-toggler{
+    position: fixed;
+    right: 5px !important;
+    top: 10px;
+  }
+.fa-li {
+    position: relative;
+    left: 0;
+}
+
+.dropdown-menu{
+  left:auto;
+  right:0;
+  margin-right:-10px;
+}
+
+.marginLeft4{
+  margin-left: 4px;
+}
+
+.paddingLeft10{
+  padding-left: 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.notifications {
+   min-width:max-content; 
+   left: -290% !important;
+  }
+  
+.notifications-wrapper {
+  overflow:auto;
+  max-height:200px;
+}
+
+.item-title {
+  
+ font-size:13px;
+ color:#000;
+    
+}
+
+.notifications a.content {
+ text-decoration:none;
+ background:#ccc;
+
+ }
+    
+.notification-item {
+ padding:10px;
+ margin:5px;
+ background:#ccc;
+ border-radius:4px;
+ }
+
+ p{
+  font-size: 15px !important;
+  color: #000;
+ }
+
+ .alignRight{
+  float: right;
+ }
+
+ .marginLeft5{
+  margin-left: 5%;
+ }
+
+.menu-title {
+  color:#ff7788;
+  font-size:20px;
+  display:inline-block;
+}
+
+.notification-heading, .notification-footer  {
+  padding:2px 10px;
+}
+      
+.dropdown-menu.divider {
+  margin:5px 0 !important;          
+}
