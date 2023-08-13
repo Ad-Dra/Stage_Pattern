@@ -10,7 +10,7 @@ exports.creaBonifico = async (req, res) => {
         
         if (req.body.saldo > req.body.importo) {
             // Se il saldo è valido, effettuo il versamento del saldo
-            ContoCorrente.paga(req.body.idContoCorrente, req.body.saldo, req.body.importo, (err, data) => {
+            ContoCorrente.paga(req.body.idContoCorrente, req.body.importo, (err, data) => {
                 if (err) {
                     res.status(500).send({message: err.message})
                     return;
@@ -48,6 +48,8 @@ exports.creaBonifico = async (req, res) => {
                 });
             });
         }
+        else
+            res.status(500).send({message: "Saldo insufficiente"})
 
 
 // TODO: Diminuisco il saldo se 

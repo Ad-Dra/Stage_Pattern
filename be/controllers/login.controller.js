@@ -21,23 +21,23 @@ exports.login=async (req,res)=>{
     let risp=await Utility.isActiveUser(req.body,null);
     
     if(risp.status==200){
-      let risultato = await checkRuolo(req);
+      //let risultato = await checkRuolo(req);
 
-      if(risultato.status != 200) {  
-        res.status(risultato.status).send({message:risultato.message});
-      } 
-      else {
+      //if(risultato.status != 200) {  
+        //res.status(risultato.status).send({message:risultato.message});
+      //} 
+      //else {
         //stai sulla login di default e vuoi accedere come un admin
-        if(risultato.ruolo==1 && req.body.ruolo==undefined)
-          res.status(401).send({message:'accesso non autorizzato'});
-        else
-          UtenzaLogin.login(utenzaLogin,(err, data) => {
-            if (err)
-              res.status(500).send({message:err.message});
-            else 
-              res.send(data);
-          });
-      }
+        //if(risultato.ruolo==1 && req.body.ruolo==undefined)
+          //res.status(401).send({message:'accesso non autorizzato'});
+        //else
+        UtenzaLogin.login(utenzaLogin,(err, data) => {
+          if (err)
+            res.status(500).send({message:err.message});
+          else 
+            res.send(data);
+        });
+      //}
     }
     else
       res.status(401).send({message:risp.message});

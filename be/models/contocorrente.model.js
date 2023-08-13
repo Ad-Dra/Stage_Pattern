@@ -3,13 +3,26 @@ const sql = require('../config/db.js')
 const ContoCorrente = function ContoCorrente(data) {
     this.idUtente = data.idUtente;
     this.iban = data.iban;
-    this.saldo = data.saldo;
+    this.saldo = null;
     this.descrizione = data.descrizione;
+    this.idOperatoreInserimento= data.idOperatoreInserimento;
+    this.dataCreazione= null;
 };
 
 ContoCorrente.crea = (newContoCorrente, result) => {
-    // TODO:
-    sql.query("INSERT INTO ")
+
+    newContoCorrente.dataCreazione=new Date();
+    newContoCorrente.saldo=0.0;
+
+    sql.query("INSERT INTO contocorrente SET ?", newContoCorrente, (err, res) => {
+        if (err) {
+          console.log("error: ", err);
+          result(err, null);
+          return;
+        }
+  
+        result(null, { message:"Conto corrente creato con successo"});
+    });
 };
 
 ContoCorrente.paga = (idContoCorrente, importo, result) => {

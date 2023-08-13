@@ -78,8 +78,9 @@ InfoUser.updateUser=(dati, idUtente, result)=>{
 
 InfoUser.getUtentiTotali = (result) => {
 
-  sql.query(`select idUtente, username, email, descrizione 
-            from utente join ruolo on utente.idRuolo = ruolo.idRuolo;`, (err, res) => {
+  sql.query(`select distinct  utente.idUtente,username, email, nome,cognome,dataNascita
+              from utente join ruolo on utente.idRuolo = 2
+              join anagrafica on utente.idUtente = anagrafica.idUtente;`, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(err, null);
