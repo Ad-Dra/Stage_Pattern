@@ -7,8 +7,8 @@ const ContoCorrente = require('../models/contocorrente.model');
 exports.creaBonifico = async (req, res) => {
     if (req.body) {
         req.body.idUtente = await Utility.getIdUtente(req);
-        
-        if (req.body.saldo > req.body.importo) {
+
+        if (req.body.saldo >= req.body.importo) {
             // Se il saldo è valido, effettuo il versamento del saldo
             ContoCorrente.paga(req.body.idContoCorrente, req.body.importo, (err, data) => {
                 if (err) {
@@ -17,7 +17,9 @@ exports.creaBonifico = async (req, res) => {
                 }
                 // Creo il movimento in uscita
                 // TODO: Set req.body
-                Movimenti.create(req.body, (err, data) => {
+                const mov=new Movimenti(req.body);
+                console.log("mov",mov)
+                Movimenti.create(mov, (err, data) => {
                     if (err) {
                         res.status(500).send({ message: err.message });
                         return;
@@ -29,21 +31,24 @@ exports.creaBonifico = async (req, res) => {
                             return;
                         }
                         if (data.length > 0) {
-                            // TODO: check data[0] sia valido
-                            ContoCorrente.ricevi(data[0].idContoCorrente, (err, data) => {
+                            ContoCorrente.ricevi(data[0].idContoCorrente,req.body.importo, (err, data1) => {
                                 if (err) {
                                     res.status(500).send({ message: err.message });
                                     return;
                                 }
-                                Movimenti.create(req.body, (err, data) => {
+
+                                res.status(200).send({message: "Bonifico andato a buon fine."})
+                                /*Movimenti.create(mov, (err, data2) => {
                                     if (err) {
                                         res.status(500).send({ message: err.message });
                                         return;
                                     }
-                                });
+
+                                    res.status(200).send({message: "Bonifico andato a buon fine."})
+                                });*/
                             });
                         } 
-                        res.status(200).send({message: "Bonifico andato a buon fine."})
+                        
                     });
                 });
             });

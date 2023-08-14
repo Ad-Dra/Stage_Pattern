@@ -26,20 +26,20 @@ ContoCorrente.crea = (newContoCorrente, result) => {
 };
 
 ContoCorrente.paga = (idContoCorrente, importo, result) => {
-    this.getSaldo(idContoCorrente, (err, data) => {
+    ContoCorrente.getSaldo(idContoCorrente, (err, data) => {
         if (err) {
             console.log("error: ", err);
             result(err, null);
             return;
         }
         // TODO: check data[0] se è corretto
-        sql.query("UPDATE ContoCorrente SET saldo = ? WHERE idContoCorrente = ?;", [data[0] - importo, idContoCorrente], (err, data) => {
+        sql.query("UPDATE ContoCorrente SET saldo = ? WHERE idContoCorrente = ?;", [data - importo, idContoCorrente], (err, data1) => {
             if (err) {
                 console.log("error: ", err);
                 result(err, null);
                 return;
             }
-            result(null, res);
+            result(null, data1);
         });
     })
 }
@@ -51,25 +51,25 @@ ContoCorrente.getIdByIBAN = (iban, result) => {
             result(err, null);
             return;
         }
-        result(null, res);
+        result(null, JSON.parse(JSON.stringify(data)));
     });
 }
 
 ContoCorrente.ricevi = (idContoCorrente, importo, result) => {
-    this.getSaldo(idContoCorrente, (err, data) => {
+    ContoCorrente.getSaldo(idContoCorrente, (err, data) => {
         if (err) {
             console.log("error: ", err);
             result(err, null);
             return;
         }
         // TODO: check se data[0] è corretto
-        sql.query("UPDATE ContoCorrente SET saldo = ? WHERE idContoCorrente = ?", [data[0] + importo, idContoCorrente], (err, data) => {
+        sql.query("UPDATE ContoCorrente SET saldo = ? WHERE idContoCorrente = ?", [data + importo, idContoCorrente], (err, data1) => {
             if (err) {
                 console.log("error: ", err);
                 result(err, null);
                 return;
             }
-            result(null, res);
+            result(null, data1);
         });
     });
 };
@@ -81,7 +81,7 @@ ContoCorrente.getSaldo = (idContoCorrente, result) => {
             result(err, null);
             return;
         }
-        result(null, res);
+        result(null, JSON.parse(JSON.stringify(data))[0].saldo);
     });
 }
 
