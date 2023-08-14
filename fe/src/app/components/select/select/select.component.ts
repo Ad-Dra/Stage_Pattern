@@ -11,6 +11,7 @@ export class SelectComponent implements OnInit {
   @Input() formParent: any;
   @Input() bindValue:string="";
   @Input() bindLabel:string="";
+  @Input() bindLabel2:string="";
   @Input() formId: string='form';
   @Input() formField:string="";
   @Input() title: string="";
