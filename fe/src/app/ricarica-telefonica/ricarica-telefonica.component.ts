@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Stage } from '../stage/stage';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-ricarica-telefonica',
@@ -13,7 +14,7 @@ export class RicaricaTelefonicaComponent implements Stage,OnInit{
   public operatori:any=[];
   public importiRicarica:any=[];
   
-  constructor(private fb:FormBuilder){
+  constructor(private fb:FormBuilder,private http:HttpClient){
     this.form =  this.fb.group({
       numeroTelefono: [null,Validators.required],
       operatore:[null,Validators.required],
@@ -22,9 +23,22 @@ export class RicaricaTelefonicaComponent implements Stage,OnInit{
   }
 
   ngOnInit(): void {
-    this.operatori=[...this.operatori,{id:"wind",descrizione:"Wind3"}]
+    this.getDdlOperatori();
   }
 
+  getDdlOperatori(){
+    this.http.get("/api/getOperatori.json").subscribe((res:any)=>{
+      if(res)
+        this.operatori=res;
+    })
+  }
+
+  getDdlImporti(ev:any){
+    this.http.get("/api/getImporti/"+ev.idOperatore+".json").subscribe((res:any)=>{
+      if(res)
+        this.importiRicarica=res;
+    });
+  }
 
   effettuaRicarica(){
 

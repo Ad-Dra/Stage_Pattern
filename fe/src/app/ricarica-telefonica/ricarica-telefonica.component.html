@@ -9,13 +9,13 @@
                             <app-input-text [title]="'numeroTelefono'" [formField]="'numeroTelefono'" [formId]="'formId'" [formParent]="form" [required]="true" [maxLen]="'10'"></app-input-text>        
                         </div>
                         <div class="col-md-6 col-md-6">
-                            <app-select [title]="'operatore'" [items]="operatori"   [bindLabel]="'descrizione'" [bindValue]="'id'"  [formField]="'operatore'" [formId]="'formId'" [formParent]="form" [required]="true" [maxLen]="'45'"></app-select>        
+                            <app-select [title]="'operatore'" [items]="operatori"   [bindLabel]="'descrizione'" [bindValue]="'idOperatore'"  [formField]="'operatore'" [formId]="'formId'" [formParent]="form" [required]="true" [maxLen]="'45'" (action)="getDdlImporti($event)"></app-select>        
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col-md-6 col-md-6">
-                            <app-select [title]="'importoRicarica'" [items]="importiRicarica"   [bindLabel]="'descrizione'" [bindValue]="'id'"  [formField]="'importoRicarica'" [formId]="'formId'" [formParent]="form" [required]="true" [maxLen]="'2'"></app-select>        
+                            <app-select [title]="'importoRicarica'" [items]="importiRicarica"   [bindLabel]="'importo'" [bindValue]="'idImporto'"  [formField]="'importoRicarica'" [formId]="'formId'" [formParent]="form" [required]="true" [maxLen]="'2'"></app-select>        
                         </div>
                     </div>
 
