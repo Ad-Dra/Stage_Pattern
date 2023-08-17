@@ -13,6 +13,7 @@ const utente = require("../controllers/user.controller");
 const tipiMovimento = require('../controllers/tipiMovimenti.controller');
 const movimento = require('../controllers/movimento.controller');
 const contoCorrente = require('../controllers/contocorrente.controller');
+const ricaricaTelefonica = require('../controllers/ricaricaTelefonica.controller');
 
 const utility = require("../controllers/utility.controller");
 
@@ -34,7 +35,12 @@ router.post("/api/auth/aggiornaUtenza.json",     utente.update);
 router.get("/api/getTipiBonifico.json", tipiMovimento.getTipiBonifico);
 router.get("/api/getMovimenti.json", movimento.getMovimentiUtente);
 router.post("/api/creaBonifico.json", movimento.creaBonifico);
+router.post("/api/creaRicaricaTelefonica.json", movimento.creaRicaricaTelefonica);
 
 router.post("/api/admin/creaContoCorrente.json", utility.checkRuolo,contoCorrente.creaContoCorrente);
 router.get("/api/admin/getUtenti.json", utility.checkRuolo,utente.getUtentiTotali);
+
+router.get("/api/getOperatori.json",ricaricaTelefonica.getOperatori);
+router.get("/api/getImporti/:idOperatore.json",ricaricaTelefonica.getImportiForOperatore);
+
 module.exports = router;
