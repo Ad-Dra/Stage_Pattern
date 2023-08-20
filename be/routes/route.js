@@ -37,8 +37,10 @@ router.get("/api/getMovimenti.json", movimento.getMovimentiUtente);
 router.post("/api/creaBonifico.json", movimento.creaBonifico);
 router.post("/api/creaRicaricaTelefonica.json", movimento.creaRicaricaTelefonica);
 
-router.post("/api/admin/creaContoCorrente.json", utility.checkRuolo,contoCorrente.creaContoCorrente);
-router.get("/api/admin/getUtenti.json", utility.checkRuolo,utente.getUtentiTotali);
+router.post("/api/admin/creaContoCorrente.json",     utility.checkRuolo, contoCorrente.creaContoCorrente); 
+router.delete("/api/admin/deleteContoCorrente.json", utility.checkRuolo, contoCorrente.deleteContoCorrente); // 
+
+router.get("/api/admin/getUtenti.json",          utility.checkRuolo, utente.getUtentiTotali);
 
 router.get("/api/getOperatori.json",ricaricaTelefonica.getOperatori);
 router.get("/api/getImporti/:idOperatore.json",ricaricaTelefonica.getImportiForOperatore);

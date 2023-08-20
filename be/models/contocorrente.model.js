@@ -85,4 +85,22 @@ ContoCorrente.getSaldo = (idContoCorrente, result) => {
     });
 }
 
+ContoCorrente.delete = (idContoCorrente, result) => {
+    sql.query("DELETE FROM Movimento WHERE idContoCorrente = ?;", idContoCorrente, (err, data) => {
+        if (err) {
+            console.log("error: ", err);
+            result(err, null);
+            return;
+        }
+        sql.query("DELETE FROM ContoCorrente WHERE idContoCorrente = ?;", idContoCorrente, (err, data) => {
+            if (err) {
+                console.log("error: ", err);
+                result(err, null);
+                return;
+            }
+            result(null, JSON.parse(JSON.stringify(data))[0].saldo);
+        })
+    });
+}
+
 module.exports = ContoCorrente;
