@@ -41,7 +41,12 @@ export class RicaricaTelefonicaComponent implements Stage,OnInit{
   }
 
   effettuaRicarica(){
+    if(!this.form.valid)
+      return;
 
+    this.http.post("/api/creaRicaricaTelefonica.json",null).subscribe((res:any)=>{
+
+    });
   }
 
   renew(newType: Stage): void {

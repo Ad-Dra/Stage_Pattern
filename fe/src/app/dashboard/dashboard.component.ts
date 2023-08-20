@@ -161,7 +161,7 @@ export class DashboardComponent implements Stage,OnInit{
 
   @Output() changeType: EventEmitter<any>= new EventEmitter<any>();
   
-  public dashboard: dashboardInterface | dashboardInterfaceAttiva | undefined;
+  public dashboard: dashboardInterface | dashboardInterfaceAttiva  | undefined;
 
   constructor(private http:HttpClient){
 
@@ -193,8 +193,14 @@ export class DashboardComponent implements Stage,OnInit{
         this.dashboard=this.renew(notContoCorrenteDashboard);
        else if(this.contiCorrente.length==1 && this.contiCorrente[0].saldo==0.0)
         this.dashboard=this.renew(dashboardSaldoPassivo);
-       else
-        this.dashboard=this.renew(dashboardSaldoAttivo);
+       else{
+        for(let i=0;i<this.contiCorrente.length;i++){
+          if(this.contiCorrente[i].saldo>0){
+            this.dashboard=this.renew(dashboardSaldoAttivo);
+            break;
+          }
+       }
+       }
       }
     })
   }

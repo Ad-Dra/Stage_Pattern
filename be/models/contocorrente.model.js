@@ -45,7 +45,7 @@ ContoCorrente.paga = (idContoCorrente, importo, result) => {
 }
 
 ContoCorrente.getIdByIBAN = (iban, result) => {
-    sql.query("SELECT idContoCorrente FROM ContoCorrente WHERE IBAN = ?", iban, (err, data) => {
+    sql.query("SELECT * FROM ContoCorrente WHERE IBAN = ?", iban, (err, data) => {
         if (err) {
             console.log("error: ", err);
             result(err, null);
