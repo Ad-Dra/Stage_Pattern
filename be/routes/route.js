@@ -41,6 +41,7 @@ router.post("/api/admin/creaContoCorrente.json",     utility.checkRuolo, contoCo
 router.delete("/api/admin/deleteContoCorrente.json", utility.checkRuolo, contoCorrente.deleteContoCorrente); // 
 
 router.get("/api/admin/getUtenti.json",          utility.checkRuolo, utente.getUtentiTotali);
+router.delete("/api/admin/deleteAccount.json",   utility.checkRuolo, utente.delete); //
 
 router.get("/api/getOperatori.json",ricaricaTelefonica.getOperatori);
 router.get("/api/getImporti/:idOperatore.json",ricaricaTelefonica.getImportiForOperatore);

@@ -98,7 +98,7 @@ ContoCorrente.delete = (idContoCorrente, result) => {
                 result(err, null);
                 return;
             }
-            result(null, JSON.parse(JSON.stringify(data))[0].saldo);
+            result(null, data);
         })
     });
 }

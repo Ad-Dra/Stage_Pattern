@@ -2,6 +2,7 @@ const sql = require("../config/db.js");
 const Utility = require("../controllers/utility.controller.js");
 const passwordConfig = require("../config/password.config");
 const { query } = require("express");
+const ContoCorrente = require("./contocorrente.model.js");
 
 const InfoUser = function(dati) {
     this.idUtente = dati.idUtente;
@@ -119,12 +120,31 @@ InfoUser.update=async (body,result)=>{
   }
   else{
     if(risultatoToken.email==undefined)
-      result({status:403,message:'link scaduto ripetere la procedura per avere un nuovo link'});
+      	result({status:403,message:'link scaduto ripetere la procedura per avere un nuovo link'});
     else
       result({status:500,message:"Utenza non trovata"});
   }
 }
   
+InfoUser.delete = async (idUtente, result) => {
+
+	sql.query("DELETE FROM Movimento WHERE idUtente = ?;", idUtente, (err, data) => {
+        if (err) {
+            console.log("error: ", err);
+            result(err, null);
+            return;
+        }
+        sql.query("DELETE FROM ContoCorrente WHERE idUtente = ?;", idUtente, (err, data) => {
+            if (err) {
+                console.log("error: ", err);
+                result(err, null);
+                return;
+            }
+            result(null, data);
+        })
+    });
+}
+
 module.exports = InfoUser;
 
 
