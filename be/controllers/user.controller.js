@@ -34,6 +34,22 @@ exports.getDettagliContoCorrente=async (req,res)=>{
     });
 }
 
+exports.getContiCorrentiForUtente=async (req,res)=>{
+    if (!req.params) {
+        result.status(400).send({
+          message: "Content can not be empty!"
+        });
+    }
+    
+    User.getInfoContoCorrente(req.params.idUtente,(err, data) => {
+        if (err)
+            res.status(500).send({message:err.message});
+        else{ 
+            res.send(data);
+        }
+    });
+}
+
 exports.checkPswUtente=async (req,res)=>{
 
     const utente = new User({
@@ -209,6 +225,12 @@ exports.getUtentiTotali=async (req,res)=>{
 }
 
 exports.deleteUtente = async (req, res) => {
+    if (!req.body) {
+        result.status(400).send({
+          message: "Content can not be empty!"
+        });
+    }
+
     User.delete(req.body.idUtente, (err, data) => {
         if (err)
             res.status(500).send({message:err.message});

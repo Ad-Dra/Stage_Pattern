@@ -98,7 +98,7 @@ ContoCorrente.delete = (idContoCorrente, result) => {
                 result(err, null);
                 return;
             }
-            result(null, data);
+            result(null, {message:"Cancellazione avvenuta con successo"});
         })
     });
 }

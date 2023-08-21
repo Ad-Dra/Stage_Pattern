@@ -1,6 +1,7 @@
 const sql = require("../config/db.js");
 const Utility = require("../controllers/utility.controller.js");
 const passwordConfig = require("../config/password.config");
+const logger = require("../logger.js");
 
 const UtenzaLogin=function(utenzaLogin){
     this.identificativo=utenzaLogin.identificativo;
@@ -33,7 +34,9 @@ UtenzaLogin.login = (utenzaLogin,result) => {
 				desc='User';
 
 			let token = await Utility.createToken({identificativo:utenzaLogin.identificativo,ruolo:desc},'3h');
-      
+			
+			logger.info("L'utente "+utenzaLogin.identificativo+" si è evoluto in utente loggato");
+
       		result(null, {status:'200',token: token});
 		}
 	});

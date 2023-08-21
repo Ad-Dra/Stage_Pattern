@@ -41,9 +41,12 @@ router.post("/api/admin/creaContoCorrente.json",     utility.checkRuolo, contoCo
 router.delete("/api/admin/deleteContoCorrente.json", utility.checkRuolo, contoCorrente.deleteContoCorrente); // 
 
 router.get("/api/admin/getUtenti.json",          utility.checkRuolo, utente.getUtentiTotali);
-router.delete("/api/admin/deleteAccount.json",   utility.checkRuolo, utente.delete); //
+router.delete("/api/admin/deleteAccount.json",   utility.checkRuolo, utente.deleteUtente); //
+router.get("/api/admin/getContiCorrenti/:idUtente.json",   utility.checkRuolo, utente.getContiCorrentiForUtente); 
 
 router.get("/api/getOperatori.json",ricaricaTelefonica.getOperatori);
 router.get("/api/getImporti/:idOperatore.json",ricaricaTelefonica.getImportiForOperatore);
+
+
 
 module.exports = router;

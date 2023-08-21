@@ -47,7 +47,7 @@ InfoUser.getInfoAccount=(idUtente,result)=>{
 }
 
 InfoUser.getInfoContoCorrente=(idUtente,result)=>{
-  sql.query(`select * 
+  sql.query(`select *
               from utente inner join contocorrente on utente.idUtente=contocorrente.idUtente
               where utente.idUtente=${idUtente}`, (err, res) => {
     if (err) {
@@ -140,7 +140,23 @@ InfoUser.delete = async (idUtente, result) => {
                 result(err, null);
                 return;
             }
-            result(null, data);
+
+            sql.query("DELETE FROM anagrafica WHERE idUtente = ?;", idUtente, (err, data) => {
+              if (err) {
+                  console.log("error: ", err);
+                  result(err, null);
+                  return;
+              }
+              sql.query("DELETE FROM utente WHERE idUtente = ?;", idUtente, (err, data) => {
+                if (err) {
+                    console.log("error: ", err);
+                    result(err, null);
+                    return;
+                }
+
+                result(null, {message:"Utente cancellato con successo"});
+              });
+            });
         })
     });
 }
