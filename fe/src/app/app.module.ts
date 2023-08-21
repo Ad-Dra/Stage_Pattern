@@ -31,6 +31,8 @@ import { DashboardAdminComponent } from './dashboard-admin/dashboard-admin.compo
 import { NavBarAdminComponent } from './components/nav-bar-admin/nav-bar-admin.component';
 import { CreaContoCorrenteClienteComponent } from './crea-conto-corrente-cliente/crea-conto-corrente-cliente.component';
 import { NgxSmartModalModule } from 'ngx-smart-modal';
+import { ConfermaCancellazioneComponent } from './conferma-cancellazione/conferma-cancellazione.component';
+import { ModificaContiCorrrentiUtenteComponent } from './modifica-conti-corrrenti-utente/modifica-conti-corrrenti-utente.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -52,7 +54,9 @@ import { NgxSmartModalModule } from 'ngx-smart-modal';
     InfoAccountComponent,
     DashboardAdminComponent,
     NavBarAdminComponent,
-    CreaContoCorrenteClienteComponent
+    CreaContoCorrenteClienteComponent,
+    ConfermaCancellazioneComponent,
+    ModificaContiCorrrentiUtenteComponent
   ],
   imports: [
     BrowserModule,

@@ -249,3 +249,7 @@ input:focus ~ i{
 .notifier__notification--material .notifier__notification-message{
     color: black !important;
 }
+
+::-webkit-scrollbar {
+    display: none;
+}

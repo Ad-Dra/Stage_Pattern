@@ -1,1 +1,22 @@
-<p>movimenti works!</p>
+<div class="col-md-12 col-sm-12 form">
+    <div class="card" style="overflow-y:scroll; overflow-x: hidden; height:400px;">
+        <div class="row">
+            <h5 class="card-header">Movimenti</h5>
+            <div class="card-body">
+                <div class="row" *ngFor="let item of movimenti">
+                    <div class="col-md-6 col-md-6">
+                        {{item.causale}}
+                        <br>
+                        {{item.dataMovimento | date:"dd/MM/yy"}}
+                    </div>
+                    <div class="col-md-3 col-md-3">
+                        {{item.beneficiario}}
+                    </div>
+                    <div class="col-md-2 col-sm-2">
+                        <span [style.color]="item.importo<0 ? 'red' : 'green'"><span *ngIf="item.importo>0">+</span>{{item.importo | currency:'EUR'}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

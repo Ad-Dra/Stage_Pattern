@@ -8,6 +8,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class MovimentiComponent implements OnInit{
   
+  public movimenti:any=[];
   
   constructor(private http:HttpClient){
 
@@ -18,9 +19,11 @@ export class MovimentiComponent implements OnInit{
   }
 
   getMovimenti(){
-    this.http.get("/api/getMovimenti.json").subscribe((res)=>{
-      if(res)
-        console.log(res);
+    this.http.get("/api/getMovimenti.json").subscribe((res:any)=>{
+      if(res){
+        res.reverse();
+        this.movimenti=res;
+      }
     })
   }
 }
