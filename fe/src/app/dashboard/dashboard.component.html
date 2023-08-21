@@ -26,6 +26,6 @@
 
 <app-chi-siamo *ngIf="type=='ChiSiamoComponent'"></app-chi-siamo>
 <app-bonifico  *ngIf="type=='BonificoComponent'" [contiCorrente]="contiCorrente"></app-bonifico>
-<app-ricarica-telefonica *ngIf="type=='RicaricaTelefonicaComponent'"></app-ricarica-telefonica>
+<app-ricarica-telefonica *ngIf="type=='RicaricaTelefonicaComponent'" [contiCorrente]="contiCorrente"></app-ricarica-telefonica>
 <app-info-account *ngIf="type=='InfoAccountComponent'"></app-info-account>
 <app-movimenti *ngIf="type=='MovimentiComponent'"></app-movimenti>

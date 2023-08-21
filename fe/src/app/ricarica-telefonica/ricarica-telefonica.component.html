@@ -9,13 +9,16 @@
                             <app-input-text [title]="'numeroTelefono'" [formField]="'numeroTelefono'" [formId]="'formId'" [formParent]="form" [required]="true" [maxLen]="'10'"></app-input-text>        
                         </div>
                         <div class="col-md-6 col-md-6">
-                            <app-select [title]="'operatore'" [items]="operatori"   [bindLabel]="'descrizione'" [bindValue]="'idOperatore'"  [formField]="'operatore'" [formId]="'formId'" [formParent]="form" [required]="true" [maxLen]="'45'" (action)="getDdlImporti($event)"></app-select>        
+                            <app-select [title]="'operatore'" [items]="operatori"   [bindLabel]="'descrizione'" [bindValue]="'idOperatore'"  [formField]="'operatore'" [formId]="'formId'" [formParent]="form" [required]="true" [maxLen]="'45'" (action)="getDdlImporti($event);onSelectOperatore($event)"></app-select>        
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col-md-6 col-md-6">
-                            <app-select [title]="'importoRicarica'" [items]="importiRicarica"   [bindLabel]="'importo'" [bindValue]="'idImporto'"  [formField]="'importoRicarica'" [formId]="'formId'" [formParent]="form" [required]="true" [maxLen]="'2'"></app-select>        
+                            <app-select [title]="'importoRicarica'" [items]="importiRicarica"   [bindLabel]="'importo'" [bindValue]="'importo'"  [formField]="'importo'" [formId]="'formId'" [formParent]="form" [required]="true" [maxLen]="'2'" [readonly]="!this.form.controls['operatore'].value"></app-select>        
+                        </div>
+                        <div class="col-md-6 col-md-6" *ngIf="contiCorrente.length>1">
+                            <app-select [title]="'contoCorrenteDaUsare'" [items]="contiCorrente"   [bindLabel]="'descrizione'"  [bindValue]="'idContoCorrente'"  [formField]="'idContoCorrente'" [formId]="'formId'" [formParent]="form" [required]="true" [maxLen]="'45'"></app-select>        
                         </div>
                     </div>
 

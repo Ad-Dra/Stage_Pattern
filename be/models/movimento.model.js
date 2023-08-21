@@ -8,7 +8,8 @@ const Movimento = function Movimento(data) {
     this.idTipoMovimento = data.tipologiaBonifico
     this.causale = data.causale,
     this.beneficiario = data.beneficiario,
-    this.ibanBeneficiario = data.ibanBeneficiario
+    this.ibanBeneficiario = data.ibanBeneficiario,
+    this.idOperatore = data.operatore
 }
 
 Movimento.create = (newMovimento, result) => {

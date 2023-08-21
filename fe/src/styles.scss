@@ -245,3 +245,7 @@ input:focus ~ i{
 .ng-select.ng-valid .ng-select-container{
     border-bottom: 2px #45f3ff  solid !important;
 }
+
+.notifier__notification--material .notifier__notification-message{
+    color: black !important;
+}
