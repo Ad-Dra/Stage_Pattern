@@ -85,10 +85,12 @@ export class DashboardAdminComponent implements Stage, OnInit{
       case 'aggiungi':
         this.crea(riga);
       break;
-
-      /*case 'cancella':
-        this.cancella(riga.idProdotto);
-      break;*/
+      case 'modifica':
+        this.modifica(riga);
+      break;
+      case 'cancella':
+        this.cancella(riga);
+      break;
     }
   }
 
@@ -96,5 +98,26 @@ export class DashboardAdminComponent implements Stage, OnInit{
     this.ngxSmartModalService.resetModalData("creaContoCorrente");
     this.ngxSmartModalService.setModalData(riga,"creaContoCorrente");
     this.ngxSmartModalService.open("creaContoCorrente");
+  }
+
+  modifica(riga:any){
+    this.ngxSmartModalService.resetModalData("modificaContiCorrentiUtente");
+    this.ngxSmartModalService.setModalData(riga,"modificaContiCorrentiUtente");
+    this.ngxSmartModalService.open("modificaContiCorrentiUtente");
+  }
+
+  cancella(riga:any){
+    this.ngxSmartModalService.resetModalData("confermaCancellazione");
+    this.ngxSmartModalService.setModalData(riga,"confermaCancellazione");
+    this.ngxSmartModalService.open("confermaCancellazione");
+  }
+
+  cancellaAccount(){
+    let riga:any=this.ngxSmartModalService.getModalData("confermaCancellazione");
+
+    this.http.delete("/api/admin/deleteAccount.json",{body:{"idUtente":riga.idUtente}}).subscribe((res:any)=>{
+      if(res && res.message)
+        this.clienti.splice(riga.index,1)
+    })
   }
 }

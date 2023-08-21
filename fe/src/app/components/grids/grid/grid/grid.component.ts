@@ -18,6 +18,10 @@ export class GridComponent implements OnInit {
 
   @Input() colonne:any=[];
   @Input() dati:any=[];
+  @Input() notShowButton:boolean=false;
+  @Input() showAggiungi:boolean=true;
+  @Input() showModifica:boolean=true;
+  @Input() showElimina:boolean=true;
   @Output() action = new EventEmitter<string>();
   
   constructor() { }

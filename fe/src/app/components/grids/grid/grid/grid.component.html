@@ -3,7 +3,7 @@
         <thead>
             <tr>
               <th scope="col" *ngFor="let col of colonne">{{col.name}}</th>
-              <th scope="col">Azioni</th>
+              <th scope="col" *ngIf="!notShowButton">Azioni</th>
             </tr>
           </thead>
           <tbody>
@@ -19,10 +19,10 @@
                   
                   <span *ngIf="col.isCurrency">€</span></td>
                 
-                <td style="cursor: pointer;">
-                  <i *ngIf="item.show!=false" class="fa fa-plus" aria-hidden="true" title="Aggiungi" (click)="azione(item,'aggiungi', i)"></i>
-                  <i *ngIf="item.show!=false" class="fa fa-edit" aria-hidden="true" title="Modifica" (click)="azione(item,'modifica', i)"></i>
-                  <i *ngIf="item.show!=false" class="fa fa-trash" aria-hidden="true" title="Cancella" (click)="azione(item,'cancella', i)" style="padding-left:2px;font-size: 20px;"></i>
+                <td style="cursor: pointer;" *ngIf="!notShowButton">
+                  <i *ngIf="item.show!=false && showAggiungi" class="fa fa-plus" aria-hidden="true" title="Aggiungi" (click)="azione(item,'aggiungi', i)"></i>
+                  <i *ngIf="item.show!=false && showModifica" class="fa fa-edit" aria-hidden="true" title="Modifica" (click)="azione(item,'modifica', i)"></i>
+                  <i *ngIf="item.show!=false && showElimina" class="fa fa-trash" aria-hidden="true" title="Cancella" (click)="azione(item,'cancella', i)" style="padding-left:2px;font-size: 20px;"></i>
                 </td>
             </tr>
           </tbody>

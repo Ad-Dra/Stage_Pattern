@@ -1,0 +1,20 @@
+<ngx-smart-modal #confermaCancellazione [identifier]="'confermaCancellazione'" (onClose)="onClose()">
+    <div class="col-md-12 col-sm-12 form">
+        <div class="modal-header">
+            <h5 style="text-align: center;"><b>Conferma la cancellazione</b></h5>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <p>Sei sicuro di voler cancellare l'elemento selezionato?</p>
+            </div>
+            <div class="row">    
+                <div class="col-md-2 col-sm-2">
+                    <button class="btn btn-primary" (click)="confermaCanc()"  title="Si">Si</button>
+                </div>
+                <div class="col-md-1 col-sm-1">
+                    <button class="btn btn-danger"  (click)="onClose()"  title="No">No</button>   
+                </div>
+            </div>
+        </div>
+    </div>
+</ngx-smart-modal>

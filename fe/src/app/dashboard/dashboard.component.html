@@ -17,7 +17,7 @@
             <div class="row">
                 <h5 class="card-header">Info sui suoi conti correnti</h5>
                 <div class="card-body">
-                <app-grid [colonne]="colonne" [dati]="contiCorrente"  *ngIf="responseOk"></app-grid>
+                    <app-grid [colonne]="colonne" [dati]="contiCorrente"  *ngIf="responseOk" [notShowButton]="true"></app-grid>
                 </div>
             </div>
         </div>
