@@ -207,3 +207,12 @@ exports.getUtentiTotali=async (req,res)=>{
             res.send(data);
     });
 }
+
+exports.deleteUtente = async (req, res) => {
+    User.delete(req.body.idUtente, (err, data) => {
+        if (err)
+            res.status(500).send({message:err.message});
+        else 
+            res.send(data);
+    });
+}

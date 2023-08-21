@@ -32,3 +32,18 @@ exports.creaContoCorrente=async (req,res)=>{
     else
       res.status(401).send({message:"Il cliente non ha l'utenza attiva"});
 }
+
+exports.deleteContoCorrente = async (req, res) => {
+    if (!req.body.idContoCorrente) {
+        res.status(400).send({
+            message: "Il contenuto non può essere vuoto!"
+        });
+    } else {
+        ContoCorrente.delete(req.body.idContoCorrente, (err, data) => {
+            if (err)
+                res.status(500).send({message:err.message});
+            else 
+                res.send(data);
+        })
+    }
+}
