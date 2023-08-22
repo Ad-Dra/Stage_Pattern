@@ -139,7 +139,7 @@ exports.isActiveUser=(dati,email)=>{
 
   exports.getDatiUtente=(identificativo)=>{
     return new Promise(resolve =>{
-      sql.query(`select email,idUtente from utente where email= BINARY "${identificativo}" or username= BINARY "${identificativo}"`,(err, res) => {
+      sql.query(`select email,idUtente,username from utente where email= BINARY "${identificativo}" or username= BINARY "${identificativo}"`,(err, res) => {
         if (err) {
           console.log("error: ", err);
           res.status(500).send({message:err.message})
@@ -160,6 +160,26 @@ exports.getIdUtente=async (req)=>{
   let datiUtente= await this.getDatiUtente(getToken(req).identificativo);
 
   return JSON.parse(JSON.stringify(datiUtente))[0].idUtente;
+}
+
+exports.getUsername=async (req)=>{
+  let datiUtente= await this.getDatiUtente(getToken(req).identificativo);
+
+  return JSON.parse(JSON.stringify(datiUtente))[0].username;
+}
+
+exports.getDescriptionForEvolution=async (username,state)=>{
+
+  switch(state){
+    case 0:
+      return "L'utente "+username+" si è evoluto in utente senza conto corrente \n                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Info account 3) Log out";
+    case 1:
+      return "L'utente "+username+" si è evoluto in utente con saldo attivo \n                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Effettuare bonifici/ricariche telefoniche 3) Richiedere prestito 4) Info account 5) Consultare i movimenti 6) Log out";
+    case 2:
+      return "L'utente "+username+" si è evoluto in utente con saldo passivo \n                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Richiedere prestito 3) Info account 4) Consultare i movimenti 5) Log out";
+    case 3:
+      return "L'utente "+username+" si è evoluto in utente Admin \n                                    Le operazioni permesse sono: 1) Consultare la lista dei utenti registrati 2) Crea/Cancellare conti correnti 3) Cancellare account utenti 4) Info account 5) Log out";
+  }
 }
 
 /**

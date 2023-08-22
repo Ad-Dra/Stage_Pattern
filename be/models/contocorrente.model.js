@@ -1,4 +1,6 @@
-const sql = require('../config/db.js')
+const sql = require('../config/db.js');
+const Utility = require("../controllers/utility.controller.js");
+const logger = require("../logger.js");
 
 const ContoCorrente = function ContoCorrente(data) {
     this.idUtente = data.idUtente;
@@ -25,7 +27,7 @@ ContoCorrente.crea = (newContoCorrente, result) => {
     });
 };
 
-ContoCorrente.paga = (idContoCorrente, importo, result) => {
+ContoCorrente.paga = (idContoCorrente, importo,username,result) => {
     ContoCorrente.getSaldo(idContoCorrente, (err, data) => {
         if (err) {
             console.log("error: ", err);
@@ -33,12 +35,16 @@ ContoCorrente.paga = (idContoCorrente, importo, result) => {
             return;
         }
         // TODO: check data[0] se è corretto
-        sql.query("UPDATE ContoCorrente SET saldo = ? WHERE idContoCorrente = ?;", [data - importo, idContoCorrente], (err, data1) => {
+        sql.query("UPDATE ContoCorrente SET saldo = ? WHERE idContoCorrente = ?;", [data - importo, idContoCorrente], async (err, data1) => {
             if (err) {
                 console.log("error: ", err);
                 result(err, null);
                 return;
             }
+        
+            if(data-importo<=0)
+                logger.info(await Utility.getDescriptionForEvolution(username,2));
+            
             result(null, data1);
         });
     })

@@ -7,7 +7,7 @@ exports.creaBonifico = async (req, res) => {
     if (req.body) {
         req.body.idUtente = await Utility.getIdUtente(req);
         if(req.body.importo>0){
-            ContoCorrente.getSaldo(req.body.idContoCorrente, (err, data1) => {
+            ContoCorrente.getSaldo(req.body.idContoCorrente, async (err, data1) => {
                 if (err) {
                     console.log("error: ", err);
                     result(err, null);
@@ -15,8 +15,9 @@ exports.creaBonifico = async (req, res) => {
                 }
     
                 if (data1 >= req.body.importo) {
+                    let username = await Utility.getUsername(req);
                     // Se il saldo è valido, effettuo il versamento del saldo
-                    ContoCorrente.paga(req.body.idContoCorrente, req.body.importo, (err, data) => {
+                    ContoCorrente.paga(req.body.idContoCorrente, req.body.importo,username, (err, data) => {
                         if (err) {
                             res.status(500).send({message: err.message})
                             return;
@@ -80,7 +81,7 @@ exports.creaRicaricaTelefonica = async (req,res)=>{
     if(req.body){
         req.body.idUtente = await Utility.getIdUtente(req);
         if(req.body.importo>0){
-            ContoCorrente.getSaldo(req.body.idContoCorrente, (err, data1) => {
+            ContoCorrente.getSaldo(req.body.idContoCorrente, async (err, data1) => {
                 if (err) {
                     console.log("error: ", err);
                     result(err, null);
@@ -88,8 +89,9 @@ exports.creaRicaricaTelefonica = async (req,res)=>{
                 }
     
                 if (data1 >= req.body.importo) {
+                    let username = await Utility.getUsername(req);
                     // Se il saldo è valido, effettuo il versamento del saldo
-                    ContoCorrente.paga(req.body.idContoCorrente, req.body.importo, (err, data) => {
+                    ContoCorrente.paga(req.body.idContoCorrente, req.body.importo,username,(err, data) => {
                         if (err) {
                             res.status(500).send({message: err.message})
                             return;

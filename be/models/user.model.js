@@ -2,7 +2,7 @@ const sql = require("../config/db.js");
 const Utility = require("../controllers/utility.controller.js");
 const passwordConfig = require("../config/password.config");
 const { query } = require("express");
-const ContoCorrente = require("./contocorrente.model.js");
+const logger = require("../logger.js");
 
 const InfoUser = function(dati) {
     this.idUtente = dati.idUtente;
@@ -46,15 +46,41 @@ InfoUser.getInfoAccount=(idUtente,result)=>{
   }); 
 }
 
-InfoUser.getInfoContoCorrente=(idUtente,result)=>{
+InfoUser.getInfoContoCorrente=(idUtente,username,isAdmin,result)=>{
   sql.query(`select *
               from utente inner join contocorrente on utente.idUtente=contocorrente.idUtente
-              where utente.idUtente=${idUtente}`, (err, res) => {
+              where utente.idUtente=${idUtente}`, async (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(err, null);
       return;
     }
+
+    if(!isAdmin){
+      if(res.length==0)
+        logger.info(await Utility.getDescriptionForEvolution(username,0));
+      else if(res.length==1)
+        if(res[0].saldo>0)
+          logger.info(await Utility.getDescriptionForEvolution(username,1));
+        else
+          logger.info(await Utility.getDescriptionForEvolution(username,2));
+      else{
+        let flag=false;
+
+        for(let i=0;i<res.length;i++){
+          if(res[i].saldo>0){
+            flag=true;
+            break;
+          }
+        }
+
+        if(flag)
+          logger.info(await Utility.getDescriptionForEvolution(username,1));
+        else
+          logger.info(await Utility.getDescriptionForEvolution(username,2));
+      }
+    }
+  
     result(null, res);
   }); 
 }
@@ -77,17 +103,19 @@ InfoUser.updateUser=(dati, idUtente, result)=>{
   });
 } 
 
-InfoUser.getUtentiTotali = (result) => {
+InfoUser.getUtentiTotali = (username,result) => {
 
   sql.query(`select distinct  utente.idUtente,username, email, nome,cognome,dataNascita
               from utente join ruolo on utente.idRuolo = 2
-              join anagrafica on utente.idUtente = anagrafica.idUtente;`, (err, res) => {
+              join anagrafica on utente.idUtente = anagrafica.idUtente;`, async (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(err, null);
       return;
     }
 
+    logger.info(await Utility.getDescriptionForEvolution(username,3));
+    
     result(null, res);
   }); 
 }

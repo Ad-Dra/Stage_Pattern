@@ -25,7 +25,9 @@ exports.getDettagliContoCorrente=async (req,res)=>{
         idUtente: await Utility.getIdUtente(req)
     });
 
-    User.getInfoContoCorrente(utente.idUtente,(err, data) => {
+    let username = await Utility.getUsername(req);
+
+    User.getInfoContoCorrente(utente.idUtente,username,false,(err, data) => {
         if (err)
             res.status(500).send({message:err.message});
         else{ 
@@ -41,7 +43,9 @@ exports.getContiCorrentiForUtente=async (req,res)=>{
         });
     }
     
-    User.getInfoContoCorrente(req.params.idUtente,(err, data) => {
+    let username = await Utility.getUsername(req);
+
+    User.getInfoContoCorrente(req.params.idUtente,username,true,(err, data) => {
         if (err)
             res.status(500).send({message:err.message});
         else{ 
@@ -216,7 +220,9 @@ exports.updateInfoUser= async (req,res)=>{
 }
 
 exports.getUtentiTotali=async (req,res)=>{
-    User.getUtentiTotali((err, data) => {
+    let username = await Utility.getUsername(req);
+
+    User.getUtentiTotali(username,(err, data) => {
         if (err)
             res.status(500).send({message:err.message});
         else 
