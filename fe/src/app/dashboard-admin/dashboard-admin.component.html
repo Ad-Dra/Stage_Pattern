@@ -1,7 +1,7 @@
 <app-nav-bar-admin (homeEmitter)="home()" (getInfAccountEmitter)="getInfAccount()"  (logOutEmitter)="logOut()"></app-nav-bar-admin>
 
 <div *ngIf="type=='DashboardAdminComponent'">
-    <h1>Benvenuto {{identificativo}} in City Safe Bank!</h1>
+    <h1>Benvenuto {{denominazione}} in City Safe Bank!</h1>
 
 
     <div class="col-md-12 col-sm-12" *ngIf="clienti && clienti.length>0">

@@ -1,0 +1,23 @@
+<div class="col-md-12 col-sm-12 form">
+    <div class="card">
+        <div class="row">
+            <h5 class="card-header">Prestito</h5>
+            <div class="card-body">
+                <form id="formId" [formGroup]="form">
+                    <div class="row">
+
+                        <div class="col-md-12 col-md-12">
+                            <app-input-text [title]="'importoDaRichiedere'" [formField]="'importo'" [formId]="'formId'" [formParent]="form" [required]="true" [maxLen]="'4'"></app-input-text>        
+                        </div>
+                    </div>
+
+                    <div class="row centerDiv">
+                        <div class="col-md-6 col-sm-6">
+                            <button class="btn" (click)="richiediPrestito()" title="Richiedi prestito">Richiedi prestito</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

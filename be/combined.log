@@ -1,281 +1,56 @@
-2023-08-22T11:38:42.933Z - [INFO] - L'utente ad.dra si è evoluto in utente loggato
-2023-08-22T11:38:43.063Z - [INFO] - L'utente ad.dra si è evoluto in utente senza conto corrente 
-                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Info account 3) Log out
-2023-08-22T11:39:15.816Z - [INFO] - L'utente th.pertic si è evoluto in utente loggato
-2023-08-22T11:39:15.918Z - [INFO] - L'utente th.pertic si è evoluto in utente con saldo attivo 
-                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Effettuare bonifici/ricariche telefoniche 3) Richiedere prestito 4) Info account 5) Consultare i movimenti 6) Log out
-2023-08-22T12:16:35.566Z - [INFO] - L'utente admin.admin si è evoluto in utente loggato
-2023-08-22T12:16:35.609Z - [INFO] - L'utente admin.admin si è evoluto in utente Admin 
-                                    Le operazioni permesse sono: 1) Consultare la lista dei utenti registrati 2) Crea/Cancellare conti correnti 3) Cancellare account utenti 4) Info account 5) Log out
-2023-08-22T12:18:04.725Z - [INFO] - L'utente admin.admin si è evoluto in utente loggato
-2023-08-22T12:18:04.765Z - [INFO] - L'utente admin.admin si è evoluto in utente Admin 
-                                    Le operazioni permesse sono: 1) Consultare la lista dei utenti registrati 2) Crea/Cancellare conti correnti 3) Cancellare account utenti 4) Info account 5) Log out
-2023-08-22T15:25:54.248Z - [INFO] - L'utente ad.dra si è evoluto in utente loggato
-2023-08-22T15:25:54.409Z - [INFO] - L'utente ad.dra si è evoluto in utente con saldo passivo 
+2023-08-23T19:45:03.290Z - [INFO] - ad.dra: si è evoluto in dashboard
+2023-08-23T19:45:03.317Z - [INFO] - ad.dra: evoluzione in dashboard con saldo passivo 
                                     Le operazioni permesse sono: 1) Consultare chi siamo 2) Richiedere prestito 3) Info account 4) Consultare i movimenti 5) Log out
-2023-08-22T15:29:56.357Z - [INFO] - L'utente ad.dra si è evoluto in utente con saldo passivo 
+2023-08-23T19:45:39.649Z - [INFO] - th.pertic: si è evoluto in dashboard
+2023-08-23T19:45:39.680Z - [INFO] - th.pertic: evoluzione in dashboard con saldo attivo 
+                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Effettuare bonifici/ricariche telefoniche 3) Richiedere prestito 4) Info account 5) Consultare i movimenti 6) Log out
+2023-08-23T19:46:12.445Z - [INFO] - th.pertic: evoluzione in dashboard con saldo attivo 
+                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Effettuare bonifici/ricariche telefoniche 3) Richiedere prestito 4) Info account 5) Consultare i movimenti 6) Log out
+2023-08-23T19:46:23.497Z - [INFO] - ad.dra: si è evoluto in dashboard
+2023-08-23T19:46:23.567Z - [INFO] - ad.dra: evoluzione in dashboard con saldo passivo 
                                     Le operazioni permesse sono: 1) Consultare chi siamo 2) Richiedere prestito 3) Info account 4) Consultare i movimenti 5) Log out
-2023-08-22T15:30:36.795Z - [INFO] - L'utente ad.dra si è evoluto in utente con saldo passivo 
+2023-08-23T19:46:58.245Z - [INFO] - ad.dra: evoluzione in dashboard con saldo passivo 
                                     Le operazioni permesse sono: 1) Consultare chi siamo 2) Richiedere prestito 3) Info account 4) Consultare i movimenti 5) Log out
-2023-08-22T15:30:46.856Z - [INFO] - L'utente ad.dra si è evoluto in utente con saldo passivo 
+2023-08-23T19:47:06.282Z - [INFO] - ad.dra: evoluzione in dashboard con saldo passivo 
                                     Le operazioni permesse sono: 1) Consultare chi siamo 2) Richiedere prestito 3) Info account 4) Consultare i movimenti 5) Log out
-2023-08-22T15:31:11.464Z - [INFO] - L'utente ad.dra si è evoluto in utente con saldo passivo 
+2023-08-23T19:48:04.661Z - [INFO] - ad.dra: evoluzione in dashboard con saldo passivo 
                                     Le operazioni permesse sono: 1) Consultare chi siamo 2) Richiedere prestito 3) Info account 4) Consultare i movimenti 5) Log out
-2023-08-22T15:31:23.291Z - [INFO] - L'utente ad.dra si è evoluto in utente con saldo passivo 
+2023-08-23T19:48:26.420Z - [INFO] - ad.dra: evoluzione in dashboard con saldo passivo 
                                     Le operazioni permesse sono: 1) Consultare chi siamo 2) Richiedere prestito 3) Info account 4) Consultare i movimenti 5) Log out
-2023-08-22T15:31:31.556Z - [INFO] - L'utente th.pertic si è evoluto in utente loggato
-2023-08-22T15:31:31.669Z - [INFO] - L'utente th.pertic si è evoluto in utente con saldo attivo 
-                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Effettuare bonifici/ricariche telefoniche 3) Richiedere prestito 4) Info account 5) Consultare i movimenti 6) Log out
-2023-08-22T15:36:54.829Z - [INFO] - L'utente th.pertic si è evoluto in utente con saldo attivo 
-                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Effettuare bonifici/ricariche telefoniche 3) Richiedere prestito 4) Info account 5) Consultare i movimenti 6) Log out
-2023-08-22T15:45:38.599Z - [INFO] - L'utente th.pertic si è evoluto in utente con saldo attivo 
-                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Effettuare bonifici/ricariche telefoniche 3) Richiedere prestito 4) Info account 5) Consultare i movimenti 6) Log out
-2023-08-22T15:47:11.775Z - [INFO] - L'utente th.pertic si è evoluto in utente con saldo attivo 
-                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Effettuare bonifici/ricariche telefoniche 3) Richiedere prestito 4) Info account 5) Consultare i movimenti 6) Log out
-2023-08-22T15:47:29.888Z - [INFO] - L'utente th.pertic si è evoluto in utente con saldo attivo 
-                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Effettuare bonifici/ricariche telefoniche 3) Richiedere prestito 4) Info account 5) Consultare i movimenti 6) Log out
-2023-08-22T15:48:37.701Z - [INFO] - L'utente ad.dra si è evoluto in utente con saldo passivo 
+2023-08-23T19:48:29.564Z - [INFO] - ad.dra: evoluzione in dashboard con saldo passivo 
                                     Le operazioni permesse sono: 1) Consultare chi siamo 2) Richiedere prestito 3) Info account 4) Consultare i movimenti 5) Log out
-2023-08-22T15:48:37.907Z - [INFO] - L'utente th.pertic si è evoluto in utente con saldo attivo 
+2023-08-23T19:48:38.072Z - [INFO] - th.pertic: si è evoluto in dashboard
+2023-08-23T19:48:38.101Z - [INFO] - th.pertic: evoluzione in dashboard con saldo attivo 
                                     Le operazioni permesse sono: 1) Consultare chi siamo 2) Effettuare bonifici/ricariche telefoniche 3) Richiedere prestito 4) Info account 5) Consultare i movimenti 6) Log out
-2023-08-22T15:48:53.721Z - [INFO] - L'utente th.pertic si è evoluto in utente con saldo attivo 
-                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Effettuare bonifici/ricariche telefoniche 3) Richiedere prestito 4) Info account 5) Consultare i movimenti 6) Log out
-2023-08-22T15:48:54.829Z - [INFO] - L'utente ad.dra si è evoluto in utente con saldo passivo 
+2023-08-23T19:49:03.865Z - [INFO] - ad.dra: si è evoluto in dashboard
+2023-08-23T19:49:19.625Z - [INFO] - ad.dra: evoluzione in dashboard con saldo passivo 
                                     Le operazioni permesse sono: 1) Consultare chi siamo 2) Richiedere prestito 3) Info account 4) Consultare i movimenti 5) Log out
-2023-08-22T15:49:22.554Z - [INFO] - L'utente th.pertic si è evoluto in utente con saldo attivo 
-                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Effettuare bonifici/ricariche telefoniche 3) Richiedere prestito 4) Info account 5) Consultare i movimenti 6) Log out
-2023-08-22T15:49:37.543Z - [INFO] - L'utente th.pertic si è evoluto in utente con saldo attivo 
-                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Effettuare bonifici/ricariche telefoniche 3) Richiedere prestito 4) Info account 5) Consultare i movimenti 6) Log out
-2023-08-22T15:57:54.543Z - [INFO] - L'utente th.pertic si è evoluto in utente con saldo attivo 
-                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Effettuare bonifici/ricariche telefoniche 3) Richiedere prestito 4) Info account 5) Consultare i movimenti 6) Log out
-2023-08-22T15:57:55.992Z - [INFO] - L'utente ad.dra si è evoluto in utente con saldo passivo 
+2023-08-23T19:50:36.251Z - [INFO] - ad.dra: evoluzione in dashboard con saldo passivo 
                                     Le operazioni permesse sono: 1) Consultare chi siamo 2) Richiedere prestito 3) Info account 4) Consultare i movimenti 5) Log out
-2023-08-22T15:58:12.844Z - [INFO] - L'utente th.pertic si è evoluto in utente con saldo attivo 
-                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Effettuare bonifici/ricariche telefoniche 3) Richiedere prestito 4) Info account 5) Consultare i movimenti 6) Log out
-2023-08-22T15:59:15.867Z - [INFO] - L'utente th.pertic si è evoluto in utente con saldo passivo 
+2023-08-23T19:50:38.207Z - [INFO] - ad.dra: evoluzione in dashboard con saldo passivo 
                                     Le operazioni permesse sono: 1) Consultare chi siamo 2) Richiedere prestito 3) Info account 4) Consultare i movimenti 5) Log out
-2023-08-22T15:59:39.940Z - [INFO] - L'utente th.pertic si è evoluto in utente con saldo passivo 
+2023-08-23T19:50:46.051Z - [INFO] - th.pertic: si è evoluto in dashboard
+2023-08-23T19:50:46.075Z - [INFO] - th.pertic: evoluzione in dashboard con saldo attivo 
+                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Effettuare bonifici/ricariche telefoniche 3) Richiedere prestito 4) Info account 5) Consultare i movimenti 6) Log out
+2023-08-23T19:50:54.814Z - [INFO] - ad.dra: si è evoluto in dashboard
+2023-08-23T19:50:54.836Z - [INFO] - ad.dra: evoluzione in dashboard con saldo passivo 
                                     Le operazioni permesse sono: 1) Consultare chi siamo 2) Richiedere prestito 3) Info account 4) Consultare i movimenti 5) Log out
-2023-08-22T16:03:58.790Z - [INFO] - L'utente th.pertic si è evoluto in utente con saldo attivo 
-                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Effettuare bonifici/ricariche telefoniche 3) Richiedere prestito 4) Info account 5) Consultare i movimenti 6) Log out
-2023-08-22T16:06:54.271Z - [INFO] - L'utente ad.dra si è evoluto in utente con saldo passivo 
+2023-08-23T20:55:34.663Z - [INFO] - ad.dra: evoluzione in dashboard con saldo passivo 
                                     Le operazioni permesse sono: 1) Consultare chi siamo 2) Richiedere prestito 3) Info account 4) Consultare i movimenti 5) Log out
-2023-08-22T16:06:54.907Z - [INFO] - L'utente th.pertic si è evoluto in utente con saldo attivo 
-                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Effettuare bonifici/ricariche telefoniche 3) Richiedere prestito 4) Info account 5) Consultare i movimenti 6) Log out
-2023-08-22T16:06:59.065Z - [INFO] - L'utente th.pertic si è evoluto in utente con saldo attivo 
-                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Effettuare bonifici/ricariche telefoniche 3) Richiedere prestito 4) Info account 5) Consultare i movimenti 6) Log out
-2023-08-22T16:06:59.472Z - [INFO] - L'utente ad.dra si è evoluto in utente con saldo passivo 
+2023-08-23T20:59:07.185Z - [INFO] - ad.dra: evoluzione in dashboard con saldo passivo 
                                     Le operazioni permesse sono: 1) Consultare chi siamo 2) Richiedere prestito 3) Info account 4) Consultare i movimenti 5) Log out
-2023-08-22T16:07:29.136Z - [INFO] - L'utente th.pertic si è evoluto in utente con saldo attivo 
-                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Effettuare bonifici/ricariche telefoniche 3) Richiedere prestito 4) Info account 5) Consultare i movimenti 6) Log out
-2023-08-22T16:07:37.058Z - [INFO] - L'utente th.pertic si è evoluto in utente con saldo attivo 
-                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Effettuare bonifici/ricariche telefoniche 3) Richiedere prestito 4) Info account 5) Consultare i movimenti 6) Log out
-2023-08-22T16:08:50.423Z - [INFO] - L'utente ad.dra si è evoluto in utente con saldo passivo 
+2023-08-23T21:01:48.167Z - [INFO] - ad.dra: evoluzione in dashboard con saldo passivo 
                                     Le operazioni permesse sono: 1) Consultare chi siamo 2) Richiedere prestito 3) Info account 4) Consultare i movimenti 5) Log out
-2023-08-22T16:08:56.122Z - [INFO] - L'utente th.pertic si è evoluto in utente con saldo attivo 
-                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Effettuare bonifici/ricariche telefoniche 3) Richiedere prestito 4) Info account 5) Consultare i movimenti 6) Log out
-2023-08-22T16:13:52.359Z - [INFO] - L'utente ad.dra si è evoluto in utente con saldo passivo 
+2023-08-23T21:01:51.714Z - [INFO] - ad.dra: evoluzione in dashboard con saldo passivo 
                                     Le operazioni permesse sono: 1) Consultare chi siamo 2) Richiedere prestito 3) Info account 4) Consultare i movimenti 5) Log out
-2023-08-22T16:20:39.679Z - [INFO] - L'utente ad.dra si è evoluto in utente con saldo passivo 
+2023-08-23T21:02:56.574Z - [INFO] - ad.dra: evoluzione in dashboard con saldo passivo 
                                     Le operazioni permesse sono: 1) Consultare chi siamo 2) Richiedere prestito 3) Info account 4) Consultare i movimenti 5) Log out
-2023-08-22T16:20:46.187Z - [INFO] - L'utente th.pertic si è evoluto in utente con saldo attivo 
-                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Effettuare bonifici/ricariche telefoniche 3) Richiedere prestito 4) Info account 5) Consultare i movimenti 6) Log out
-2023-08-22T16:21:13.732Z - [INFO] - L'utente th.pertic si è evoluto in utente con saldo attivo 
-                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Effettuare bonifici/ricariche telefoniche 3) Richiedere prestito 4) Info account 5) Consultare i movimenti 6) Log out
-2023-08-22T16:21:13.817Z - [INFO] - L'utente ad.dra si è evoluto in utente con saldo passivo 
+2023-08-23T21:03:39.797Z - [INFO] - ad.dra: evoluzione in dashboard con saldo passivo 
                                     Le operazioni permesse sono: 1) Consultare chi siamo 2) Richiedere prestito 3) Info account 4) Consultare i movimenti 5) Log out
-2023-08-22T16:21:21.035Z - [INFO] - L'utente th.pertic si è evoluto in utente con saldo attivo 
-                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Effettuare bonifici/ricariche telefoniche 3) Richiedere prestito 4) Info account 5) Consultare i movimenti 6) Log out
-2023-08-22T16:21:21.441Z - [INFO] - L'utente ad.dra si è evoluto in utente con saldo passivo 
+2023-08-23T21:04:03.809Z - [INFO] - ad.dra: evoluzione in dashboard con saldo passivo 
                                     Le operazioni permesse sono: 1) Consultare chi siamo 2) Richiedere prestito 3) Info account 4) Consultare i movimenti 5) Log out
-2023-08-22T16:21:40.131Z - [INFO] - L'utente ad.dra si è evoluto in utente con saldo passivo 
+2023-08-23T21:04:21.315Z - [INFO] - ad.dra: la dashboard si è evoluta in movimenti
+2023-08-23T21:06:46.489Z - [INFO] - ad.dra: evoluzione in dashboard con saldo passivo 
                                     Le operazioni permesse sono: 1) Consultare chi siamo 2) Richiedere prestito 3) Info account 4) Consultare i movimenti 5) Log out
-2023-08-22T16:21:40.267Z - [INFO] - L'utente th.pertic si è evoluto in utente con saldo attivo 
-                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Effettuare bonifici/ricariche telefoniche 3) Richiedere prestito 4) Info account 5) Consultare i movimenti 6) Log out
-2023-08-22T16:23:24.976Z - [INFO] - L'utente th.pertic si è evoluto in utente con saldo attivo 
-                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Effettuare bonifici/ricariche telefoniche 3) Richiedere prestito 4) Info account 5) Consultare i movimenti 6) Log out
-2023-08-22T16:23:25.359Z - [INFO] - L'utente ad.dra si è evoluto in utente con saldo passivo 
+2023-08-23T21:07:06.772Z - [INFO] - ad.dra: evoluzione in dashboard con saldo passivo 
                                     Le operazioni permesse sono: 1) Consultare chi siamo 2) Richiedere prestito 3) Info account 4) Consultare i movimenti 5) Log out
-2023-08-22T16:23:28.866Z - [INFO] - L'utente th.pertic si è evoluto in utente con saldo attivo 
-                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Effettuare bonifici/ricariche telefoniche 3) Richiedere prestito 4) Info account 5) Consultare i movimenti 6) Log out
-2023-08-22T16:26:15.215Z - [INFO] - L'utente ad.dra si è evoluto in utente con saldo passivo 
-                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Richiedere prestito 3) Info account 4) Consultare i movimenti 5) Log out
-2023-08-22T16:38:21.994Z - [INFO] - L'utente ad.dra si è evoluto in utente con saldo passivo 
-                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Richiedere prestito 3) Info account 4) Consultare i movimenti 5) Log out
-2023-08-22T16:38:24.462Z - [INFO] - L'utente th.pertic si è evoluto in utente con saldo attivo 
-                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Effettuare bonifici/ricariche telefoniche 3) Richiedere prestito 4) Info account 5) Consultare i movimenti 6) Log out
-2023-08-22T16:38:25.273Z - [INFO] - L'utente th.pertic si è evoluto in utente con saldo attivo 
-                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Effettuare bonifici/ricariche telefoniche 3) Richiedere prestito 4) Info account 5) Consultare i movimenti 6) Log out
-2023-08-23T09:41:53.695Z - [INFO] - L'utente ad.dra si è evoluto in utente loggato
-2023-08-23T09:41:53.753Z - [INFO] - L'utente ad.dra si è evoluto in utente con saldo passivo 
-                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Richiedere prestito 3) Info account 4) Consultare i movimenti 5) Log out
-2023-08-23T09:44:41.863Z - [INFO] - L'utente ad.dra si è evoluto in utente con saldo passivo 
-                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Richiedere prestito 3) Info account 4) Consultare i movimenti 5) Log out
-2023-08-23T09:45:15.398Z - [INFO] - L'utente ad.dra si è evoluto in utente con saldo passivo 
-                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Richiedere prestito 3) Info account 4) Consultare i movimenti 5) Log out
-2023-08-23T09:46:36.266Z - [INFO] - L'utente th.pertic si è evoluto in utente loggato
-2023-08-23T09:46:36.298Z - [INFO] - L'utente th.pertic si è evoluto in utente con saldo attivo 
-                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Effettuare bonifici/ricariche telefoniche 3) Richiedere prestito 4) Info account 5) Consultare i movimenti 6) Log out
-2023-08-23T09:48:09.552Z - [INFO] - L'utente th.pertic si è evoluto in utente con saldo attivo 
-                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Effettuare bonifici/ricariche telefoniche 3) Richiedere prestito 4) Info account 5) Consultare i movimenti 6) Log out
-2023-08-23T09:51:24.862Z - [INFO] - L'utente th.pertic si è evoluto in utente con saldo attivo 
-                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Effettuare bonifici/ricariche telefoniche 3) Richiedere prestito 4) Info account 5) Consultare i movimenti 6) Log out
-2023-08-23T09:53:04.100Z - [INFO] - L'utente th.pertic si è evoluto in utente con saldo attivo 
-                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Effettuare bonifici/ricariche telefoniche 3) Richiedere prestito 4) Info account 5) Consultare i movimenti 6) Log out
-2023-08-23T09:54:13.065Z - [INFO] - L'utente th.pertic si è evoluto in utente con saldo attivo 
-                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Effettuare bonifici/ricariche telefoniche 3) Richiedere prestito 4) Info account 5) Consultare i movimenti 6) Log out
-2023-08-23T09:57:30.635Z - [INFO] - L'utente th.pertic si è evoluto in utente con saldo attivo 
-                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Effettuare bonifici/ricariche telefoniche 3) Richiedere prestito 4) Info account 5) Consultare i movimenti 6) Log out
-2023-08-23T10:01:49.704Z - [INFO] - L'utente th.pertic si è evoluto in utente con saldo attivo 
-                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Effettuare bonifici/ricariche telefoniche 3) Richiedere prestito 4) Info account 5) Consultare i movimenti 6) Log out
-2023-08-23T10:13:05.970Z - [INFO] - L'utente th.pertic si è evoluto in utente con saldo attivo 
-                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Effettuare bonifici/ricariche telefoniche 3) Richiedere prestito 4) Info account 5) Consultare i movimenti 6) Log out
-2023-08-23T10:13:24.098Z - [INFO] - L'utente th.pertic si è evoluto in utente con saldo attivo 
-                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Effettuare bonifici/ricariche telefoniche 3) Richiedere prestito 4) Info account 5) Consultare i movimenti 6) Log out
-2023-08-23T10:14:19.888Z - [INFO] - L'utente th.pertic si è evoluto in utente con saldo attivo 
-                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Effettuare bonifici/ricariche telefoniche 3) Richiedere prestito 4) Info account 5) Consultare i movimenti 6) Log out
-2023-08-23T10:15:11.670Z - [INFO] - L'utente th.pertic si è evoluto in utente con saldo attivo 
-                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Effettuare bonifici/ricariche telefoniche 3) Richiedere prestito 4) Info account 5) Consultare i movimenti 6) Log out
-2023-08-23T10:15:31.630Z - [INFO] - L'utente th.pertic si è evoluto in utente con saldo attivo 
-                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Effettuare bonifici/ricariche telefoniche 3) Richiedere prestito 4) Info account 5) Consultare i movimenti 6) Log out
-2023-08-23T10:16:14.307Z - [INFO] - L'utente th.pertic si è evoluto in utente con saldo passivo 
-                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Richiedere prestito 3) Info account 4) Consultare i movimenti 5) Log out
-2023-08-23T10:16:16.137Z - [INFO] - L'utente th.pertic si è evoluto in utente con saldo passivo 
-                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Richiedere prestito 3) Info account 4) Consultare i movimenti 5) Log out
-2023-08-23T10:36:43.968Z - [INFO] - L'utente th.pertic si è evoluto in utente con saldo passivo 
-                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Richiedere prestito 3) Info account 4) Consultare i movimenti 5) Log out
-2023-08-23T12:07:31.555Z - [INFO] - L'utente th.pertic si è evoluto in utente con saldo passivo 
-                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Richiedere prestito 3) Info account 4) Consultare i movimenti 5) Log out
-2023-08-23T12:07:32.348Z - [INFO] - L'utente th.pertic si è evoluto in utente con saldo passivo 
-                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Richiedere prestito 3) Info account 4) Consultare i movimenti 5) Log out
-2023-08-23T12:08:38.575Z - [INFO] - L'utente th.pertic si è evoluto in utente con saldo passivo 
-                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Richiedere prestito 3) Info account 4) Consultare i movimenti 5) Log out
-2023-08-23T12:08:39.401Z - [INFO] - L'utente th.pertic si è evoluto in utente con saldo passivo 
-                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Richiedere prestito 3) Info account 4) Consultare i movimenti 5) Log out
-2023-08-23T12:08:53.079Z - [INFO] - L'utente th.pertic si è evoluto in utente con saldo attivo 
-                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Effettuare bonifici/ricariche telefoniche 3) Richiedere prestito 4) Info account 5) Consultare i movimenti 6) Log out
-2023-08-23T12:09:36.213Z - [INFO] - L'utente th.pertic si è evoluto in utente con saldo passivo 
-                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Richiedere prestito 3) Info account 4) Consultare i movimenti 5) Log out
-2023-08-23T12:09:39.222Z - [INFO] - L'utente th.pertic si è evoluto in utente con saldo passivo 
-                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Richiedere prestito 3) Info account 4) Consultare i movimenti 5) Log out
-2023-08-23T12:30:26.373Z - [INFO] - L'utente th.pertic si è evoluto in utente con saldo passivo 
-                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Richiedere prestito 3) Info account 4) Consultare i movimenti 5) Log out
-2023-08-23T12:31:09.723Z - [INFO] - L'utente th.pertic si è evoluto in utente con saldo attivo 
-                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Effettuare bonifici/ricariche telefoniche 3) Richiedere prestito 4) Info account 5) Consultare i movimenti 6) Log out
-2023-08-23T12:31:37.789Z - [INFO] - L'utente th.pertic si è evoluto in utente con saldo passivo 
-                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Richiedere prestito 3) Info account 4) Consultare i movimenti 5) Log out
-2023-08-23T12:35:54.490Z - [INFO] - L'utente th.pertic si è evoluto in utente con saldo attivo 
-                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Effettuare bonifici/ricariche telefoniche 3) Richiedere prestito 4) Info account 5) Consultare i movimenti 6) Log out
-2023-08-23T12:36:19.571Z - [INFO] - L'utente th.pertic si è evoluto in utente con saldo attivo 
-                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Effettuare bonifici/ricariche telefoniche 3) Richiedere prestito 4) Info account 5) Consultare i movimenti 6) Log out
-2023-08-23T12:58:42.346Z - [INFO] - L'utente th.pertic si è evoluto in utente loggato
-2023-08-23T12:58:42.381Z - [INFO] - L'utente th.pertic si è evoluto in utente con saldo attivo 
-                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Effettuare bonifici/ricariche telefoniche 3) Richiedere prestito 4) Info account 5) Consultare i movimenti 6) Log out
-2023-08-23T12:59:16.642Z - [INFO] - L'utente th.pertic si è evoluto in utente con saldo attivo 
-                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Effettuare bonifici/ricariche telefoniche 3) Richiedere prestito 4) Info account 5) Consultare i movimenti 6) Log out
-2023-08-23T13:31:28.063Z - [INFO] - L'utente th.pertic si è evoluto in utente con saldo attivo 
-                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Effettuare bonifici/ricariche telefoniche 3) Richiedere prestito 4) Info account 5) Consultare i movimenti 6) Log out
-2023-08-23T13:39:59.539Z - [INFO] - L'utente th.pertic si è evoluto in utente con saldo attivo 
-                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Effettuare bonifici/ricariche telefoniche 3) Richiedere prestito 4) Info account 5) Consultare i movimenti 6) Log out
-2023-08-23T13:40:20.530Z - [INFO] - L'utente th.pertic si è evoluto in utente con saldo attivo 
-                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Effettuare bonifici/ricariche telefoniche 3) Richiedere prestito 4) Info account 5) Consultare i movimenti 6) Log out
-2023-08-23T13:42:23.370Z - [INFO] - L'utente th.pertic si è evoluto in utente con saldo attivo 
-                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Effettuare bonifici/ricariche telefoniche 3) Richiedere prestito 4) Info account 5) Consultare i movimenti 6) Log out
-2023-08-23T13:42:24.023Z - [INFO] - L'utente th.pertic si è evoluto in utente con saldo attivo 
-                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Effettuare bonifici/ricariche telefoniche 3) Richiedere prestito 4) Info account 5) Consultare i movimenti 6) Log out
-2023-08-23T13:42:54.408Z - [INFO] - L'utente th.pertic si è evoluto in utente con saldo attivo 
-                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Effettuare bonifici/ricariche telefoniche 3) Richiedere prestito 4) Info account 5) Consultare i movimenti 6) Log out
-2023-08-23T13:43:55.591Z - [INFO] - L'utente th.pertic si è evoluto in utente con saldo attivo 
-                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Effettuare bonifici/ricariche telefoniche 3) Richiedere prestito 4) Info account 5) Consultare i movimenti 6) Log out
-2023-08-23T13:44:07.004Z - [INFO] - L'utente th.pertic si è evoluto in utente con saldo attivo 
-                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Effettuare bonifici/ricariche telefoniche 3) Richiedere prestito 4) Info account 5) Consultare i movimenti 6) Log out
-2023-08-23T13:45:26.155Z - [INFO] - L'utente th.pertic si è evoluto in utente con saldo attivo 
-                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Effettuare bonifici/ricariche telefoniche 3) Richiedere prestito 4) Info account 5) Consultare i movimenti 6) Log out
-2023-08-23T13:45:42.167Z - [INFO] - L'utente th.pertic si è evoluto in utente con saldo attivo 
-                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Effettuare bonifici/ricariche telefoniche 3) Richiedere prestito 4) Info account 5) Consultare i movimenti 6) Log out
-2023-08-23T13:46:39.097Z - [INFO] - L'utente th.pertic si è evoluto in utente con saldo attivo 
-                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Effettuare bonifici/ricariche telefoniche 3) Richiedere prestito 4) Info account 5) Consultare i movimenti 6) Log out
-2023-08-23T13:46:52.083Z - [INFO] - L'utente th.pertic si è evoluto in utente con saldo attivo 
-                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Effettuare bonifici/ricariche telefoniche 3) Richiedere prestito 4) Info account 5) Consultare i movimenti 6) Log out
-2023-08-23T13:51:35.250Z - [INFO] - L'utente th.pertic si è evoluto in utente con saldo attivo 
-                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Effettuare bonifici/ricariche telefoniche 3) Richiedere prestito 4) Info account 5) Consultare i movimenti 6) Log out
-2023-08-23T13:51:48.988Z - [INFO] - L'utente th.pertic si è evoluto in utente con saldo attivo 
-                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Effettuare bonifici/ricariche telefoniche 3) Richiedere prestito 4) Info account 5) Consultare i movimenti 6) Log out
-2023-08-23T13:55:10.174Z - [INFO] - L'utente th.pertic si è evoluto in utente con saldo attivo 
-                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Effettuare bonifici/ricariche telefoniche 3) Richiedere prestito 4) Info account 5) Consultare i movimenti 6) Log out
-2023-08-23T13:55:17.922Z - [INFO] - L'utente th.pertic si è evoluto in utente con saldo attivo 
-                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Effettuare bonifici/ricariche telefoniche 3) Richiedere prestito 4) Info account 5) Consultare i movimenti 6) Log out
-2023-08-23T13:55:44.498Z - [INFO] - L'utente th.pertic si è evoluto in utente con saldo attivo 
-                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Effettuare bonifici/ricariche telefoniche 3) Richiedere prestito 4) Info account 5) Consultare i movimenti 6) Log out
-2023-08-23T13:55:58.616Z - [INFO] - L'utente th.pertic si è evoluto in utente con saldo attivo 
-                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Effettuare bonifici/ricariche telefoniche 3) Richiedere prestito 4) Info account 5) Consultare i movimenti 6) Log out
-2023-08-23T14:12:06.994Z - [INFO] - L'utente th.pertic si è evoluto in utente con saldo attivo 
-                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Effettuare bonifici/ricariche telefoniche 3) Richiedere prestito 4) Info account 5) Consultare i movimenti 6) Log out
-2023-08-23T14:12:58.575Z - [INFO] - L'utente th.pertic si è evoluto in utente con saldo attivo 
-                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Effettuare bonifici/ricariche telefoniche 3) Richiedere prestito 4) Info account 5) Consultare i movimenti 6) Log out
-2023-08-23T14:14:04.729Z - [INFO] - L'utente th.pertic si è evoluto in utente con saldo attivo 
-                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Effettuare bonifici/ricariche telefoniche 3) Richiedere prestito 4) Info account 5) Consultare i movimenti 6) Log out
-2023-08-23T14:14:39.624Z - [INFO] - L'utente th.pertic si è evoluto in utente con saldo attivo 
-                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Effettuare bonifici/ricariche telefoniche 3) Richiedere prestito 4) Info account 5) Consultare i movimenti 6) Log out
-2023-08-23T14:15:19.029Z - [INFO] - L'utente th.pertic si è evoluto in utente con saldo passivo 
-                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Richiedere prestito 3) Info account 4) Consultare i movimenti 5) Log out
-2023-08-23T14:15:19.048Z - [INFO] - L'utente th.pertic si è evoluto in utente con saldo passivo 
-                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Richiedere prestito 3) Info account 4) Consultare i movimenti 5) Log out
-2023-08-23T14:16:27.260Z - [INFO] - L'utente th.pertic si è evoluto in utente con saldo passivo 
-                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Richiedere prestito 3) Info account 4) Consultare i movimenti 5) Log out
-2023-08-23T14:17:29.469Z - [INFO] - L'utente th.pertic si è evoluto in utente con saldo passivo 
-                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Richiedere prestito 3) Info account 4) Consultare i movimenti 5) Log out
-2023-08-23T14:17:53.789Z - [INFO] - L'utente th.pertic si è evoluto in utente con saldo passivo 
-                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Richiedere prestito 3) Info account 4) Consultare i movimenti 5) Log out
-2023-08-23T14:21:34.096Z - [INFO] - L'utente ad.dra si è evoluto in utente loggato
-2023-08-23T14:21:34.123Z - [INFO] - L'utente ad.dra si è evoluto in utente con saldo passivo 
-                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Richiedere prestito 3) Info account 4) Consultare i movimenti 5) Log out
-2023-08-23T14:22:26.217Z - [INFO] - L'utente th.pertic si è evoluto in utente con saldo attivo 
-                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Effettuare bonifici/ricariche telefoniche 3) Richiedere prestito 4) Info account 5) Consultare i movimenti 6) Log out
-2023-08-23T14:22:47.760Z - [INFO] - L'utente th.pertic si è evoluto in utente con saldo attivo 
-                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Effettuare bonifici/ricariche telefoniche 3) Richiedere prestito 4) Info account 5) Consultare i movimenti 6) Log out
-2023-08-23T14:23:15.506Z - [INFO] - L'utente ad.dra si è evoluto in utente con saldo passivo 
-                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Richiedere prestito 3) Info account 4) Consultare i movimenti 5) Log out
-2023-08-23T14:23:35.408Z - [INFO] - L'utente ad.dra si è evoluto in utente con saldo passivo 
-                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Richiedere prestito 3) Info account 4) Consultare i movimenti 5) Log out
-2023-08-23T14:25:22.413Z - [INFO] - L'utente admin.admin si è evoluto in utente loggato
-2023-08-23T14:25:22.479Z - [INFO] - L'utente admin.admin si è evoluto in utente Admin 
-                                    Le operazioni permesse sono: 1) Consultare la lista dei utenti registrati 2) Crea/Cancellare conti correnti 3) Cancellare account utenti 4) Info account 5) Log out
-2023-08-23T14:31:45.351Z - [INFO] - L'utente ad.dra si è evoluto in utente senza conto corrente 
-                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Info account 3) Log out
-2023-08-23T14:32:43.351Z - [INFO] - L'utente th.pertic si è evoluto in utente con saldo attivo 
-                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Effettuare bonifici/ricariche telefoniche 3) Richiedere prestito 4) Info account 5) Consultare i movimenti 6) Log out
-2023-08-23T14:32:47.501Z - [INFO] - L'utente ad.dra si è evoluto in utente con saldo attivo 
-                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Effettuare bonifici/ricariche telefoniche 3) Richiedere prestito 4) Info account 5) Consultare i movimenti 6) Log out
-2023-08-23T14:33:03.512Z - [INFO] - L'utente ad.dra si è evoluto in utente con saldo attivo 
-                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Effettuare bonifici/ricariche telefoniche 3) Richiedere prestito 4) Info account 5) Consultare i movimenti 6) Log out
-2023-08-23T14:33:07.274Z - [INFO] - L'utente ad.dra si è evoluto in utente con saldo attivo 
-                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Effettuare bonifici/ricariche telefoniche 3) Richiedere prestito 4) Info account 5) Consultare i movimenti 6) Log out
-2023-08-23T14:34:30.469Z - [INFO] - L'utente ad.dra si è evoluto in utente senza conto corrente 
-                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Info account 3) Log out
-2023-08-23T14:37:37.605Z - [INFO] - L'utente ad.dra si è evoluto in utente con saldo passivo 
-                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Richiedere prestito 3) Info account 4) Consultare i movimenti 5) Log out
-2023-08-23T14:46:38.458Z - [INFO] - L'utente th.pertic si è evoluto in utente con saldo attivo 
-                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Effettuare bonifici/ricariche telefoniche 3) Richiedere prestito 4) Info account 5) Consultare i movimenti 6) Log out
-2023-08-23T14:46:43.299Z - [INFO] - L'utente ad.dra si è evoluto in utente con saldo passivo 
-                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Richiedere prestito 3) Info account 4) Consultare i movimenti 5) Log out
-2023-08-23T14:47:18.417Z - [INFO] - L'utente th.pertic si è evoluto in utente con saldo attivo 
-                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Effettuare bonifici/ricariche telefoniche 3) Richiedere prestito 4) Info account 5) Consultare i movimenti 6) Log out
-2023-08-23T14:47:21.145Z - [INFO] - L'utente ad.dra si è evoluto in utente con saldo attivo 
-                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Effettuare bonifici/ricariche telefoniche 3) Richiedere prestito 4) Info account 5) Consultare i movimenti 6) Log out
-2023-08-23T14:47:44.465Z - [INFO] - L'utente ad.dra si è evoluto in utente con saldo passivo 
-                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Richiedere prestito 3) Info account 4) Consultare i movimenti 5) Log out
-2023-08-23T14:47:47.637Z - [INFO] - L'utente ad.dra si è evoluto in utente con saldo passivo 
-                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Richiedere prestito 3) Info account 4) Consultare i movimenti 5) Log out
-2023-08-23T15:09:27.896Z - [INFO] - th.pertic: evoluzione in dashboard con saldo attivo 
-                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Effettuare bonifici/ricariche telefoniche 3) Richiedere prestito 4) Info account 5) Consultare i movimenti 6) Log out
-2023-08-23T15:09:27.956Z - [INFO] - ad.dra: evoluzione in dashboard con saldo passivo 
-                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Richiedere prestito 3) Info account 4) Consultare i movimenti 5) Log out
-2023-08-23T15:09:28.376Z - [INFO] - admin.admin: evoluzione in dashboard Admin 
-                                    Le operazioni permesse sono: 1) Consultare la lista dei utenti registrati 2) Crea/Cancellare conti correnti 3) Cancellare account utenti 4) Info account 5) Log out
-2023-08-23T15:09:54.218Z - [INFO] - th.pertic: evoluzione in dashboard con saldo attivo 
-                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Effettuare bonifici/ricariche telefoniche 3) Richiedere prestito 4) Info account 5) Consultare i movimenti 6) Log out
-2023-08-23T15:09:54.259Z - [INFO] - ad.dra: evoluzione in dashboard con saldo passivo 
-                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Richiedere prestito 3) Info account 4) Consultare i movimenti 5) Log out
-2023-08-23T15:09:56.111Z - [INFO] - admin.admin: evoluzione in dashboard Admin 
-                                    Le operazioni permesse sono: 1) Consultare la lista dei utenti registrati 2) Crea/Cancellare conti correnti 3) Cancellare account utenti 4) Info account 5) Log out

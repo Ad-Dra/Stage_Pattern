@@ -33,6 +33,7 @@ import { CreaContoCorrenteClienteComponent } from './crea-conto-corrente-cliente
 import { NgxSmartModalModule } from 'ngx-smart-modal';
 import { ConfermaCancellazioneComponent } from './conferma-cancellazione/conferma-cancellazione.component';
 import { ModificaContiCorrrentiUtenteComponent } from './modifica-conti-corrrenti-utente/modifica-conti-corrrenti-utente.component';
+import { PrestitoComponent } from './prestito/prestito.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -56,7 +57,8 @@ import { ModificaContiCorrrentiUtenteComponent } from './modifica-conti-corrrent
     NavBarAdminComponent,
     CreaContoCorrenteClienteComponent,
     ConfermaCancellazioneComponent,
-    ModificaContiCorrrentiUtenteComponent
+    ModificaContiCorrrentiUtenteComponent,
+    PrestitoComponent
   ],
   imports: [
     BrowserModule,

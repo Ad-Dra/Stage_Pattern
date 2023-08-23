@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Inject, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Inject, Input, OnInit, Output } from '@angular/core';
 import { InfoAccountComponent } from '../info-account/info-account.component';
 import { Stage } from '../stage/stage';
 import { LoginComponent } from '../login/login.component';
@@ -14,7 +14,8 @@ import { NgxSmartModalService } from 'ngx-smart-modal';
 })
 export class DashboardAdminComponent implements Stage, OnInit{
   public type:any=DashboardAdminComponent.name;
-  public identificativo:string="";
+  
+  @Input() denominazione:any;
   public responseOk:boolean=false;
   public clienti:any=[];
   public colonne:Colonne []=[
@@ -36,7 +37,7 @@ export class DashboardAdminComponent implements Stage, OnInit{
       this.type=sessionStorage.getItem("statusObject")!='DashboardAdminComponent' ? sessionStorage.getItem("statusObject")?.split("_")[1] : sessionStorage.getItem("statusObject");
 
     if(this.type=="DashboardAdminComponent"){
-      this.getInfoAccount();
+      //this.getInfoAccount();
       this.getUtenti();
     }
   }
@@ -44,7 +45,7 @@ export class DashboardAdminComponent implements Stage, OnInit{
   getInfoAccount(){
     this.http.get("/api/getinfoAccount.json").subscribe((res:any)=>{
       if(res && res.length>0){
-        this.identificativo=res[0].cognome+" "+res[0].nome;
+        //this.identificativo=res[0].cognome+" "+res[0].nome;
       }
     })
   }

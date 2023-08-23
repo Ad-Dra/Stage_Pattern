@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { Stage } from '../stage/stage';
 import { HttpClient } from '@angular/common/http';
 import { Colonne } from '../components/grids/grid/grid/grid.component';
@@ -8,6 +8,7 @@ import { ChiSiamoComponent } from '../chi-siamo/chi-siamo.component';
 import { MovimentiComponent } from '../movimenti/movimenti.component';
 import { BonificoComponent } from '../bonifico/bonifico.component';
 import { RicaricaTelefonicaComponent } from '../ricarica-telefonica/ricarica-telefonica.component';
+import { PrestitoComponent } from '../prestito/prestito.component';
 
 interface dashboardInterface extends Stage{
   home(): void;
@@ -55,6 +56,8 @@ const dashboardSaldoPassivo: dashboardInterface = {
     this.changeType.emit({comp:ChiSiamoComponent,isDashboard:"DashboardComponent"});
   },
   prestito() {
+    this.type=PrestitoComponent.name;
+    this.changeType.emit({comp:PrestitoComponent,isDashboard:"DashboardComponent"});
   },
   getInfAccount() {
     this.changeType.emit({comp:InfoAccountComponent,isDashboard:"DashboardComponent"});
@@ -90,6 +93,8 @@ const dashboardSaldoAttivo: dashboardInterfaceAttiva = {
     this.changeType.emit({comp:BonificoComponent,isDashboard:"DashboardComponent"});
   },
   prestito() {
+    this.type=PrestitoComponent.name;
+    this.changeType.emit({comp:PrestitoComponent,isDashboard:"DashboardComponent"});
   },
   ricaricaTelefonica() {
     this.type=RicaricaTelefonicaComponent.name;
@@ -149,7 +154,7 @@ export class DashboardComponent implements Stage,OnInit{
 
   public type:any=DashboardComponent.name;
 
-  public identificativo:string="";
+  @Input() denominazione:any;
   public saldo:any="0.0";
   public contiCorrente:any=[];
   public responseOk:boolean=false;
@@ -173,14 +178,14 @@ export class DashboardComponent implements Stage,OnInit{
     if(sessionStorage.getItem("statusObject") && sessionStorage.getItem("statusObject")!=null && sessionStorage.getItem("statusObject")!='undefined')
       this.type=sessionStorage.getItem("statusObject")!='DashboardComponent' ? sessionStorage.getItem("statusObject")?.split("_")[1] : sessionStorage.getItem("statusObject");
 
-    this.getInfoAccount();
+    //this.getInfoAccount();
     this.getInfoContoCorrente();
   }
 
   getInfoAccount(){
     this.http.get("/api/getinfoAccount.json").subscribe((res:any)=>{
       if(res && res.length>0){
-        this.identificativo=res[0].cognome+" "+res[0].nome;
+        //this.identificativo=res[0].cognome+" "+res[0].nome;
       }
     })
   }

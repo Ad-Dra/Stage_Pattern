@@ -1,7 +1,7 @@
 <app-nav-bar  (homeEmitter)="home()" (chiSiamoEmitter)="chiSiamo()" (getInfAccountEmitter)="getInfAccount()" (getMovimentiEmitter)="getMovimenti()" (logOutEmitter)="logOut()" (bonificoEmitter)="bonifico()" (ricaricaTelefonicaEmitter)="ricaricaTelefonica()" (prestitoEmitter)="prestito()"></app-nav-bar>
 
 <div *ngIf="type=='DashboardComponent'">
-    <h1>Benvenuto {{identificativo}} in City Safe Bank!</h1>
+    <h1>Benvenuto {{denominazione}} in City Safe Bank!</h1>
 
     <br><br>
 
@@ -9,7 +9,7 @@
         <h4 class="white">Non ha nessun conto corrente vieni a trovarci in filiale</h4>
     </div>
 
-    <h4 *ngIf="contiCorrente.length==1">Il suo conto corrente: ha il seguente saldo: {{contiCorrente[0].saldo}}€</h4>
+    <h4 *ngIf="contiCorrente.length==1">Il suo conto corrente: ha il seguente saldo: {{contiCorrente[0].saldo | currency:'EUR'}}</h4>
 
 
     <div class="col-md-12 col-sm-12" *ngIf="contiCorrente && contiCorrente.length>1">
@@ -29,3 +29,4 @@
 <app-ricarica-telefonica *ngIf="type=='RicaricaTelefonicaComponent'" [contiCorrente]="contiCorrente" [dashboard]="this.dashboard" [dashboardSaldPass]="dashboardSaldPass" [notContoCorrenteDashboard]="notContoCorrenteDashboard"></app-ricarica-telefonica>
 <app-info-account *ngIf="type=='InfoAccountComponent'"></app-info-account>
 <app-movimenti *ngIf="type=='MovimentiComponent'"></app-movimenti>
+<app-prestito *ngIf="type=='PrestitoComponent'"></app-prestito>

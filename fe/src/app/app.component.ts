@@ -12,6 +12,7 @@ export class AppComponent implements OnInit{
   title = 'Stage_Pattern';
   public type:any=LoginComponent.name;
   public showNavBar:boolean=false;
+  public denominazione:any;
 
   constructor(){
   }
@@ -32,6 +33,9 @@ export class AppComponent implements OnInit{
       this.type="DashboardAdminComponent";
     else if(this.type.includes("DashboardComponent"))
       this.type="DashboardComponent";
+
+    if(this.type.includes("DashboardAdminComponent") || this.type.includes("DashboardComponent"))
+      this.denominazione=this.getDenominazione();
   }
 
   showOrHideNavBar(){
@@ -46,8 +50,13 @@ export class AppComponent implements OnInit{
     this.showOrHideNavBar();
     this.setStatusObject(typeObject.isDashboard);
 
+    if(this.type.includes("DashboardAdminComponent") || this.type.includes("DashboardComponent"))
+      this.denominazione=this.getDenominazione();
+
     if(typeObject.isDashboard)
       this.type=typeObject.isDashboard;
+
+    
   }
 
   setStatusObject(isDashboard?:string){
@@ -56,5 +65,14 @@ export class AppComponent implements OnInit{
         sessionStorage.setItem("statusObject",isDashboard+"_"+this.type);
       else
         sessionStorage.setItem("statusObject",this.type);
+  }
+
+  getDenominazione(){
+    if(sessionStorage.getItem("token")){
+        let token:any=sessionStorage.getItem("token")?.split('.')[1];
+        return JSON.parse(atob(token)).cognome+" "+JSON.parse(atob(token)).nome;
+    }
+    else
+      return "";
   }
 }
