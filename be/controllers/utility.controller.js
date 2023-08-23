@@ -172,13 +172,13 @@ exports.getDescriptionForEvolution=async (username,state)=>{
 
   switch(state){
     case 0:
-      return "L'utente "+username+" si è evoluto in utente senza conto corrente \n                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Info account 3) Log out";
+      return username+": evoluzione in dashboard senza conto corrente \n                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Info account 3) Log out";
     case 1:
-      return "L'utente "+username+" si è evoluto in utente con saldo attivo \n                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Effettuare bonifici/ricariche telefoniche 3) Richiedere prestito 4) Info account 5) Consultare i movimenti 6) Log out";
+      return username+": evoluzione in dashboard con saldo attivo \n                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Effettuare bonifici/ricariche telefoniche 3) Richiedere prestito 4) Info account 5) Consultare i movimenti 6) Log out";
     case 2:
-      return "L'utente "+username+" si è evoluto in utente con saldo passivo \n                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Richiedere prestito 3) Info account 4) Consultare i movimenti 5) Log out";
+      return username+": evoluzione in dashboard con saldo passivo \n                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Richiedere prestito 3) Info account 4) Consultare i movimenti 5) Log out";
     case 3:
-      return "L'utente "+username+" si è evoluto in utente Admin \n                                    Le operazioni permesse sono: 1) Consultare la lista dei utenti registrati 2) Crea/Cancellare conti correnti 3) Cancellare account utenti 4) Info account 5) Log out";
+      return username+": evoluzione in dashboard Admin \n                                    Le operazioni permesse sono: 1) Consultare la lista dei utenti registrati 2) Crea/Cancellare conti correnti 3) Cancellare account utenti 4) Info account 5) Log out";
   }
 }
 

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { Stage } from '../stage/stage';
 import { HttpClient } from '@angular/common/http';
 import { Colonne } from '../components/grids/grid/grid/grid.component';
@@ -158,11 +158,13 @@ export class DashboardComponent implements Stage,OnInit{
     {name:"Saldo", field:'saldo',isCurrency:true,isDate:false, persIcon:false},
     {name:"Data creazione", field:'dataCreazione',isCurrency:false,isDate:true, persIcon:false}
   ]
-
+  
   @Output() changeType: EventEmitter<any>= new EventEmitter<any>();
   
   public dashboard: dashboardInterface | dashboardInterfaceAttiva  | undefined;
-
+  public dashboardSaldPass: dashboardInterface=dashboardSaldoPassivo;
+  public notContoCorrenteDashboard: notContoCorrenteDashboardInterface = notContoCorrenteDashboard;
+  
   constructor(private http:HttpClient){
 
   }
@@ -183,7 +185,7 @@ export class DashboardComponent implements Stage,OnInit{
     })
   }
 
-  getInfoContoCorrente(){
+  getInfoContoCorrente(): void{
     this.http.get("/api/getInfoContoCorrente.json").subscribe((res:any)=>{
       if(res){
         this.contiCorrente=res;
