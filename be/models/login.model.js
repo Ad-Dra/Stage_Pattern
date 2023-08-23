@@ -17,7 +17,7 @@ const UtenzaLogin=function(utenzaLogin){
  */
 UtenzaLogin.login = (utenzaLogin,result) => {
       
-  	sql.query(`select idRuolo,password from utente where (email= BINARY "${utenzaLogin.identificativo}" or username= BINARY "${utenzaLogin.identificativo}") and password=aes_encrypt("${utenzaLogin.password}", "${passwordConfig.KEY}")`, async (err, res) => {
+  	sql.query(`select idRuolo,idUtente,password from utente where (email= BINARY "${utenzaLogin.identificativo}" or username= BINARY "${utenzaLogin.identificativo}") and password=aes_encrypt("${utenzaLogin.password}", "${passwordConfig.KEY}")`, async (err, res) => {
 		if(err) {
       		console.log("error: ", err);
       		result(err, null);
@@ -33,11 +33,19 @@ UtenzaLogin.login = (utenzaLogin,result) => {
 			else
 				desc='User';
 
-			let token = await Utility.createToken({identificativo:utenzaLogin.identificativo,ruolo:desc},'3h');
+			sql.query(`select cognome,nome from anagrafica where idUtente="${res.idUtente}"`, async (err, res1) => {
+				if(err) {
+						console.log("error: ", err);
+						result(err, null);
+				}
+				
+				let token = await Utility.createToken({identificativo:utenzaLogin.identificativo,ruolo:desc,cognome:JSON.parse(JSON.stringify(res1))[0].cognome,nome:JSON.parse(JSON.stringify(res1))[0].nome},'3h');
 			
-			logger.info(utenzaLogin.identificativo+": si è evoluto in dashboard");
+				if(res.idRuolo!=1)
+					logger.info(utenzaLogin.identificativo+": si è evoluto in dashboard");
 
-      		result(null, {status:'200',token: token});
+      			result(null, {status:'200',token: token});
+			});
 		}
 	});
 }

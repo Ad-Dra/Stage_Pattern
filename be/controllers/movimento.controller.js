@@ -24,7 +24,7 @@ exports.creaBonifico = async (req, res) => {
                         }
                         // Creo il movimento in uscita
                         // TODO: Set req.body
-                        req.body.importo=req.body.importo*(-1);
+                        req.body.importo=parseFloat(req.body.importo*(-1)).toFixed(2);
 
                         const mov=new Movimenti(req.body);
                        
@@ -40,7 +40,7 @@ exports.creaBonifico = async (req, res) => {
                                     return;
                                 }
 
-                                req.body.importo=req.body.importo*(-1);
+                                req.body.importo=parseFloat(req.body.importo*(-1)).toFixed(2);
 
                                 if (data.length > 0) {
                                     ContoCorrente.ricevi(data[0].idContoCorrente,req.body.importo, (err, data1) => {
@@ -104,7 +104,7 @@ exports.creaRicaricaTelefonica = async (req,res)=>{
                         }
                         // Creo il movimento in uscita
                         // TODO: Set req.body
-                        req.body.importo=req.body.importo*(-1);
+                        req.body.importo=parseFloat(req.body.importo*(-1)).toFixed(2);
                         req.body.causale="Ricaricato il numero:"+req.body.numeroTelefono;
                         req.body.tipologiaBonifico=8;
                         req.body.ibanBeneficiario="ITTTTTT"

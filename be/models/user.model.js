@@ -80,6 +80,8 @@ InfoUser.getInfoContoCorrente=(idUtente,username,isAdmin,result)=>{
           logger.info(await Utility.getDescriptionForEvolution(username,2));
       }
     }
+    else
+      logger.info(username+": si è evoluto in getInfo conto corrente utente");
   
     result(null, res);
   }); 

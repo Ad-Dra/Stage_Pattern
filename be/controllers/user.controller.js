@@ -244,10 +244,14 @@ exports.deleteUtente = async (req, res) => {
         });
     }
 
-    User.delete(req.body.idUtente, (err, data) => {
+    User.delete(req.body.idUtente, async (err, data) => {
         if (err)
             res.status(500).send({message:err.message});
-        else 
+        else{
+            let username = await Utility.getUsername(req);
+
+            logger.info(username+": si è evoluto in cancella account utenti");
             res.send(data);
+        }
     });
 }

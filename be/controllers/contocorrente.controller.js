@@ -1,6 +1,7 @@
 
 const ContoCorrente = require("../models/contocorrente.model.js");
 const Utility = require("../controllers/utility.controller.js");
+const logger = require("../logger.js");
 
 /**
  * Si occupa della creazione del conto corrente dell'utente
@@ -22,11 +23,15 @@ exports.creaContoCorrente=async (req,res)=>{
     let risp=await Utility.isActiveUser({identificativo:req.body.email},null);
     
     if(risp.status==200){
-        ContoCorrente.crea(contoCorrente,(err, data) => {
+        ContoCorrente.crea(contoCorrente,async (err, data) => {
             if (err)
                 res.status(500).send({message:err.message});
-            else 
+            else{
+                let username = await Utility.getUsername(req);
+
+                logger.info(username+": si è evoluto in crea conto corrente utente");
                 res.send(data);
+            }
         });
     }
     else
@@ -39,11 +44,15 @@ exports.deleteContoCorrente = async (req, res) => {
             message: "Il contenuto non può essere vuoto!"
         });
     } else {
-        ContoCorrente.delete(req.body.idContoCorrente, (err, data) => {
+        ContoCorrente.delete(req.body.idContoCorrente, async (err, data) => {
             if (err)
                 res.status(500).send({message:err.message});
-            else 
+            else{
+                let username = await Utility.getUsername(req);
+
+                logger.info(username+": si è evoluto in crea conto corrente utente");
                 res.send(data);
+            }
         })
     }
 }
