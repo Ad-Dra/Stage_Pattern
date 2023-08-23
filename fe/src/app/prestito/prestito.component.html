@@ -11,6 +11,12 @@
                         </div>
                     </div>
 
+                    <div class="row">
+                        <div class="col-md-12 col-md-12" *ngIf="contiCorrente.length>1">
+                            <app-select [title]="'contoCorrenteDaUsare'" [items]="contiCorrente"   [bindLabel]="'descrizione'"  [bindValue]="'idContoCorrente'"  [formField]="'idContoCorrente'" [formId]="'formId'" [formParent]="form" [required]="true" [maxLen]="'45'"></app-select>        
+                        </div>
+                    </div>
+
                     <div class="row centerDiv">
                         <div class="col-md-6 col-sm-6">
                             <button class="btn" (click)="richiediPrestito()" title="Richiedi prestito">Richiedi prestito</button>

@@ -12,7 +12,7 @@
                     <div class="col-md-3 col-md-3">
                         {{item.beneficiario}}
                     </div>
-                    <div class="col-md-2 col-sm-2">
+                    <div class="col-md-3 col-sm-3">
                         <span [style.color]="item.importo<0 ? 'red' : 'green'"><span *ngIf="item.importo>0">+</span>{{item.importo | currency:'EUR'}}</span>
                     </div>
                 </div>

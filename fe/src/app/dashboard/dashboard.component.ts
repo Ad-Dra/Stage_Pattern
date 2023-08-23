@@ -169,7 +169,8 @@ export class DashboardComponent implements Stage,OnInit{
   public dashboard: dashboardInterface | dashboardInterfaceAttiva  | undefined;
   public dashboardSaldPass: dashboardInterface=dashboardSaldoPassivo;
   public notContoCorrenteDashboard: notContoCorrenteDashboardInterface = notContoCorrenteDashboard;
-  
+  public dashboardSaldAtt: dashboardInterfaceAttiva = dashboardSaldoAttivo;
+
   constructor(private http:HttpClient){
 
   }

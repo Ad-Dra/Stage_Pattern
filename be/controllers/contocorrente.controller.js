@@ -50,7 +50,7 @@ exports.deleteContoCorrente = async (req, res) => {
             else{
                 let username = await Utility.getUsername(req);
 
-                logger.info(username+": si è evoluto in crea conto corrente utente");
+                logger.info(username+": si è evoluto in elimina conto corrente utente");
                 res.send(data);
             }
         })

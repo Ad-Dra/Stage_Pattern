@@ -35,7 +35,7 @@ ContoCorrente.paga = (idContoCorrente, importo,username,result) => {
             return;
         }
 
-        let diff=parseFloat(data).toFixed(2)-parseFloat(importo).toFixed(2);
+        let diff=data-parseFloat(importo);
         
         // TODO: check data[0] se è corretto
         sql.query("UPDATE ContoCorrente SET saldo = ? WHERE idContoCorrente = ?;", [diff, idContoCorrente], async (err, data1) => {
@@ -64,14 +64,18 @@ ContoCorrente.getIdByIBAN = (iban, result) => {
     });
 }
 
-ContoCorrente.ricevi = (idContoCorrente, importo, result) => {
-    ContoCorrente.getSaldo(idContoCorrente, (err, data) => {
+ContoCorrente.ricevi = (idContoCorrente, importo,username, result) => {
+    ContoCorrente.getSaldo(idContoCorrente, async (err, data) => {
         if (err) {
             console.log("error: ", err);
             result(err, null);
             return;
         }
-        let sum=parseFloat(data).toFixed(2)+importo;
+
+        let sum=data+parseFloat(importo);
+
+        if(data<=0 && sum>0)
+            logger.info(await Utility.getDescriptionForEvolution(username,1));
 
         // TODO: check se data[0] è corretto
         sql.query("UPDATE ContoCorrente SET saldo = ? WHERE idContoCorrente = ?", [sum, idContoCorrente], (err, data1) => {

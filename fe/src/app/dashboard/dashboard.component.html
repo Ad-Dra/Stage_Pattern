@@ -29,4 +29,4 @@
 <app-ricarica-telefonica *ngIf="type=='RicaricaTelefonicaComponent'" [contiCorrente]="contiCorrente" [dashboard]="this.dashboard" [dashboardSaldPass]="dashboardSaldPass" [notContoCorrenteDashboard]="notContoCorrenteDashboard"></app-ricarica-telefonica>
 <app-info-account *ngIf="type=='InfoAccountComponent'"></app-info-account>
 <app-movimenti *ngIf="type=='MovimentiComponent'"></app-movimenti>
-<app-prestito *ngIf="type=='PrestitoComponent'"></app-prestito>
+<app-prestito *ngIf="type=='PrestitoComponent'" [contiCorrente]="contiCorrente" [dashboard]="this.dashboard" [dashboardSaldAtt]="dashboardSaldAtt"></app-prestito>
