@@ -1,6 +1,7 @@
 
 const RicaricaTelefonica = require("../models/ricaricaTelefonica.model.js");
 const Utility = require("../controllers/utility.controller.js");
+const logger = require("../logger.js");
 
 /**
  * 
@@ -8,12 +9,17 @@ const Utility = require("../controllers/utility.controller.js");
  * @param {*} res valore che viene ritornato 
  */
 exports.getOperatori=async (req,res)=>{
+   
+    let username = await Utility.getUsername(req);
 
     RicaricaTelefonica.getOperatoriTelefonici((err, data) => {
         if (err)
             res.status(500).send({message:err.message});
-        else 
+        else{
+            logger.info(username+": la dashboard si è evoluta in ricarica telefonica");
+
             res.send(data);
+        }
     });
 }
 

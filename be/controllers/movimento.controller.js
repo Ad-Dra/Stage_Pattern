@@ -39,6 +39,9 @@ exports.creaBonifico = async (req, res) => {
                                     res.status(500).send({ message: err.message });
                                     return;
                                 }
+
+                                req.body.importo=req.body.importo*(-1);
+
                                 if (data.length > 0) {
                                     ContoCorrente.ricevi(data[0].idContoCorrente,req.body.importo, (err, data1) => {
                                         if (err) {
@@ -47,8 +50,9 @@ exports.creaBonifico = async (req, res) => {
                                         }
                                         
                                         req.body.idUtente=data[0].idUtente;
-                                        req.body.importo=req.body.importo*(-1);
-
+                                        
+                                        req.body.idContoCorrente=data[0].idContoCorrente;
+                                        
                                         const movimentoEntrata=new Movimenti(req.body);
                                        
                                         Movimenti.create(movimentoEntrata, (err, data2) => {
@@ -60,7 +64,9 @@ exports.creaBonifico = async (req, res) => {
                                             res.status(200).send({message: "Bonifico andato a buon fine."})
                                         });
                                     });
-                                } 
+                                }
+                                else
+                                    res.status(200).send({message: "Bonifico andato a buon fine."})
                                 
                             });
                         });
@@ -128,8 +134,9 @@ exports.creaRicaricaTelefonica = async (req,res)=>{
 exports.getMovimentiUtente=async (req,res)=>{
 
     const idUtente = await Utility.getIdUtente(req);
+    let username = await Utility.getUsername(req);
 
-    Movimenti.getMovimenti(idUtente,(err, data) => {
+    Movimenti.getMovimenti(username,idUtente,(err, data) => {
         if (err)
             res.status(500).send({message:err.message});
         else{ 

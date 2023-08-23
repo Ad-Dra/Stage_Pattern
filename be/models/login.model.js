@@ -35,7 +35,7 @@ UtenzaLogin.login = (utenzaLogin,result) => {
 
 			let token = await Utility.createToken({identificativo:utenzaLogin.identificativo,ruolo:desc},'3h');
 			
-			logger.info("L'utente "+utenzaLogin.identificativo+" si è evoluto in utente loggato");
+			logger.info(utenzaLogin.identificativo+": si è evoluto in dashboard");
 
       		result(null, {status:'200',token: token});
 		}

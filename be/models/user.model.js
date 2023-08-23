@@ -138,10 +138,16 @@ InfoUser.update=async (body,result)=>{
         result(err, null);
       }
 
-      if(body.flag!=1)
+      if(body.flag!=1){
         res.message="Utenza aggiornata con successo";
-      else
+
+        if(body.utenzaAttiva==1)
+          logger.info(body.email+": si è evoluto in utente registrato abilitato \n                                    Le operazioni permesse sono: 1) Log in 2) Ripristina password");
+      }else{
         res.message="Password ripristinata con successo";
+        
+        logger.info(body.email+": si è evoluto in utente registrato abilitato \n                                    Le operazioni permesse sono: 1) Log in 2) Ripristina password");
+      }
 
       result(null,res);
     }); 

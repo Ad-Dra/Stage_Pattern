@@ -1,8 +1,8 @@
 const Utility = require("../controllers/utility.controller.js");
 const User = require("../models/user.model.js");
-// const Upload=require("../models/upload.model.js");
 const Utenza = require("../models/creaUtenza.model.js");
 const Anagrafica = require("../models/anagrafica.model.js");
+const logger = require("../logger.js");
 
 exports.getInfoAccount=async (req,res)=>{
 
@@ -10,10 +10,15 @@ exports.getInfoAccount=async (req,res)=>{
         idUtente: await Utility.getIdUtente(req)
     });
 
+    let username = await Utility.getUsername(req);
+
     User.getInfoAccount(utente.idUtente,(err, data) => {
         if (err)
             res.status(500).send({message:err.message});
         else{ 
+            
+            logger.info(username+": la dashboard si è evoluta in infoAccount");
+
             res.send(data);
         }
     });
@@ -113,6 +118,8 @@ exports.create = async (req,res) => {
                     rispEmail.message="Controlla la posta per conferma la creazione dell'account";
                     
                 res.send(rispEmail);
+
+                logger.info(utenza.username+": si è evoluto in utente registrato disabilitato \n                                    Le operazioni permesse sono: 1) Abilitazione account");
             }
         });
     }

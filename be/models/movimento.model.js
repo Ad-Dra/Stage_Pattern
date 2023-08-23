@@ -1,4 +1,5 @@
 const sql = require("../config/db.js");
+const logger = require("../logger.js");
 
 const Movimento = function Movimento(data) {
     this.idContoCorrente = data.idContoCorrente,
@@ -25,7 +26,7 @@ Movimento.create = (newMovimento, result) => {
     });
 }
 
-Movimento.getMovimenti = async (idUtente, result) => {
+Movimento.getMovimenti = async (username,idUtente, result) => {
 
     sql.query(`select * from movimento where idUtente="${idUtente}"`, (err, data) => {
         if (err) {
@@ -33,6 +34,9 @@ Movimento.getMovimenti = async (idUtente, result) => {
             result(err, null);
             return;
         }
+
+        logger.info(username+": la dashboard si è evoluta in movimenti");
+
         result(null, data);
     });
 }
