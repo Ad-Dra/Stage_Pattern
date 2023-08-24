@@ -55,4 +55,62 @@ export class InputTextComponent implements OnInit {
     this.action.emit(ev);
   }
 
+  formatValue(){
+    if(this.formParent.controls[this.formField].value!=null)
+      this.formParent.controls[this.formField].setValue(this.checkImporto( this.formParent.controls[this.formField].value));
+  }
+
+  checkImporto(valore: string) {
+    var res;
+
+    valore = this.sanitizeImporto(valore);
+    if (valore == "0" || valore == "")
+        res = "";
+    else
+        res = this.formattaImporto(parseInt(valore).toString());
+
+    return res;
+  }
+
+  sanitizeImporto(importo: string) {
+    importo = importo.toString();
+    importo = importo.replace(',', '');
+    importo = importo.replace(/\./g, '');
+    importo = importo.replace(/\D+/g, '');
+
+    if (importo.length > 15)
+        importo = importo.substring(0, 15);
+
+    return importo;
+  }
+
+  formattaImporto(importo: string) {
+    var decimale = "";
+    var intero = "";
+    var y = "";
+    if (importo.length == 0)
+        return "";
+    else if (importo.length == 1)
+        return ("0,0" + importo);
+    else if (importo.length == 2)
+        return ("0," + importo);
+    else if (importo.length > 2) {
+        decimale = importo.substring(importo.length - 2);
+        intero = importo.substring(0, importo.length - 2);
+        if (intero.length > 3) {
+            if (intero.length % 3 != 0)
+                y = intero.substring(0, intero.length % 3);
+
+            let arr :any = intero.substring(intero.length % 3).match(/.{1,3}/g);
+
+            intero = "";
+            arr.forEach(function (item:any) {
+                intero = intero + item + ".";
+            });
+
+            intero = intero.substring(0, intero.length - 1);
+        }
+    }
+    return (y ? (y + ".") : "") + intero + "," + decimale;
+  }
 }

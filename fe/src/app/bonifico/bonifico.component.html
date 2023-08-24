@@ -21,13 +21,13 @@
                             <app-select [title]="'contoCorrenteDaUsare'" [items]="contiCorrente"   [bindLabel]="'descrizione'"  [bindValue]="'idContoCorrente'"  [formField]="'idContoCorrente'" [formId]="'formId'" [formParent]="form" [required]="true" [maxLen]="'45'"></app-select>        
                         </div>
                         <div class="col-md-6 col-md-6" *ngIf="contiCorrente.length==1">
-                            <app-input-text [title]="'importoBonifico'" [formField]="'importo'" [formId]="'formId'" [formParent]="form" [required]="true" [maxLen]="'15'"></app-input-text>        
+                            <app-input-text [title]="'importoBonifico'" [type]="'currency'" [formField]="'importo'" [formId]="'formId'" [formParent]="form" [required]="true" [maxLen]="'15'"></app-input-text>        
                         </div>
                     </div>
 
                     <div class="row" *ngIf="contiCorrente.length>1">
                         <div class="col-md-6 col-md-6">
-                            <app-input-text [title]="'importoBonifico'" [formField]="'importo'" [formId]="'formId'" [formParent]="form" [required]="true" [maxLen]="'15'"></app-input-text>        
+                            <app-input-text [title]="'importoBonifico'" [type]="'currency'" [formField]="'importo'" [formId]="'formId'" [formParent]="form" [required]="true" [maxLen]="'15'"></app-input-text>        
                         </div>
                     </div>
 

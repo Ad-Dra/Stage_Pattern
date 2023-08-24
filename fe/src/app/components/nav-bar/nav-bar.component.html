@@ -29,45 +29,6 @@
               <a class="nav-link active"  type="button" aria-current="page" data-toggle="collapse" data-target="#navbarSupportedContent" (click)="ricaricaTelefonica()">Ricarica telefonica</a>
             </li>
           </ul>
-      
-          <ul class="navbar-nav mb-2 mb-lg-0"  data-toggle="collapse" data-target="#navbarSupportedContent" >
-            <li class="nav-item dropdown" >
-                <a class="nav-link dropdown-toggle"  id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                
-                  <i class="fa fa-bell">
-                    <span class="badge badge-info"><span *ngIf="numNotifiche>0">{{numNotifiche}}</span></span>
-                  </i>
-                </a>
-                <div class="dropdown-menu notifications" aria-labelledby="navbarDropdown"  >
-                    <form>
-                      <div class="notification-heading" *ngIf="notifiche.length>0">
-                        <h4 class="menu-title" (click)="visualizzaAllNotifiche()"><i class="fa fa-check" aria-hidden="true" title="Visualizza tutti le notifiche"></i></h4>
-                        <h4 class="menu-title pull-right" (click)="cancellaAllNotifiche()"><i class="fa fa-times" aria-hidden="true" title="Cancella tutte le notifiche"></i></h4>
-                      </div>
-                      <li class="divider"></li>
-                      
-                      <div class="notifications-wrapper">
-                        <a class="content" *ngFor="let notifica of notifiche">
-                          
-                          <div class="notification-item" [ngStyle]="notifica.visualizzata==1 ? {'background': 'white'}  : {'background': '#ccc'}">
-                            <h4 class="item-title">
-                              Ordine Confermato  · {{notifica.dataCreazione | date: 'dd/MM/yyyy'}} 
-                              <i class="fa fa-trash alignRight marginLeft5" aria-hidden="true" (click)="cancella(notifica.id)"  title="Cancella"></i>
-                              <i *ngIf="notifica.visualizzata==0" class="fa fa-eye alignRight" aria-hidden="true" (click)="visualizza(notifica.id)" title="Visualizza"></i>
-                            </h4>
-                            <p class="item-info">{{notifica.descrizione}}</p>
-                          </div>
-                        </a>
-                        <a *ngIf="notifiche.length==0">
-                          <div class="notification-item">
-                            <h2 class="item-title">Nessuna notifica presente</h2>
-                          </div>
-                        </a>
-                      </div>
-                    </form>
-                </div>
-            </li>
-          </ul>
 
           <ul class="navbar-nav mb-2 mb-lg-0" data-toggle="collapse" data-target="#navbarSupportedContent"> 
             <li class="nav-item dropdown">
