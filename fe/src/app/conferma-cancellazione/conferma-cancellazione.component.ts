@@ -20,6 +20,6 @@ export class ConfermaCancellazioneComponent {
   }
 
   onClose(){
-    this.ngxSmartModalService.close("confermaCancellazione");
+    this.ngxSmartModalService.close("confCancellazione");
   }
 }

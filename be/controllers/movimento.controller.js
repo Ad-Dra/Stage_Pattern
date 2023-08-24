@@ -16,7 +16,7 @@ exports.creaBonifico = async (req, res) => {
                     return;
                 }
     
-                if (data1 >= req.body.importo) {
+                if (parseFloat(data1).toFixed(2) >= req.body.importo) {
                     let username = await Utility.getUsername(req);
                     // Se il saldo è valido, effettuo il versamento del saldo
                     ContoCorrente.paga(req.body.idContoCorrente, req.body.importo,username, async (err, data) => {
@@ -100,7 +100,7 @@ exports.creaRicaricaTelefonica = async (req,res)=>{
                     return;
                 }
     
-                if (data1 >= req.body.importo) {
+                if (parseFloat(data1).toFixed(2) >= req.body.importo) {
                     let username = await Utility.getUsername(req);
                     // Se il saldo è valido, effettuo il versamento del saldo
                     ContoCorrente.paga(req.body.idContoCorrente, req.body.importo,username,(err, data) => {
@@ -141,7 +141,6 @@ exports.creaPrestito = async (req, res) => {
     let username = await Utility.getUsername(req);
     logger.info(username+": la dashboard si è evoluta in prestito");
     req.body.importo=req.body.importo.replace(/\./g,'').replace(',', '.');
-    console.log(req.body.importo)
 
     // Per ora consideriamo 3000 come valore MAX per il prestito
     if(req.body.importo > 0 && req.body.importo <= 3000){

@@ -114,11 +114,13 @@ exports.create = async (req,res) => {
                         clicca qua per confermare la tua email.</a> <br><br> <b>Attenzione il link è valido per 3 ore.</b>`;
                 let rispEmail=await Utility.sendMail(subject,html,utenza.email);
                 
-                if(rispEmail)
-                    rispEmail.message="Controlla la posta per conferma la creazione dell'account";
-                    
-                res.send(rispEmail);
-
+                if(rispEmail){
+                    res.send({message:"Controlla la posta per conferma la creazione dell'account"});
+                }
+                else{
+                    res.send(rispEmail);
+                }
+                
                 logger.info(utenza.username+": si è evoluto in utente registrato disabilitato \n                                    Le operazioni permesse sono: 1) Abilitazione account");
             }
         });

@@ -39,7 +39,14 @@ UtenzaLogin.login = (utenzaLogin,result) => {
 						result(err, null);
 				}
 				
-				let token = await Utility.createToken({identificativo:utenzaLogin.identificativo,ruolo:desc,cognome:JSON.parse(JSON.stringify(res1))[0].cognome,nome:JSON.parse(JSON.stringify(res1))[0].nome},'3h');
+				let cognome="",nome="";
+				
+				if(JSON.parse(JSON.stringify(res1)).length>0){
+					cognome=JSON.parse(JSON.stringify(res1))[0].cognome;
+					nome=JSON.parse(JSON.stringify(res1))[0].nome;
+				}
+
+				let token = await Utility.createToken({identificativo:utenzaLogin.identificativo,ruolo:desc,cognome:cognome,nome:nome},'3h');
 			
 				if(res.idRuolo!=1)
 					logger.info(utenzaLogin.identificativo+": si è evoluto in dashboard");

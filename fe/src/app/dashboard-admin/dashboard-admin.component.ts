@@ -108,13 +108,13 @@ export class DashboardAdminComponent implements Stage, OnInit{
   }
 
   cancella(riga:any){
-    this.ngxSmartModalService.resetModalData("confermaCancellazione");
-    this.ngxSmartModalService.setModalData(riga,"confermaCancellazione");
-    this.ngxSmartModalService.open("confermaCancellazione");
+    this.ngxSmartModalService.resetModalData("confCancellazione");
+    this.ngxSmartModalService.setModalData(riga,"confCancellazione");
+    this.ngxSmartModalService.open("confCancellazione");
   }
 
   cancellaAccount(){
-    let riga:any=this.ngxSmartModalService.getModalData("confermaCancellazione");
+    let riga:any=this.ngxSmartModalService.getModalData("confCancellazione");
 
     this.http.delete("/api/admin/deleteAccount.json",{body:{"idUtente":riga.idUtente}}).subscribe((res:any)=>{
       if(res && res.message)

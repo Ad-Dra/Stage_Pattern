@@ -199,15 +199,20 @@ export class DashboardComponent implements Stage,OnInit{
        // this.contiCorrente=[...this.contiCorrente,{saldo:12.3,descrizione:"mio"}];
        if(this.contiCorrente.length==0)
         this.dashboard=this.renew(notContoCorrenteDashboard);
-       else if(this.contiCorrente.length==1 && this.contiCorrente[0].saldo==0.0)
+       else if(this.contiCorrente.length==1 && this.contiCorrente[0].saldo<=0.0)
         this.dashboard=this.renew(dashboardSaldoPassivo);
        else{
+        let haveMoney:boolean=false;
         for(let i=0;i<this.contiCorrente.length;i++){
           if(this.contiCorrente[i].saldo>0){
             this.dashboard=this.renew(dashboardSaldoAttivo);
+            haveMoney=true;
             break;
           }
-       }
+        }
+
+        if(!haveMoney)
+          this.dashboard=this.renew(dashboardSaldoPassivo);
        }
       }
     })

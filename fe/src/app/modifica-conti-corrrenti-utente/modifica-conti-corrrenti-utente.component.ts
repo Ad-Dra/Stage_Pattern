@@ -41,7 +41,7 @@ export class ModificaContiCorrrentiUtenteComponent {
     })
   }
 
-  azione(riga:any){
+  azioneContoCorr(riga:any){
     switch(riga.tipoAzione){
       case 'cancella':
         this.cancella(riga);
@@ -60,6 +60,7 @@ export class ModificaContiCorrrentiUtenteComponent {
 
     this.http.delete("/api/admin/deleteContoCorrente.json",{body:{"idContoCorrente":riga.idContoCorrente}}).subscribe((res:any)=>{
       if(res && res.message){
+        this.onCloseConfCanc();
         this.contiCorrente.splice(riga.index,1);
         if(this.contiCorrente.length==0)
           this.onClose();
@@ -69,5 +70,9 @@ export class ModificaContiCorrrentiUtenteComponent {
 
   onClose(){
     this.ngxSmartModalService.close("modificaContiCorrentiUtente");
+  }
+
+  onCloseConfCanc(){
+    this.ngxSmartModalService.close("confermaCancellazione");
   }
 }

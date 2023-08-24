@@ -4,11 +4,31 @@
             <h5 style="text-align: center;"><b>I conti del cliente {{denominazione}}</b></h5>
         </div>
         <div class="modal-body" *ngIf="contiCorrente.length>0 && responseOk">
-            <app-grid [colonne]="colonne" [dati]="contiCorrente"   [showAggiungi]="false" [showModifica]="false" (action)="azione($event)"></app-grid>
+            <app-grid #gridContoCorrente [colonne]="colonne" [dati]="contiCorrente"   [showAggiungi]="false" [showModifica]="false" (action)="azioneContoCorr($event)"></app-grid>
         </div>
         <div class="modal-body" *ngIf="contiCorrente.length==0">
             <p>Il seguente cliente non ha un conto corrente</p>
         </div>
     </div>
 </ngx-smart-modal>
-<app-conferma-cancellazione (confermaEliminazione)="cancellaContoCorrente()"></app-conferma-cancellazione>
+
+<ngx-smart-modal #confermaCancellazione [identifier]="'confermaCancellazione'" (onClose)="onCloseConfCanc()">
+    <div class="col-md-12 col-sm-12 form">
+        <div class="modal-header">
+            <h5 style="text-align: center;"><b>Conferma la cancellazione</b></h5>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <p>Sei sicuro di voler cancellare l'elemento selezionato?</p>
+            </div>
+            <div class="row">    
+                <div class="col-md-2 col-sm-2">
+                    <button class="btn btn-primary" (click)="cancellaContoCorrente()"  title="Si">Si</button>
+                </div>
+                <div class="col-md-1 col-sm-1">
+                    <button class="btn btn-danger"  (click)="onCloseConfCanc()"  title="No">No</button>   
+                </div>
+            </div>
+        </div>
+    </div>
+</ngx-smart-modal>

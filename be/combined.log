@@ -1,7 +1,93 @@
-2023-08-24T10:52:12.561Z - [INFO] - ad.dra: si è evoluto in dashboard
-2023-08-24T10:52:12.581Z - [INFO] - ad.dra: evoluzione in dashboard con saldo attivo 
+2023-08-24T13:32:11.451Z - [INFO] - ad.dra: si è evoluto in utente registrato disabilitato 
+                                    Le operazioni permesse sono: 1) Abilitazione account
+2023-08-24T13:33:10.053Z - [INFO] - draibinadnan@gmail.com: si è evoluto in utente registrato abilitato 
+                                    Le operazioni permesse sono: 1) Log in 2) Ripristina password
+2023-08-24T13:33:32.469Z - [INFO] - ad.dra: si è evoluto in dashboard
+2023-08-24T13:33:32.566Z - [INFO] - ad.dra: evoluzione in dashboard senza conto corrente 
+                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Info account 3) Log out
+2023-08-24T13:34:13.088Z - [INFO] - ad.dra: la dashboard si è evoluta in infoAccount
+2023-08-24T13:34:29.888Z - [INFO] - admin.admin: evoluzione in dashboard Admin 
+                                    Le operazioni permesse sono: 1) Consultare la lista dei utenti registrati 2) Crea/Cancellare conti correnti 3) Cancellare account utenti 4) Info account 5) Log out
+2023-08-24T13:34:40.256Z - [INFO] - admin.admin: si è evoluto in getInfo conto corrente utente
+2023-08-24T13:35:18.378Z - [INFO] - admin.admin: si è evoluto in crea conto corrente utente
+2023-08-24T13:35:45.674Z - [INFO] - ad.dra: evoluzione in dashboard con saldo passivo 
+                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Richiedere prestito 3) Info account 4) Consultare i movimenti 5) Log out
+2023-08-24T13:36:02.556Z - [INFO] - ad.dra: la dashboard si è evoluta in movimenti
+2023-08-24T13:36:13.933Z - [INFO] - ad.dra: la dashboard si è evoluta in prestito
+2023-08-24T13:36:13.976Z - [INFO] - ad.dra: evoluzione in dashboard con saldo attivo 
                                     Le operazioni permesse sono: 1) Consultare chi siamo 2) Effettuare bonifici/ricariche telefoniche 3) Richiedere prestito 4) Info account 5) Consultare i movimenti 6) Log out
-2023-08-24T10:52:49.213Z - [INFO] - ad.dra: la dashboard si è evoluta in bonifico
-2023-08-24T10:53:06.430Z - [INFO] - ad.dra: evoluzione in dashboard con saldo attivo 
+2023-08-24T13:36:39.545Z - [INFO] - ad.dra: la dashboard si è evoluta in movimenti
+2023-08-24T13:36:42.852Z - [INFO] - ad.dra: la dashboard si è evoluta in ricarica telefonica
+2023-08-24T13:36:53.834Z - [INFO] - ad.dra: evoluzione in dashboard con saldo attivo 
                                     Le operazioni permesse sono: 1) Consultare chi siamo 2) Effettuare bonifici/ricariche telefoniche 3) Richiedere prestito 4) Info account 5) Consultare i movimenti 6) Log out
-2023-08-24T10:53:28.185Z - [INFO] - ad.dra: la dashboard si è evoluta in movimenti
+2023-08-24T13:36:57.687Z - [INFO] - ad.dra: la dashboard si è evoluta in bonifico
+2023-08-24T13:37:37.316Z - [INFO] - ad.dra: evoluzione in dashboard con saldo attivo 
+                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Effettuare bonifici/ricariche telefoniche 3) Richiedere prestito 4) Info account 5) Consultare i movimenti 6) Log out
+2023-08-24T13:37:43.713Z - [INFO] - ad.dra: la dashboard si è evoluta in bonifico
+2023-08-24T13:41:15.287Z - [INFO] - ad.dra: evoluzione in dashboard con saldo passivo 
+                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Richiedere prestito 3) Info account 4) Consultare i movimenti 5) Log out
+2023-08-24T13:41:38.639Z - [INFO] - ad.dra: la dashboard si è evoluta in movimenti
+2023-08-24T13:44:18.621Z - [INFO] - ad.dra: la dashboard si è evoluta in prestito
+2023-08-24T13:44:18.746Z - [INFO] - ad.dra: evoluzione in dashboard con saldo attivo 
+                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Effettuare bonifici/ricariche telefoniche 3) Richiedere prestito 4) Info account 5) Consultare i movimenti 6) Log out
+2023-08-24T13:44:28.734Z - [INFO] - ad.dra: la dashboard si è evoluta in bonifico
+2023-08-24T13:44:53.965Z - [INFO] - ad.dra: evoluzione in dashboard con saldo passivo 
+                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Richiedere prestito 3) Info account 4) Consultare i movimenti 5) Log out
+2023-08-24T13:46:15.275Z - [INFO] - admin.admin: si è evoluto in getInfo conto corrente utente
+2023-08-24T13:46:18.615Z - [INFO] - admin.admin: si è evoluto in getInfo conto corrente utente
+2023-08-24T13:46:29.784Z - [INFO] - admin.admin: si è evoluto in elimina conto corrente utente
+2023-08-24T13:46:38.136Z - [INFO] - admin.admin: si è evoluto in getInfo conto corrente utente
+2023-08-24T13:47:53.381Z - [INFO] - admin.admin: evoluzione in dashboard Admin 
+                                    Le operazioni permesse sono: 1) Consultare la lista dei utenti registrati 2) Crea/Cancellare conti correnti 3) Cancellare account utenti 4) Info account 5) Log out
+2023-08-24T13:47:55.334Z - [INFO] - admin.admin: si è evoluto in getInfo conto corrente utente
+2023-08-24T13:47:57.440Z - [INFO] - th.pertic: evoluzione in dashboard con saldo attivo 
+                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Effettuare bonifici/ricariche telefoniche 3) Richiedere prestito 4) Info account 5) Consultare i movimenti 6) Log out
+2023-08-24T13:47:57.446Z - [INFO] - th.pertic: la dashboard si è evoluta in movimenti
+2023-08-24T13:47:58.848Z - [INFO] - ad.dra: evoluzione in dashboard senza conto corrente 
+                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Info account 3) Log out
+2023-08-24T13:48:11.916Z - [INFO] - admin.admin: si è evoluto in crea conto corrente utente
+2023-08-24T13:48:25.522Z - [INFO] - admin.admin: si è evoluto in crea conto corrente utente
+2023-08-24T13:48:28.310Z - [INFO] - admin.admin: si è evoluto in getInfo conto corrente utente
+2023-08-24T13:48:56.612Z - [INFO] - ad.dra: evoluzione in dashboard con saldo passivo 
+                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Richiedere prestito 3) Info account 4) Consultare i movimenti 5) Log out
+2023-08-24T13:49:38.309Z - [INFO] - ad.dra: evoluzione in dashboard con saldo passivo 
+                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Richiedere prestito 3) Info account 4) Consultare i movimenti 5) Log out
+2023-08-24T13:51:46.003Z - [INFO] - ad.dra: evoluzione in dashboard con saldo passivo 
+                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Richiedere prestito 3) Info account 4) Consultare i movimenti 5) Log out
+2023-08-24T13:51:50.369Z - [INFO] - th.pertic: evoluzione in dashboard con saldo attivo 
+                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Effettuare bonifici/ricariche telefoniche 3) Richiedere prestito 4) Info account 5) Consultare i movimenti 6) Log out
+2023-08-24T13:51:50.380Z - [INFO] - th.pertic: la dashboard si è evoluta in movimenti
+2023-08-24T13:51:51.197Z - [INFO] - admin.admin: evoluzione in dashboard Admin 
+                                    Le operazioni permesse sono: 1) Consultare la lista dei utenti registrati 2) Crea/Cancellare conti correnti 3) Cancellare account utenti 4) Info account 5) Log out
+2023-08-24T13:53:37.244Z - [INFO] - ad.dra: evoluzione in dashboard con saldo passivo 
+                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Richiedere prestito 3) Info account 4) Consultare i movimenti 5) Log out
+2023-08-24T13:53:48.954Z - [INFO] - ad.dra: la dashboard si è evoluta in infoAccount
+2023-08-24T13:53:51.597Z - [INFO] - ad.dra: la dashboard si è evoluta in movimenti
+2023-08-24T13:54:09.209Z - [INFO] - ad.dra: la dashboard si è evoluta in prestito
+2023-08-24T13:54:09.247Z - [INFO] - ad.dra: evoluzione in dashboard con saldo attivo 
+                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Effettuare bonifici/ricariche telefoniche 3) Richiedere prestito 4) Info account 5) Consultare i movimenti 6) Log out
+2023-08-24T13:54:13.363Z - [INFO] - ad.dra: la dashboard si è evoluta in bonifico
+2023-08-24T13:54:14.928Z - [INFO] - ad.dra: la dashboard si è evoluta in ricarica telefonica
+2023-08-24T13:54:21.621Z - [INFO] - ad.dra: la dashboard si è evoluta in prestito
+2023-08-24T13:54:21.658Z - [INFO] - ad.dra: evoluzione in dashboard con saldo attivo 
+                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Effettuare bonifici/ricariche telefoniche 3) Richiedere prestito 4) Info account 5) Consultare i movimenti 6) Log out
+2023-08-24T13:54:28.422Z - [INFO] - ad.dra: la dashboard si è evoluta in bonifico
+2023-08-24T13:54:46.191Z - [INFO] - ad.dra: evoluzione in dashboard con saldo attivo 
+                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Effettuare bonifici/ricariche telefoniche 3) Richiedere prestito 4) Info account 5) Consultare i movimenti 6) Log out
+2023-08-24T13:55:09.463Z - [INFO] - ad.dra: la dashboard si è evoluta in ricarica telefonica
+2023-08-24T13:55:28.866Z - [INFO] - ad.dra: evoluzione in dashboard con saldo attivo 
+                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Effettuare bonifici/ricariche telefoniche 3) Richiedere prestito 4) Info account 5) Consultare i movimenti 6) Log out
+2023-08-24T13:55:40.654Z - [INFO] - ad.dra: la dashboard si è evoluta in bonifico
+2023-08-24T13:55:54.712Z - [INFO] - ad.dra: evoluzione in dashboard con saldo attivo 
+                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Effettuare bonifici/ricariche telefoniche 3) Richiedere prestito 4) Info account 5) Consultare i movimenti 6) Log out
+2023-08-24T13:56:03.531Z - [INFO] - ad.dra: la dashboard si è evoluta in bonifico
+2023-08-24T13:56:04.683Z - [INFO] - ad.dra: la dashboard si è evoluta in ricarica telefonica
+2023-08-24T13:56:09.405Z - [INFO] - ad.dra: la dashboard si è evoluta in movimenti
+2023-08-24T13:56:33.741Z - [INFO] - ad.dra: la dashboard si è evoluta in infoAccount
+2023-08-24T13:56:57.682Z - [INFO] - th.pertic: evoluzione in dashboard con saldo attivo 
+                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Effettuare bonifici/ricariche telefoniche 3) Richiedere prestito 4) Info account 5) Consultare i movimenti 6) Log out
+2023-08-24T13:56:59.751Z - [INFO] - th.pertic: la dashboard si è evoluta in bonifico
+2023-08-24T13:57:00.735Z - [INFO] - th.pertic: la dashboard si è evoluta in ricarica telefonica
+2023-08-24T13:57:02.106Z - [INFO] - th.pertic: la dashboard si è evoluta in ricarica telefonica
+2023-08-24T13:57:04.742Z - [INFO] - th.pertic: la dashboard si è evoluta in movimenti
+2023-08-24T13:57:14.470Z - [INFO] - ad.dra: la dashboard si è evoluta in movimenti
