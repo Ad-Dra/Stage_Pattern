@@ -174,7 +174,7 @@ exports.ripristinaPassword=async (req,result)=>{
             let risposta=await Utility.sendMail(subject,html,req.body.email);
             
             if(risposta)
-                result.send({message:"Controlla la posta per conferma la creazione dell'account"});
+                result.send({message:"Controlla la posta per ripristinare la password"});
             else
                 result.send(risposta);
         }

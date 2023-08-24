@@ -91,3 +91,8 @@
 2023-08-24T13:57:02.106Z - [INFO] - th.pertic: la dashboard si è evoluta in ricarica telefonica
 2023-08-24T13:57:04.742Z - [INFO] - th.pertic: la dashboard si è evoluta in movimenti
 2023-08-24T13:57:14.470Z - [INFO] - ad.dra: la dashboard si è evoluta in movimenti
+2023-08-24T14:01:24.611Z - [INFO] - draibinadnan@gmail.com: si è evoluto in utente registrato abilitato 
+                                    Le operazioni permesse sono: 1) Log in 2) Ripristina password
+2023-08-24T14:01:53.199Z - [INFO] - ad.dra: si è evoluto in dashboard
+2023-08-24T14:01:53.297Z - [INFO] - ad.dra: evoluzione in dashboard con saldo attivo 
+                                    Le operazioni permesse sono: 1) Consultare chi siamo 2) Effettuare bonifici/ricariche telefoniche 3) Richiedere prestito 4) Info account 5) Consultare i movimenti 6) Log out
