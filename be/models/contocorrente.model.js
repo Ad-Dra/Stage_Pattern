@@ -45,9 +45,9 @@ ContoCorrente.paga = (idContoCorrente, importo,username,result) => {
                 return;
             }
         
-            if(diff<=0)
+            /*if(diff<=0)
                 logger.info(await Utility.getDescriptionForEvolution(username,2));
-            
+            */
             result(null, data1);
         });
     })
@@ -74,9 +74,9 @@ ContoCorrente.ricevi = (idContoCorrente, importo,username, result) => {
 
         let sum=data+parseFloat(importo);
 
-        if(data<=0 && sum>0)
+        /*if(data<=0 && sum>0)
             logger.info(await Utility.getDescriptionForEvolution(username,1));
-
+        */
         // TODO: check se data[0] è corretto
         sql.query("UPDATE ContoCorrente SET saldo = ? WHERE idContoCorrente = ?", [sum, idContoCorrente], (err, data1) => {
             if (err) {

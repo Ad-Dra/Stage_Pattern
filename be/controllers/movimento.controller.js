@@ -6,6 +6,8 @@ const ContoCorrente = require('../models/contocorrente.model');
 exports.creaBonifico = async (req, res) => {
     if (req.body) {
         req.body.idUtente = await Utility.getIdUtente(req);
+        req.body.importo=req.body.importo.replace(/\./g,'').replace(',', '.');
+
         if(req.body.importo>0){
             ContoCorrente.getSaldo(req.body.idContoCorrente, async (err, data1) => {
                 if (err) {
@@ -88,6 +90,8 @@ exports.creaBonifico = async (req, res) => {
 exports.creaRicaricaTelefonica = async (req,res)=>{
     if(req.body){
         req.body.idUtente = await Utility.getIdUtente(req);
+        req.body.importo=parseFloat(req.body.importo);
+
         if(req.body.importo>0){
             ContoCorrente.getSaldo(req.body.idContoCorrente, async (err, data1) => {
                 if (err) {
@@ -136,6 +140,8 @@ exports.creaRicaricaTelefonica = async (req,res)=>{
 exports.creaPrestito = async (req, res) => {
     let username = await Utility.getUsername(req);
     logger.info(username+": la dashboard si è evoluta in prestito");
+    req.body.importo=req.body.importo.replace(/\./g,'').replace(',', '.');
+    console.log(req.body.importo)
 
     // Per ora consideriamo 3000 come valore MAX per il prestito
     if(req.body.importo > 0 && req.body.importo <= 3000){
