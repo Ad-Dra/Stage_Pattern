@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-08-29T18:00:19.867Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.5.1 Safari/605.1.15" etag="o6jj02jdDnwSjJNkLsnR" version="21.7.0">
+<mxfile host="app.diagrams.net" modified="2023-08-30T13:44:23.921Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.5.1 Safari/605.1.15" etag="K9aCL3dDShQZV5uYdppy" version="21.7.0">
   <diagram name="Página-1" id="6MmNOzJQk4TqFuh0Na8F">
     <mxGraphModel dx="954" dy="647" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -50,13 +50,13 @@
           <mxGeometry y="48" width="160" height="52" as="geometry" />
         </mxCell>
         <mxCell id="7vf2ibHkFkf0GfdgbW3s-21" value="&amp;lt;&amp;lt;stage&amp;gt;&amp;gt;&lt;br&gt;UtenteNonAutenticato" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="350" y="350" width="160" height="90" as="geometry" />
+          <mxGeometry x="350" y="350" width="160" height="100" as="geometry" />
         </mxCell>
         <mxCell id="7vf2ibHkFkf0GfdgbW3s-23" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="7vf2ibHkFkf0GfdgbW3s-21">
           <mxGeometry y="40" width="160" height="8" as="geometry" />
         </mxCell>
-        <mxCell id="7vf2ibHkFkf0GfdgbW3s-24" value="+ login() : void&lt;br&gt;+ ripristinaPassword() : void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="7vf2ibHkFkf0GfdgbW3s-21">
-          <mxGeometry y="48" width="160" height="42" as="geometry" />
+        <mxCell id="7vf2ibHkFkf0GfdgbW3s-24" value="+ login() : void&lt;br&gt;+ ripristinaPassword() : void&lt;br&gt;+ creaAccount(): void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="7vf2ibHkFkf0GfdgbW3s-21">
+          <mxGeometry y="48" width="160" height="52" as="geometry" />
         </mxCell>
         <mxCell id="7vf2ibHkFkf0GfdgbW3s-25" value="Extends" style="endArrow=block;endSize=16;endFill=0;html=1;rounded=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.25;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="7vf2ibHkFkf0GfdgbW3s-9" target="7vf2ibHkFkf0GfdgbW3s-1">
           <mxGeometry width="160" relative="1" as="geometry">
@@ -293,6 +293,15 @@
               <mxPoint x="20" y="350" />
               <mxPoint x="30" y="210" />
               <mxPoint x="270" y="140" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="7vf2ibHkFkf0GfdgbW3s-69" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1" source="7vf2ibHkFkf0GfdgbW3s-21" target="7vf2ibHkFkf0GfdgbW3s-5">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="400" y="470" as="sourcePoint" />
+            <mxPoint x="450" y="420" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="310" y="330" />
             </Array>
           </mxGeometry>
         </mxCell>
