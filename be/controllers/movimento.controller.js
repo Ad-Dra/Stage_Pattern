@@ -139,17 +139,20 @@ exports.creaRicaricaTelefonica = async (req,res)=>{
 
 exports.creaPrestito = async (req, res) => {
     let username = await Utility.getUsername(req);
-    logger.info(username+": la dashboard si è evoluta in prestito");
+    //logger.info(username+": la dashboard si è evoluta in prestito");
     req.body.importo=req.body.importo.replace(/\./g,'').replace(',', '.');
 
     // Per ora consideriamo 3000 come valore MAX per il prestito
     if(req.body.importo > 0 && req.body.importo <= 3000){
         req.body.idUtente = await Utility.getIdUtente(req);
-        ContoCorrente.ricevi(req.body.idContoCorrente, req.body.importo, username, (err, data) => {
+        ContoCorrente.ricevi(req.body.idContoCorrente, req.body.importo, username, async (err, data) => {
             if (err) {
                 res.status(500).send({ message: err.message });
                 return;
             } 
+
+            if(data.saldoPrec<=0 && data.saldoCorr>0)
+                logger.info(await Utility.getDescriptionForEvolution(username,1));
 
             req.body.tipologiaBonifico=9;
             req.body.causale="Prestito dalla City Safe Bank";

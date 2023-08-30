@@ -2,6 +2,7 @@ const sql = require("../config/db.js");
 const Utility = require("../controllers/utility.controller.js");
 const passwordConfig = require("../config/password.config");
 const logger = require("../logger.js");
+const user = require("../models/user.model.js");
 
 const UtenzaLogin=function(utenzaLogin){
     this.identificativo=utenzaLogin.identificativo;
@@ -17,7 +18,7 @@ const UtenzaLogin=function(utenzaLogin){
  */
 UtenzaLogin.login = (utenzaLogin,result) => {
       
-  	sql.query(`select idRuolo,idUtente,password from utente where (email= BINARY "${utenzaLogin.identificativo}" or username= BINARY "${utenzaLogin.identificativo}") and password=aes_encrypt("${utenzaLogin.password}", "${passwordConfig.KEY}")`, async (err, res) => {
+  	sql.query(`select idRuolo,idUtente,password,username from utente where (email= BINARY "${utenzaLogin.identificativo}" or username= BINARY "${utenzaLogin.identificativo}") and password=aes_encrypt("${utenzaLogin.password}", "${passwordConfig.KEY}")`, async (err, res) => {
 		if(err) {
       		console.log("error: ", err);
       		result(err, null);
@@ -48,8 +49,37 @@ UtenzaLogin.login = (utenzaLogin,result) => {
 
 				let token = await Utility.createToken({identificativo:utenzaLogin.identificativo,ruolo:desc,cognome:cognome,nome:nome},'3h');
 			
-				if(res.idRuolo!=1)
-					logger.info(utenzaLogin.identificativo+": si è evoluto in dashboard");
+				//if(res.idRuolo!=1)
+					//logger.info(utenzaLogin.identificativo+": si è evoluto in dashboard");
+
+				user.getInfoContoCorrente(res.idUtente,async (err, infoContoCorrente) =>{
+					if(res.idRuolo!=1){
+						if(infoContoCorrente.length==0)
+							logger.info(await Utility.getDescriptionForEvolution(res.username,0));
+						else if(infoContoCorrente.length==1)
+							if(infoContoCorrente[0].saldo>0)
+							logger.info(await Utility.getDescriptionForEvolution(res.username,1));
+							else
+							logger.info(await Utility.getDescriptionForEvolution(res.username,2));
+						else{
+							let flag=false;
+					
+							for(let i=0;i<infoContoCorrente.length;i++){
+							if(infoContoCorrente[i].saldo>0){
+								flag=true;
+								break;
+							}
+							}
+					
+							if(flag)
+							logger.info(await Utility.getDescriptionForEvolution(res.username,1));
+							else
+							logger.info(await Utility.getDescriptionForEvolution(res.username,2));
+						}
+					}
+				});
+
+				
 
       			result(null, {status:'200',token: token});
 			});

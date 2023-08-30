@@ -7,7 +7,7 @@ exports.getTipiBonifico = async (req, res) => {
 
     TipiMovimenti.getBonifico((err, data) => {
         if (data){
-            logger.info(username+": la dashboard si è evoluta in bonifico");
+            //logger.info(username+": la dashboard si è evoluta in bonifico");
 
             res.status(200).send(data);
         }

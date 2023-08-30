@@ -35,7 +35,7 @@ Movimento.getMovimenti = async (username,idUtente, result) => {
             return;
         }
 
-        logger.info(username+": la dashboard si è evoluta in movimenti");
+        //logger.info(username+": la dashboard si è evoluta in movimenti");
 
         result(null, data);
     });

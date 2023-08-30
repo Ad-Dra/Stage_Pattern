@@ -46,7 +46,7 @@ InfoUser.getInfoAccount=(idUtente,result)=>{
   }); 
 }
 
-InfoUser.getInfoContoCorrente=(idUtente,username,isAdmin,result)=>{
+InfoUser.getInfoContoCorrente=(idUtente,result)=>{
   sql.query(`select *
               from utente inner join contocorrente on utente.idUtente=contocorrente.idUtente
               where utente.idUtente=${idUtente}`, async (err, res) => {
@@ -55,33 +55,8 @@ InfoUser.getInfoContoCorrente=(idUtente,username,isAdmin,result)=>{
       result(err, null);
       return;
     }
-
-    if(!isAdmin){
-      if(res.length==0)
-        logger.info(await Utility.getDescriptionForEvolution(username,0));
-      else if(res.length==1)
-        if(res[0].saldo>0)
-          logger.info(await Utility.getDescriptionForEvolution(username,1));
-        else
-          logger.info(await Utility.getDescriptionForEvolution(username,2));
-      else{
-        let flag=false;
-
-        for(let i=0;i<res.length;i++){
-          if(res[i].saldo>0){
-            flag=true;
-            break;
-          }
-        }
-
-        if(flag)
-          logger.info(await Utility.getDescriptionForEvolution(username,1));
-        else
-          logger.info(await Utility.getDescriptionForEvolution(username,2));
-      }
-    }
-    else
-      logger.info(username+": si è evoluto in getInfo conto corrente utente");
+    //else
+     // logger.info(username+": si è evoluto in getInfo conto corrente utente");
   
     result(null, res);
   }); 
@@ -143,12 +118,12 @@ InfoUser.update=async (body,result)=>{
       if(body.flag!=1){
         res.message="Utenza aggiornata con successo";
 
-        if(body.utenzaAttiva==1)
-          logger.info(body.email+": si è evoluto in utente registrato abilitato \n                                    Le operazioni permesse sono: 1) Log in 2) Ripristina password");
+        //if(body.utenzaAttiva==1)
+          //logger.info(body.email+": si è evoluto in utente registrato abilitato \n                                    Le operazioni permesse sono: 1) Log in 2) Ripristina password");
       }else{
         res.message="Password ripristinata con successo";
         
-        logger.info(body.email+": si è evoluto in utente registrato abilitato \n                                    Le operazioni permesse sono: 1) Log in 2) Ripristina password");
+        //logger.info(body.email+": si è evoluto in utente registrato abilitato \n                                    Le operazioni permesse sono: 1) Log in 2) Ripristina password");
       }
 
       result(null,res);

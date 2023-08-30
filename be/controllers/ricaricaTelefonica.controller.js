@@ -16,7 +16,7 @@ exports.getOperatori=async (req,res)=>{
         if (err)
             res.status(500).send({message:err.message});
         else{
-            logger.info(username+": la dashboard si è evoluta in ricarica telefonica");
+            //logger.info(username+": la dashboard si è evoluta in ricarica telefonica");
 
             res.send(data);
         }
