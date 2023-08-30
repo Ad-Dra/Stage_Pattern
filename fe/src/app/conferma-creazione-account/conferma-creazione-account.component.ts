@@ -1,16 +1,17 @@
 import { Component, EventEmitter, Inject, Output } from '@angular/core';
-import { Stage } from '../stage/stage';
 import { HttpClient } from '@angular/common/http';
 import { COMPONENT_B_TOKEN } from '../app.module';
 import { LoginComponent } from '../login/login.component';
 import {Location} from '@angular/common'; 
+import { Utente } from '../stage/utente';
 
 @Component({
   selector: 'app-conferma-creazione-account',
   templateUrl: './conferma-creazione-account.component.html',
   styleUrls: ['./conferma-creazione-account.component.scss']
 })
-export class ConfermaCreazioneAccountComponent implements Stage{
+
+export class ConfermaCreazioneAccountComponent extends Utente{
 
   public username:string="";
   private token:string="";
@@ -19,6 +20,8 @@ export class ConfermaCreazioneAccountComponent implements Stage{
   @Output() changeType: EventEmitter<any>= new EventEmitter<any>();
   
   constructor(private locations: Location,private http:HttpClient,@Inject(COMPONENT_B_TOKEN)private login:LoginComponent){
+    super();
+
     if(location.hash.includes('#/confermaEmail')){
       let url=location.hash.split("/");
       if(url.length>3){
@@ -42,7 +45,7 @@ export class ConfermaCreazioneAccountComponent implements Stage{
         if(data){
           if(parametri.utenzaAttiva==1){
             this.locations.replaceState("");
-            this.renew(this.login);
+            this.renew(this,this.login);
             this.changeType.emit({comp:LoginComponent});
           }
           else{
@@ -51,9 +54,5 @@ export class ConfermaCreazioneAccountComponent implements Stage{
         }
       });
     }
-  }
-
-  renew(newType: Stage): void {
-    Object.setPrototypeOf(this, newType);
   }
 }

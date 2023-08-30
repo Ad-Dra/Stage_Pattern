@@ -1,21 +1,23 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, EventEmitter, Inject, Output } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { Stage } from '../stage/stage';
 import { COMPONENT_B_TOKEN } from '../app.module';
 import { LoginComponent } from '../login/login.component';
+import { Utente } from '../stage/utente';
 
 @Component({
   selector: 'app-crea-utenza',
   templateUrl: './crea-utenza.component.html',
   styleUrls: ['./crea-utenza.component.scss']
 })
-export class CreaUtenzaComponent implements Stage{
+export class CreaUtenzaComponent extends Utente{
 
   public form:any;
   @Output() changeType: EventEmitter<any>= new EventEmitter<any>();
 
   constructor(private http:HttpClient,private fb:FormBuilder,@Inject(COMPONENT_B_TOKEN)private login:LoginComponent) { 
+    super();
+
     this.form =  this.fb.group({
       cognome: [null,[Validators.required,Validators.pattern('^[a-zA-Z ]*$')]],
       nome: [null,[Validators.required,Validators.pattern('^[a-zA-Z ]*$')]],
@@ -40,13 +42,9 @@ export class CreaUtenzaComponent implements Stage{
 
     this.http.post("/api/auth/createUtenza.json",this.form.value).subscribe(data => {
       if(data){
-        this.renew(this.login);
+        this.renew(this,this.login);
         this.changeType.emit({comp:LoginComponent});
       }
     });
-  }
-
-  renew(newType: Stage): void {
-    Object.setPrototypeOf(this, newType);
   }
 }

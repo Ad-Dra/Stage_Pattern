@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { Stage } from '../stage/stage';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { DashboardComponent } from '../dashboard/dashboard.component';
@@ -7,18 +6,21 @@ import { NotifierService } from 'angular-notifier';
 import { RipristinaCredenzialiComponent } from '../ripristina-credenziali/ripristina-credenziali.component';
 import { CreaUtenzaComponent } from '../crea-utenza/crea-utenza.component';
 import { DashboardAdminComponent } from '../dashboard-admin/dashboard-admin.component';
+import { Utente } from '../stage/utente';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements Stage{
+export class LoginComponent extends Utente{
   
   public loginForm:FormGroup;
   @Output() changeType: EventEmitter<any>= new EventEmitter<any>();
   
   constructor(private notifier: NotifierService,private fb:FormBuilder,private http:HttpClient,private dashboard:DashboardComponent,private ripristinaCred:RipristinaCredenzialiComponent,private creaUtenza:CreaUtenzaComponent,private dashboardAdmin:DashboardAdminComponent){
+    super();
+
     this.loginForm =  this.fb.group({
       identificativo: [null,Validators.required],
       password: [null,Validators.required]
@@ -34,11 +36,11 @@ export class LoginComponent implements Stage{
       if(res){
         sessionStorage.setItem("token",res.token);
         if(this.getRole()!="Admin"){
-          this.renew(this.dashboard);
+          this.renew(this,this.dashboard);
           this.changeType.emit({comp:DashboardComponent});
         }
         else{
-          this.renew(this.dashboardAdmin);
+          this.renew(this,this.dashboardAdmin);
           this.changeType.emit({comp:DashboardAdminComponent});
         }
       }
@@ -47,22 +49,18 @@ export class LoginComponent implements Stage{
 
   getRole(){
     if(sessionStorage.getItem("token")){
-        let token:any=sessionStorage.getItem("token")?.split('.')[1];
-        return JSON.parse(atob(token)).ruolo;
+      let token:any=sessionStorage.getItem("token")?.split('.')[1];
+      return JSON.parse(atob(token)).ruolo;
     }
   }
 
-  renew(newType: Stage): void {
-    Object.setPrototypeOf(this, newType);
-  }
-
   ripristinaPassword(){
-    this.renew(this.ripristinaCred);
+    this.renew(this,this.ripristinaCred);
     this.changeType.emit({comp:RipristinaCredenzialiComponent});
   }
 
   creaAccount(){
-    this.renew(this.creaUtenza);
+    this.renew(this,this.creaUtenza);
     this.changeType.emit({comp:CreaUtenzaComponent});
   }
 }

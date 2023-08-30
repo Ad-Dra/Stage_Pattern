@@ -1,17 +1,17 @@
 import { Component, EventEmitter, Inject, Output } from '@angular/core';
-import { Stage } from '../stage/stage';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { LoginComponent } from '../login/login.component';
 import {Location} from '@angular/common'; 
 import { COMPONENT_B_TOKEN } from '../app.module';
+import { Utente } from '../stage/utente';
 
 @Component({
   selector: 'app-ripristina-credenziali',
   templateUrl: './ripristina-credenziali.component.html',
   styleUrls: ['./ripristina-credenziali.component.scss']
 })
-export class RipristinaCredenzialiComponent implements Stage{
+export class RipristinaCredenzialiComponent extends Utente{
   public form:FormGroup;
   public formRipristinaPsw:FormGroup;
   public flagPswNonCorrisp:boolean=false;
@@ -20,6 +20,8 @@ export class RipristinaCredenzialiComponent implements Stage{
   @Output() changeType: EventEmitter<any>= new EventEmitter<any>();
 
   constructor(private locations: Location,private fb:FormBuilder,private http:HttpClient,@Inject(COMPONENT_B_TOKEN)private login:LoginComponent){
+    super();
+
     this.form =  this.fb.group({
       email: [null,[Validators.required,Validators.email]]
     });
@@ -39,7 +41,7 @@ export class RipristinaCredenzialiComponent implements Stage{
 
     this.http.post("/api/auth/ripristinaPassword.json",this.form.value).subscribe((res:any)=>{
       if(res){
-        this.renew(this.login);
+        this.renew(this,this.login);
         this.changeType.emit({comp:LoginComponent});
       }
     })
@@ -62,7 +64,7 @@ export class RipristinaCredenzialiComponent implements Stage{
       this.http.post("/api/auth/aggiornaUtenza.json",parametri).subscribe((response:any) => {
         if(response){
           this.locations.replaceState("");
-          this.renew(this.login);
+          this.renew(this,this.login);
           this.changeType.emit({comp:LoginComponent});
         }
       });
@@ -75,9 +77,5 @@ export class RipristinaCredenzialiComponent implements Stage{
       this.formRipristinaPsw.controls['passwordConferma'].setErrors({'invalid': true});
     }else
       this.flagPswNonCorrisp=false;
-  }
-
-  renew(newType: Stage): void {
-    Object.setPrototypeOf(this, newType);
   }
 }

@@ -1,5 +1,4 @@
-
 export interface Stage {
     
-    renew(newType:Stage):void;
+    renew(currentType:Stage,newType:Stage):void;
 }
