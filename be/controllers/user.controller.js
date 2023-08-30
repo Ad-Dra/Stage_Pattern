@@ -17,7 +17,7 @@ exports.getInfoAccount=async (req,res)=>{
             res.status(500).send({message:err.message});
         else{ 
             
-            logger.info(username+": la dashboard si è evoluta in infoAccount");
+            //logger.info(username+": la dashboard si è evoluta in infoAccount");
 
             res.send(data);
         }
@@ -32,7 +32,7 @@ exports.getDettagliContoCorrente=async (req,res)=>{
 
     let username = await Utility.getUsername(req);
 
-    User.getInfoContoCorrente(utente.idUtente,username,false,(err, data) => {
+    User.getInfoContoCorrente(utente.idUtente,(err, data) => {
         if (err)
             res.status(500).send({message:err.message});
         else{ 
@@ -50,7 +50,7 @@ exports.getContiCorrentiForUtente=async (req,res)=>{
     
     let username = await Utility.getUsername(req);
 
-    User.getInfoContoCorrente(req.params.idUtente,username,true,(err, data) => {
+    User.getInfoContoCorrente(req.params.idUtente,(err, data) => {
         if (err)
             res.status(500).send({message:err.message});
         else{ 
@@ -121,7 +121,7 @@ exports.create = async (req,res) => {
                     res.send(rispEmail);
                 }
                 
-                logger.info(utenza.username+": si è evoluto in utente registrato disabilitato \n                                    Le operazioni permesse sono: 1) Abilitazione account");
+                logger.info(utenza.username+": si è evoluto da UtenteNonRegistrato in UtenteRegistrato \n                                    Le operazioni permesse sono: 1) Abilitazione account");
             }
         });
     }
@@ -158,6 +158,15 @@ function updateAnagrafica(dati,idUtente){
               resolve(data);
         })
     });
+}
+
+exports.logout=async (req,result)=>{
+
+    let username=await Utility.getUsername(req);
+
+    logger.info(username+": si è evoluto in UtenteNonAutenticato");
+
+    result.status(200).send({message:"Utenza disconnesso con successo"});
 }
 
 exports.ripristinaPassword=async (req,result)=>{
@@ -252,7 +261,7 @@ exports.deleteUtente = async (req, res) => {
         else{
             let username = await Utility.getUsername(req);
 
-            logger.info(username+": si è evoluto in cancella account utenti");
+            //logger.info(username+": si è evoluto in cancella account utenti");
             res.send(data);
         }
     });

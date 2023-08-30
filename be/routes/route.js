@@ -48,7 +48,7 @@ router.get("/api/admin/getContiCorrenti/:idUtente.json",   utility.checkRuolo, u
 router.get("/api/getOperatori.json",ricaricaTelefonica.getOperatori);
 router.get("/api/getImporti/:idOperatore.json",ricaricaTelefonica.getImportiForOperatore);
 
-
+router.post("/api/logout.json", utente.logout);
 
 
 
