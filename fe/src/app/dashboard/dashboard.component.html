@@ -1,6 +1,6 @@
-<app-nav-bar  (homeEmitter)="home()" (chiSiamoEmitter)="chiSiamo()" (getInfAccountEmitter)="getInfAccount()" (getMovimentiEmitter)="getMovimenti()" (logOutEmitter)="logOut()" (bonificoEmitter)="bonifico()" (ricaricaTelefonicaEmitter)="ricaricaTelefonica()" (prestitoEmitter)="prestito()"></app-nav-bar>
+<app-nav-bar [stateUtente]="dashboard.type"  (homeEmitter)="home()" (chiSiamoEmitter)="chiSiamo()" (getInfAccountEmitter)="getInfAccount()" (getMovimentiEmitter)="getMovimenti()" (logOutEmitter)="logOut()" (bonificoEmitter)="bonifico()" (ricaricaTelefonicaEmitter)="ricaricaTelefonica()" (prestitoEmitter)="prestito()"></app-nav-bar>
 
-<div *ngIf="type=='DashboardComponent'">
+<div *ngIf="dashboard.typeComp=='DashboardComponent'">
     <h1>Benvenuto {{denominazione}} in City Safe Bank!</h1>
 
     <br><br>
@@ -24,9 +24,9 @@
     </div>  
 </div>
 
-<app-chi-siamo *ngIf="type=='ChiSiamoComponent'"></app-chi-siamo>
-<app-bonifico  *ngIf="type=='BonificoComponent'" [contiCorrente]="contiCorrente" [dashboard]="this.dashboard" [dashboardSaldPass]="dashboardSaldPass" [notContoCorrenteDashboard]="notContoCorrenteDashboard"></app-bonifico>
-<app-ricarica-telefonica *ngIf="type=='RicaricaTelefonicaComponent'" [contiCorrente]="contiCorrente" [dashboard]="this.dashboard" [dashboardSaldPass]="dashboardSaldPass" [notContoCorrenteDashboard]="notContoCorrenteDashboard"></app-ricarica-telefonica>
-<app-info-account *ngIf="type=='InfoAccountComponent'"></app-info-account>
-<app-movimenti *ngIf="type=='MovimentiComponent'"></app-movimenti>
-<app-prestito *ngIf="type=='PrestitoComponent'" [contiCorrente]="contiCorrente" [dashboard]="this.dashboard" [dashboardSaldAtt]="dashboardSaldAtt"></app-prestito>
+<app-chi-siamo *ngIf="dashboard.typeComp=='ChiSiamoComponent'"></app-chi-siamo>
+<app-bonifico  *ngIf="dashboard.typeComp=='BonificoComponent'" [contiCorrente]="contiCorrente" (refreshDash)="getInfoContoCorrente()"></app-bonifico>
+<app-ricarica-telefonica *ngIf="dashboard.typeComp=='RicaricaTelefonicaComponent'" [contiCorrente]="contiCorrente" (refreshDash)="getInfoContoCorrente()"></app-ricarica-telefonica>
+<app-info-account *ngIf="dashboard.typeComp=='InfoAccountComponent'"></app-info-account>
+<app-movimenti *ngIf="dashboard.typeComp=='MovimentiComponent'"></app-movimenti>
+<app-prestito *ngIf="dashboard.typeComp=='PrestitoComponent'" [contiCorrente]="contiCorrente" (refreshDash)="getInfoContoCorrente()"></app-prestito>

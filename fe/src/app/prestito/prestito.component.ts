@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -10,9 +10,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class PrestitoComponent {
 
   @Input() contiCorrente:any;
-  @Input() dashboard:any;
-  @Input() dashboardSaldAtt:any;
-  
+  @Output() refreshDash: EventEmitter<any>= new EventEmitter<any>();
+
   public form:FormGroup;
   
   constructor(private fb:FormBuilder,private http:HttpClient){
@@ -23,7 +22,6 @@ export class PrestitoComponent {
       beneficiario:[null, Validators.required]
     });
   }
-
 
   richiediPrestito(){
 
@@ -43,30 +41,7 @@ export class PrestitoComponent {
 
     this.http.post("/api/richiediPrestito.json",this.form.value).subscribe((res:any)=>{
       if(res)
-        this.getInfoContoCorrente();
+        this.refreshDash.emit();
     });
-  }
-
-  getInfoContoCorrente(): void{
-    this.http.get("/api/getInfoContoCorrente.json").subscribe((res:any)=>{
-      if(res){
-        this.contiCorrente=res;
-        this.dashboard.contiCorrente=this.contiCorrente;
-        this.dashboard.home();
-        
-        if(this.contiCorrente.length==1 && this.contiCorrente[0].saldo>0){
-          this.dashboard.renew(this.dashboardSaldAtt)
-        }
-        else{
-         
-          for(let i=0;i<this.contiCorrente.length;i++){
-            if(this.contiCorrente[i].saldo>0){
-              this.dashboard.renew(this.dashboardSaldAtt)
-              break;
-            }
-          }
-        }
-      }
-    })
   }
 }

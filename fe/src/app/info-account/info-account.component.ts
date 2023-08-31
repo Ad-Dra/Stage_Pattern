@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Stage } from '../stage/stage';
 import { HttpClient } from '@angular/common/http';
 import * as moment from 'moment';
 
@@ -9,7 +8,7 @@ import * as moment from 'moment';
   templateUrl: './info-account.component.html',
   styleUrls: ['./info-account.component.scss']
 })
-export class InfoAccountComponent implements Stage,OnInit{
+export class InfoAccountComponent implements OnInit{
 
   public form:FormGroup;
   
@@ -48,7 +47,7 @@ export class InfoAccountComponent implements Stage,OnInit{
 
   }
 
-  renew(newType: Stage): void {
+  /*renew(newType: Stage): void {
     throw new Error('Method not implemented.');
-  } 
+  }*/ 
 }

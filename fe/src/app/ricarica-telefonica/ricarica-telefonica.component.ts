@@ -1,5 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Stage } from '../stage/stage';
+import { Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 
@@ -8,13 +7,10 @@ import { HttpClient } from '@angular/common/http';
   templateUrl: './ricarica-telefonica.component.html',
   styleUrls: ['./ricarica-telefonica.component.scss']
 })
-export class RicaricaTelefonicaComponent implements Stage,OnInit{
+export class RicaricaTelefonicaComponent implements OnInit{
 
-   
   @Input() contiCorrente:any;
-  @Input() dashboard:any;
-  @Input() dashboardSaldPass:any;
-  @Input() notContoCorrenteDashboard:any;
+  @Output() refreshDash: EventEmitter<any>= new EventEmitter<any>();
 
   public form:FormGroup;
   public operatori:any=[];
@@ -31,9 +27,7 @@ export class RicaricaTelefonicaComponent implements Stage,OnInit{
   }
 
   ngOnInit(): void {
-    this.getDdlOperatori();
-
-    
+    this.getDdlOperatori();    
   }
 
   getDdlOperatori(){
@@ -65,49 +59,13 @@ export class RicaricaTelefonicaComponent implements Stage,OnInit{
     }
 
     this.http.post("/api/creaRicaricaTelefonica.json",this.form.value).subscribe((res:any)=>{
-      if(res){
-        this.getInfoContoCorrente();
-      }
+      if(res)
+        this.refreshDash.emit();
     });
-  }
-
-  getInfoContoCorrente(): void{
-    this.http.get("/api/getInfoContoCorrente.json").subscribe((res:any)=>{
-      if(res){
-        this.contiCorrente=res;
-        this.dashboard.contiCorrente=this.contiCorrente;
-        this.dashboard.home();
-        
-        if(this.contiCorrente.length==0)
-          this.dashboard.renew(this.notContoCorrenteDashboard);
-        else if(this.contiCorrente.length==1 && this.contiCorrente[0].saldo==0.0){
-          this.dashboard.renew(this.dashboardSaldPass)
-        }
-        else{
-          let haveMoney:boolean=false;
-
-          for(let i=0;i<this.contiCorrente.length;i++){
-            if(this.contiCorrente[i].saldo>0){
-              haveMoney=true;
-              break;
-            }
-          }
-
-          if(!haveMoney){
-            this.dashboard.renew(this.dashboardSaldPass)
-          }
-
-        }
-      }
-    })
   }
 
   onSelectOperatore(ev:any){
     if(!ev)
       this.form.controls['importo'].setValue(null);
-  }
-
-  renew(newType: Stage): void {
-    Object.setPrototypeOf(this, newType);
   }
 }
