@@ -20,13 +20,13 @@
               <a class="nav-link active"  type="button" aria-current="page" data-toggle="collapse" data-target="#navbarSupportedContent" (click)="chiSiamo()">Chi siamo</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active"  type="button" aria-current="page" data-toggle="collapse" data-target="#navbarSupportedContent" (click)="bonifico()">Bonifico</a>
+              <a class="nav-link active"  type="button" aria-current="page" data-toggle="collapse" data-target="#navbarSupportedContent" (click)="bonifico()" *ngIf="stateUtente=='dashboardSaldoAttivo'">Bonifico</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active"  type="button" aria-current="page" data-toggle="collapse" data-target="#navbarSupportedContent" (click)="prestito()">Prestito</a>
+              <a class="nav-link active"  type="button" aria-current="page" data-toggle="collapse" data-target="#navbarSupportedContent" (click)="prestito()" *ngIf="stateUtente=='dashboardSaldoAttivo' || stateUtente=='dashboardSaldoPassivo'">Prestito</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active"  type="button" aria-current="page" data-toggle="collapse" data-target="#navbarSupportedContent" (click)="ricaricaTelefonica()">Ricarica telefonica</a>
+              <a class="nav-link active"  type="button" aria-current="page" data-toggle="collapse" data-target="#navbarSupportedContent" (click)="ricaricaTelefonica()" *ngIf="stateUtente=='dashboardSaldoAttivo'">Ricarica telefonica</a>
             </li>
           </ul>
 
@@ -36,7 +36,7 @@
                 </a>
                 <div class="dropdown-menu"  aria-labelledby="navbarDropdown">
                   <li  data-target="#navbarSupportedContent" type="button" (click)="getInfAccount()"><i class="fa fa-user marginLeft4"  aria-hidden="true" data-bs-toggle="collapse" data-target="#navbarSupportedContent"><span class="dropdown-item paddingLeft10"></span></i>Info account</li>
-                  <li  data-target="#navbarSupportedContent" type="button" (click)="getMovimenti()"><i class="fa fa-exchange marginLeft4"  aria-hidden="true" data-bs-toggle="collapse" data-target="#navbarSupportedContent"><span class="dropdown-item paddingLeft10"></span></i>Movimenti</li>
+                  <li  data-target="#navbarSupportedContent" type="button" (click)="getMovimenti()" *ngIf="stateUtente=='dashboardSaldoAttivo' || stateUtente=='dashboardSaldoPassivo'"><i class="fa fa-exchange marginLeft4"  aria-hidden="true" data-bs-toggle="collapse" data-target="#navbarSupportedContent"><span class="dropdown-item paddingLeft10"></span></i>Movimenti</li>
                   <li  data-target="#navbarSupportedContent" type="button" (click)="logOut()"><i class="fa fa-sign-out marginLeft4"  aria-hidden="true" data-bs-toggle="collapse" data-target="#navbarSupportedContent"><span class="dropdown-item paddingLeft10"></span></i>Log out</li>
                 </div>
             </li>

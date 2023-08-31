@@ -1,14 +1,14 @@
 <div auth class="form-floating"  [formGroup]="formParent" *ngIf="type!='check' && type!='currency'">
-    <input  class="form-control shadow-none" [type]="type" placeholder=" " formControlName="{{formField}}" [maxlength]="maxLen" [minlength]="minLen"  (change)="change($event)">
-    <label  for="name">{{titolo}}</label>
+    <input autocomplete="off" [id]="formField" class="form-control shadow-none" [type]="type" placeholder=" " formControlName="{{formField}}" [maxlength]="maxLen" [minlength]="minLen"  (change)="change($event)">
+    <label  [for]="formField">{{titolo}}</label>
 </div>
 
 <div *ngIf="type=='check'" auth class="input-group"  [formGroup]="formParent">    
-    <input  type="checkbox" formControlName="{{formField}}" value="{{value}}"  [readonly]="readonly" (click)="changeItem($event)">
-    <label  for="name" style="margin-left:10px;margin-top: 1%;">{{titolo}}</label>
+    <input  autocomplete="off" [id]="formField" type="checkbox" formControlName="{{formField}}" value="{{value}}"  [readonly]="readonly" (click)="changeItem($event)">
+    <label  [for]="formField" style="margin-left:10px;margin-top: 1%;">{{titolo}}</label>
 </div>
 
 <div *ngIf="type=='currency'" auth  class="form-floating"  [formGroup]="formParent">    
-    <input  class="form-control shadow-none" type="text" style="text-align: right;" placeholder=" " formControlName="{{formField}}" [maxlength]="maxLen" [minlength]="minLen"  (change)="change($event)" (keyup)="formatValue()">
-    <label  for="name">{{titolo}}</label>
+    <input autocomplete="off" [id]="formField" class="form-control shadow-none" type="text" style="text-align: right;" placeholder=" " formControlName="{{formField}}" [maxlength]="maxLen" [minlength]="minLen"  (change)="change($event)" (keyup)="formatValue()">
+    <label  [for]="formField">{{titolo}}</label>
 </div>

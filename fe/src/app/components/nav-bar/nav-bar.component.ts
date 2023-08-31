@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-nav-bar',
@@ -6,6 +6,9 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
   styleUrls: ['./nav-bar.component.css']
 })
 export class NavBarComponent implements OnInit {
+
+  @Input() stateUtente:string="";
+
   @Output() homeEmitter: EventEmitter<any>= new EventEmitter<any>();
   @Output() chiSiamoEmitter: EventEmitter<any>= new EventEmitter<any>();
   @Output() getInfAccountEmitter: EventEmitter<any>= new EventEmitter<any>();

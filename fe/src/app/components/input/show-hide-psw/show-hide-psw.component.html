@@ -1,6 +1,6 @@
 <div auth class="form-floating"  [formGroup]="formParent">
-    <input class="form-control shadow-none" [type]="fieldTextType ? 'text' : 'password'" placeholder=" " formControlName="{{formField}}" [maxlength]="maxLen" autocomplete="on" [minlength]="minLen" [required]="required"  (keyup)="change($event)">
-    <label  for="name">{{titolo}}</label>
+    <input [id]="formField" class="form-control shadow-none" [type]="fieldTextType ? 'text' : 'password'" placeholder=" " formControlName="{{formField}}" [maxlength]="maxLen" autocomplete="on" [minlength]="minLen" [required]="required"  (keyup)="change($event)">
+    <label [for]="formField">{{titolo}}</label>
     <span class="buttonShowPsw">
         <i class="fa" [ngClass]="{'fa-eye-slash': !fieldTextType, 'fa-eye': fieldTextType}"  (click)="toggleFieldTextType()"></i>
     </span>
