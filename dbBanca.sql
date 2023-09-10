@@ -110,7 +110,8 @@ insert into anagrafica (idUtente,nome,cognome,dataNascita,via,numCivico,cap,prov
 DELETE FROM ContoCorrente WHERE idContoCorrente = 6;
 delete from contoCorrente where idUtente=7;
 delete from movimento;
-UPDATE ruolo SET idRuolo =3 where idRuolo=4;
+UPDATE utente SET idRuolo =2 where idUtente=9;
+UPDATE utente SET idRuolo =2 where idUtente=14;
 delete from utente where idUtente=12;
 delete from anagrafica where idUtente=12;
 delete from movimento where idUtente=7;
@@ -183,3 +184,8 @@ UPDATE contoCorrente SET saldo =0 where idContoCorrente=10;
 select * from ruolo;
 insert into ruolo (descrizione) values("Admin");
 insert into ruolo (descrizione) values("Cliente");
+
+select 
+                username
+              from utente inner join contoCorrente on utente.idUtente=contoCorrente.idUtente
+              where idContoCorrente=4;
