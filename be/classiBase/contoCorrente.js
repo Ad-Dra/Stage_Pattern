@@ -9,34 +9,6 @@ class ContoCorrente extends Stage{
     }
 
     /**
-     * Questa funzione si occupa della creazione di un nuovo conto corrente
-     * 
-     * @param {*} data dati del nuovo cc
-     * @returns msg
-     */
-    static create(data){
-        const cc = {
-            idUtente : data.idUtente,
-            iban : data.iban,
-            saldo : 0.0,
-            dataCreazione : new Date(data.dataCreazione),
-            descrizione : data.descrizione,
-            idOperatoreInserimento : data.idOperatoreInserimento
-        }
-
-        return new Promise(resolve =>{
-            sql.query("INSERT INTO contocorrente SET ?;", cc,(err, res) => {
-                if (err) {
-                    console.log("error: ", err);
-                    resolve({message:err.message});
-                }
-
-                resolve({message:"Conto corrente creato con successo"});
-            })  
-        }); 
-    }
-
-    /**
      * Questa funzione si occupa di cancellare un cc con i suoi relativi movimenti
      * 
      * @returns msg
@@ -114,21 +86,7 @@ class ContoCorrente extends Stage{
      * @param {*} importo da versare 
      * @returns msg
      */
-    async versamento(importo){
-        this.saldo=await this.getSaldo();
-
-        let sum=this.saldo+parseFloat(importo);
-
-        return new Promise(resolve =>{
-            sql.query("UPDATE ContoCorrente SET saldo = ? WHERE idContoCorrente = ?;", [parseFloat(sum).toFixed(2), idContoCorrente],(err, data) => {
-                if (err) {
-                    console.log("error: ", err);
-                    resolve({message:err.message});
-                }
-
-                resolve("ok");
-            })  
-        });
+    versamento(importo){
     }
 
    /**
@@ -139,13 +97,26 @@ class ContoCorrente extends Stage{
     */
    static getIdByIBAN(iban){
         return new Promise(resolve =>{
-            sql.query("SELECT idContoCorrente FROM ContoCorrente WHERE IBAN = ?;", iban,(err, data) => {
+            sql.query("SELECT idContoCorrente FROM ContoCorrente WHERE iban = ?;", iban,(err, data) => {
+                if (err) {
+                    console.log("error: ", err);
+                    resolve({message:err.message});
+                }
+                
+                resolve(JSON.parse(JSON.stringify(data))[0].idContoCorrente);
+            })  
+        });
+    }
+
+    static getIdUtenteByIBAN(iban){
+        return new Promise(resolve =>{
+            sql.query("SELECT utente.idUtente FROM  Utente INNER JOIN contoCorrente ON utente.idUtente=contoCorrente.idUtente WHERE iban = ?;", iban,(err, data) => {
                 if (err) {
                     console.log("error: ", err);
                     resolve({message:err.message});
                 }
 
-                resolve(JSON.parse(JSON.stringify(data)).idContoCorrente);
+                resolve(JSON.parse(JSON.stringify(data))[0].idUtente);
             })  
         });
     }

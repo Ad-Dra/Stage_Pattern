@@ -10,26 +10,6 @@ const InfoUser = function(dati) {
     this.passwordNuova=dati.passwordNuova;
 };
 
-InfoUser.checkPswUser=(utente,result)=>{
-  sql.query(`select password 
-              from utente
-              where 
-                idUtente=${utente.idUtente} and 
-                password=aes_encrypt("${utente.passwordUtente}","${passwordConfig.KEY}")`, (err, res) => {
-      if (err) {
-        console.log("error: ", err);
-        result(err, null);
-        return;
-      } 
-
-      if(JSON.parse(JSON.stringify(res)).length>0)
-        result(null, {status:200});
-      else
-        result(null, {status:500});
-      
-  }); 
-}
-
 InfoUser.getInfoAccount=(idUtente,result)=>{
   sql.query(`select 
                 username, email, 
@@ -47,7 +27,7 @@ InfoUser.getInfoAccount=(idUtente,result)=>{
 }
 
 InfoUser.getInfoContoCorrente=(idUtente,result)=>{
-  sql.query(`select *
+  sql.query(`select dataCreazione,descrizione,saldo,idContoCorrente
               from utente inner join contocorrente on utente.idUtente=contocorrente.idUtente
               where utente.idUtente=${idUtente}`, async (err, res) => {
     if (err) {

@@ -103,7 +103,11 @@ exports.isActiveUser=(dati,email)=>{
       let transporter= nodeMailer.createTransport({
         host:"smtp.gmail.com",
         port: 587,
-        secure:false
+        secure:false,
+        auth: {
+          user: 'draibinadnan@gmail.com',
+          pass: 'skuyywrswdfdpxvc'
+        }
       })
       
   

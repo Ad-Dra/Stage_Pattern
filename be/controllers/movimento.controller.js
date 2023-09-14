@@ -2,8 +2,12 @@ const Movimenti = require('../classiBase/movimento.js');
 const Utility = require("../controllers/utility.controller.js");
 const logger = require("../logger.js");
 const ContoCorrente = require('../classiBase/contoCorrente.js');
-const ContoCorrenteAttivo = require('../classiBase/contoCorrenteAttivo.js');
 
+const ClienteJunior = require("../classiBase/clienteJunior.js");
+const ClienteSenior = require("../classiBase/clienteSenior.js");
+
+const clienti = require('../models/utente.model.js');
+const Cliente = require('../classiBase/cliente.js');
 
 exports.creaBonifico = async (req, res) => {
     if (req.body) {
@@ -11,30 +15,58 @@ exports.creaBonifico = async (req, res) => {
         req.body.importo=req.body.importo.replace(/\./g,'').replace(',', '.');
 
         if(req.body.importo>0){
-            let cc= new ContoCorrente(req.body.idContoCorrente);
+            
+            let contoCorrente=await clienti.getClienti()[req.body.idUtente];
+            contoCorrente=await contoCorrente.getContiCorrenti();
+            contoCorrente=contoCorrente[req.body.idContoCorrente];
+            
 
-            let saldo=await cc.getSaldo();
-
-            if (saldo >= req.body.importo) {
-                let ccAttivo=new ContoCorrenteAttivo();
-
-                ccAttivo.bonifico(req.body.importo,req.body.ibanBeneficiario);
+            if (await contoCorrente.getSaldo() >= req.body.importo) {
+              
+                contoCorrente.bonifico(req.body.importo);
 
                 req.body.importo=req.body.importo*(-1);
 
                 Movimenti.create(req.body);
 
-                let idContoCorrenteBen=await ContoCorrente.getIdByIban(req.body.ibanBeneficiario);
-                let ccBen;
+                let idContoCorrenteBen=await ContoCorrente.getIdByIBAN(req.body.ibanBeneficiario);
+
+                console.log("idContoCorrente",idContoCorrenteBen);
 
                 if(idContoCorrenteBen){
-                    ccBen= await new ContoCorrente(idContoCorrenteBen);
                     req.body.importo=req.body.importo*(-1);
-                    let risp=await ccBen.versamento(req.body.importo);
+
+                    let idUtenteBeneficiario=await ContoCorrente.getIdUtenteByIBAN(req.body.ibanBeneficiario);
+                    let contiCorrentiBeneficiario=[];
+                    let risp;
+
+                    console.log("entra",await clienti.getClienti()[idUtenteBeneficiario]);
+
+                    if(await clienti.getClienti()[idUtenteBeneficiario]){
+                        contiCorrentiBeneficiario=await clienti.getClienti()[idUtenteBeneficiario].getContiCorrenti();
+                        risp=contiCorrentiBeneficiario[idContoCorrenteBen].versamento(req.body.importo);
+                    }
+                    else{
+
+                        console.log("Cliente non loggato");
+
+                        let idRuolo=await Cliente.getIdRuoloByIdUtente(idUtenteBeneficiario);
+                        
+                        let clienteBeneficiario;
+
+                        if(idRuolo==2)
+                            clienteBeneficiario=new ClienteJunior(idUtenteBeneficiario);
+                        else if(idRuolo==3){
+                            clienteBeneficiario=new ClienteSenior(idUtenteBeneficiario);
+                        }
+                        
+                        contiBen=await clienteBeneficiario.getContiCorrenti();
+                        risp=await contiBen[idContoCorrenteBen].versamento(req.body.importo);
+                    }
 
                     if(risp=="ok"){
-                        req.body.idUtente=data[0].idUtente;              
-                        req.body.idContoCorrente=cc.getIdContoCorrente();
+                        req.body.idUtente=idUtenteBeneficiario;              
+                        req.body.idContoCorrente=idContoCorrenteBen;
                         await Movimenti.create(req.body);
 
                         res.status(200).send({message: "Bonifico andato a buon fine."})
@@ -58,15 +90,13 @@ exports.creaRicaricaTelefonica = async (req,res)=>{
         req.body.importo=parseFloat(req.body.importo);
 
         if(req.body.importo>0){
-            let cc= new ContoCorrente(req.body.idContoCorrente);
 
-            let saldo=await cc.getSaldo();
+            let contoCorrente=await clienti.getClienti()[req.body.idUtente].getContiCorrenti();
+            contoCorrente=contoCorrente[req.body.idContoCorrente];
 
-            if (saldo >= req.body.importo) {
-                
-                let ccAttivo=new ContoCorrenteAttivo(req.body.idContoCorrente);
+            if (await contoCorrente.getSaldo() >= req.body.importo) {
 
-                ccAttivo.ricaricaTelefonica(req.body.importo,"ITTTTTT");
+                contoCorrente.ricaricaTelefonica(req.body.importo);
 
                 req.body.importo=req.body.importo*(-1);
                 req.body.causale="Ricaricato il numero:"+req.body.numeroTelefono;

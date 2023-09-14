@@ -1,5 +1,5 @@
 
-const ContoCorrente = require("../classiBase/contoCorrente.js");
+const ContoCorrenteAttivo = require("../classiBase/contoCorrenteAttivoJunior.js");
 const Utility = require("../controllers/utility.controller.js");
 
 /**
@@ -20,7 +20,7 @@ exports.creaContoCorrente=async (req,res)=>{
     let risp=await Utility.isActiveUser({identificativo:req.body.email},null);
     
     if(risp.status==200){
-        let risp=await ContoCorrente.create(req.body);
+        let risp=await ContoCorrenteAttivo.create(req.body);
         res.send(risp);
     }
     else

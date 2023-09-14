@@ -180,7 +180,7 @@ select distinct username, email, idContoCorrente,iban,saldo,dataCreazione
 
 insert into contocorrente (idUtente,iban,saldo,descrizione,idOperatoreInserimento) 
 			values(7,"IT12A1234512345123456789012",0.0,"Conto pirincipale",8);
-UPDATE contoCorrente SET saldo =0 where idContoCorrente=10;
+UPDATE contoCorrente SET saldo =0 where idContoCorrente=15;
 select * from ruolo;
 insert into ruolo (descrizione) values("Admin");
 insert into ruolo (descrizione) values("Cliente");

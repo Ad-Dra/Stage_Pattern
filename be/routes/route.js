@@ -8,7 +8,7 @@ router.use(express.json());
 // parse requests of content-type - application/x-www-form-urlencoded
 router.use(express.urlencoded({ extended: true }));
 
-const login = require("../controllers/login.controller");
+const login = require("../controllers/utente.controller");
 const utente = require("../controllers/user.controller");
 const tipiMovimento = require('../controllers/tipiMovimenti.controller');
 const movimento = require('../controllers/movimento.controller');
