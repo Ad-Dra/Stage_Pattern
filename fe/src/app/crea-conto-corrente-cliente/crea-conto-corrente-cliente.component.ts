@@ -18,7 +18,8 @@ export class CreaContoCorrenteClienteComponent {
       iban: [null,[Validators.required,Validators.minLength(27)]],
       descrizione: [null,null],
       email: [null,null],
-      idUtente: [null,null]
+      idUtente: [null,null],
+      saldo:[null,Validators.required]
     });
   }
 

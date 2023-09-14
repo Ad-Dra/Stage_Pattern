@@ -18,6 +18,12 @@
                     </div>
 
                     <div class="row">
+                        <div class="col-md-8">
+                            <app-input-text [title]="'importoIniziale'" [type]="'currency'" [formField]="'saldo'" [formId]="'formId'" [formParent]="form" [required]="true" [maxLen]="'8'"></app-input-text>        
+                        </div>
+                    </div>
+
+                    <div class="row">
                         <p  class="centerDiv" *ngIf="!form.valid">Compilare i campi obbligatori</p>
                     </div>
 
