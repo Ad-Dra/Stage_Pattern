@@ -16,8 +16,8 @@ exports.creaBonifico = async (req, res) => {
 
         if(req.body.importo>0){
             
-            let contoCorrente=await clienti.getClienti()[req.body.idUtente];
-            contoCorrente=await contoCorrente.getContiCorrenti();
+            let cliente=await clienti.getClienti()[req.body.idUtente];
+            contoCorrente=await cliente.getContiCorrenti();
             contoCorrente=contoCorrente[req.body.idContoCorrente];
             
 
@@ -27,7 +27,12 @@ exports.creaBonifico = async (req, res) => {
 
                 req.body.importo=req.body.importo*(-1);
 
-                Movimenti.create(req.body);
+                Movimenti.create(req.body,req.body.idUtente);
+
+                if(!(cliente instanceof ClienteSenior))
+                    await checkEvoluzioneCliente(cliente);
+
+                console.log("iabnnnn",req.body.ibanBeneficiario)
 
                 let idContoCorrenteBen=await ContoCorrente.getIdByIBAN(req.body.ibanBeneficiario);
 
@@ -43,8 +48,13 @@ exports.creaBonifico = async (req, res) => {
                     console.log("entra",await clienti.getClienti()[idUtenteBeneficiario]);
 
                     if(await clienti.getClienti()[idUtenteBeneficiario]){
+                        
                         contiCorrentiBeneficiario=await clienti.getClienti()[idUtenteBeneficiario].getContiCorrenti();
-                        risp=contiCorrentiBeneficiario[idContoCorrenteBen].versamento(req.body.importo);
+                        console.log("pre",await clienti.getClienti()[idUtenteBeneficiario]);
+                        risp=await contiCorrentiBeneficiario[idContoCorrenteBen].versamento(req.body.importo);
+                        console.log("post",await clienti.getClienti());
+                        let id=await contiCorrentiBeneficiario[idContoCorrenteBen].getIdContoCorrente();
+                        console.log("id",id);
                     }
                     else{
 
@@ -82,6 +92,14 @@ exports.creaBonifico = async (req, res) => {
             res.status(500).send({ message: "Non si può effettuare un bonifico < di zero!"});
     } else
         res.status(400).send({ message: "Il contenuto non può essere vuoto!"});
+}
+
+async function checkEvoluzioneCliente(cliente){
+    let numMovimenti=await cliente.getNMovimenti();
+    //50 = max movimenti
+    if(numMovimenti>=46){
+        cliente=await cliente.renew(cliente,null);
+    }
 }
 
 exports.creaRicaricaTelefonica = async (req,res)=>{

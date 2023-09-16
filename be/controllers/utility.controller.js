@@ -3,22 +3,31 @@ var jwt = require('jsonwebtoken');
 const sql = require("../config/db.js");
 const tokenConfig = require("../config/token.config");
 const nodeMailer=require("nodemailer");
+const clienti = require('../models/utente.model.js');
 
 exports.verifyToken=async (req,res,next)=>{
     if(req.originalUrl!='/api/login.json' && !req.originalUrl.includes('/api/auth')){
         token=JSON.parse(JSON.stringify(req.headers)).authorization;
+        let idUtente = await this.getIdUtente(req);
+        let utente=await clienti.getClienti();
 
         if(token!="null" && token!=undefined){
-            jwt.verify(token,tokenConfig.KEY, function(err, _tokendata) {
-            if (err) {
-                console.log("error: ", err);
-                res.status(403).send({
-                message:
-                    "Effettuare l'autenticazione"
-                });
-                next(err);
-            }
-            next();
+            jwt.verify(token,tokenConfig.KEY, async function(err, _tokendata) {
+              if (err) {
+                  console.log("error: ", err);
+                  res.status(403).send({
+                  message:
+                      "Effettuare l'autenticazione"
+                  });
+                  next(err);
+              }
+
+              //let utente=await clienti.getClienti()[idUtente];
+
+              if(utente && utente.length>0)
+                next();
+              else
+                res.status(403).send({message:"Effettuare l'autenticazione"});
             })
         }
         else{

@@ -1,10 +1,12 @@
 const sql = require("../config/db.js");
-const Utility = require("../controllers/utility.controller.js");
+//const Utility = require("../controllers/utility.controller.js");
 const passwordConfig = require("../config/password.config.js");
 const logger = require("../logger.js");
-
+const tokenConfig = require("../config/token.config");
 const ClienteJunior = require("../classiBase/clienteJunior.js");
 const ClienteSenior = require("../classiBase/clienteSenior.js");
+
+var jwt = require('jsonwebtoken');
 
 var clienti=[];
 
@@ -52,7 +54,8 @@ UtentiAutenticati.login = (utenzaLogin,result) => {
 
 			let anagrafica=await clienti[res.idUtente].getAnagrafica();
 
-			let token = await Utility.createToken({identificativo:utenzaLogin.identificativo,ruolo:desc,cognome:anagrafica.cognome,nome:anagrafica.nome},'3h');
+			let token=jwt.sign({identificativo:utenzaLogin.identificativo,ruolo:desc,cognome:anagrafica.cognome,nome:anagrafica.nome},tokenConfig.KEY, {expiresIn : '3h'});
+			//let token = await Utility.createToken({identificativo:utenzaLogin.identificativo,ruolo:desc,cognome:anagrafica.cognome,nome:anagrafica.nome},'3h');
 
 			result(null, {status:'200',token: token});
 			//TO DO per i log
