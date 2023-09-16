@@ -17,6 +17,8 @@ class Cliente extends Stage{
 
         this.anagrafica=null;
         this.contiCorrenti=[];
+
+        //this.getContiCorrenti();
     }
 
     getAnagrafica(){
@@ -34,15 +36,15 @@ class Cliente extends Stage{
         });
     }
 
-    getContiCorrenti(){
+    async getContiCorrenti(){
         return new Promise(resolve =>{
-            sql.query("SELECT dataCreazione,descrizione,saldo,idContoCorrente FROM utente INNER JOIN contocorrente ON utente.idUtente=contocorrente.idUtente WHERE utente.idUtente= ?;", this.idUtente,(err, data) => {
+            sql.query("SELECT dataCreazione,descrizione,saldo,idContoCorrente FROM utente INNER JOIN contocorrente ON utente.idUtente=contocorrente.idUtente WHERE utente.idUtente= ?;", this.idUtente,async (err, data) => {
                 if (err) {
                     console.log("error: ", err);
                     resolve({message:err.message});
                 }
                 
-                this.setContiCorrenti(JSON.parse(JSON.stringify(data)));
+                await this.setContiCorrenti(JSON.parse(JSON.stringify(data)));
                 
                 resolve(this.contiCorrenti);
             })  
@@ -73,6 +75,37 @@ class Cliente extends Stage{
                 resolve(JSON.parse(JSON.stringify(data))[0].idRuolo);
             })  
         });
+    }
+
+    getNMovimenti(){
+        return new Promise(resolve =>{
+            sql.query("SELECT COUNT(*) as numMovimenti FROM Movimento WHERE idUtente = ? and (importo<0 or causale='prestito');", this.idUtente,(err, res) => {
+                if (err) {
+                    console.log("error: ", err);
+                    resolve({message:err.message});
+                }
+                
+                resolve(JSON.parse(JSON.stringify(res))[0].numMovimenti);
+            })  
+        }); 
+    }
+
+    /**
+     * Il seguente metodo si occupa di aggiornare il ruolo dell'utente nel db
+     * 
+     * @returns ok
+     */
+    refreshRuolo(){
+        return new Promise(resolve =>{
+            sql.query("UPDATE Utente SET idRuolo = ? WHERE idUtente = ?;", [this.idRuolo,this.idUtente],(err, res) => {
+                if (err) {
+                    console.log("error: ", err);
+                    resolve({message:err.message});
+                }
+                
+                resolve("ok");
+            })  
+        }); 
     }
 }
 

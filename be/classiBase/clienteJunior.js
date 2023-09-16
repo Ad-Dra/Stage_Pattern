@@ -1,4 +1,5 @@
 const Cliente = require("./cliente");
+const ClienteSenior = require("./clienteSenior");
 
 
 class ClienteJunior extends Cliente{
@@ -8,8 +9,14 @@ class ClienteJunior extends Cliente{
         super(idUtente,2);
     }
 
-    renew(cartaDiCredito){
-        
+    async renew(cliente,cartaDiCredito){
+        let newCliente= await new ClienteSenior(this.idUtente);
+        await newCliente.getAnagrafica();
+        await newCliente.getContiCorrenti();
+        Object.setPrototypeOf(cliente,newCliente);
+        await Object.assign(cliente,newCliente);
+        await cliente.refreshRuolo();
+        return cliente;
     }
 
 }
