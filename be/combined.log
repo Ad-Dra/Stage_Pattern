@@ -198,3 +198,4 @@
 2023-09-14T13:23:43.008Z - [INFO] - th.pertic: si è evoluto in UtenteNonAutenticato
 2023-09-14T13:26:15.179Z - [INFO] - th.pertic: si è evoluto in UtenteSaldoAttivo 
                                     Le operazioni permesse sono: 1) Consultare chi siamo 2) Effettuare bonifici/ricariche telefoniche 3) Richiedere prestito 4) Info account 5) Consultare i movimenti 6) Log out
+2023-09-16T13:58:37.545Z - [INFO] - ad.dra: si è evoluto in UtenteNonAutenticato

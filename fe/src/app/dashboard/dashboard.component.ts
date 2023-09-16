@@ -125,7 +125,7 @@ export class DashboardComponent extends Utente implements OnInit{
     this.getInfoContoCorrente();
   }
 
-  getInfoContoCorrente(): void{
+  getInfoContoCorrente(returnHome?:boolean): void{
     this.http.get("/api/getInfoContoCorrente.json").subscribe((res:any)=>{
       if(res){
         this.contiCorrente=res;
@@ -152,9 +152,14 @@ export class DashboardComponent extends Utente implements OnInit{
             this.renew(this.dashboard,dashboardSaldoPassivo);
         }
 
-        this.dashboard.home();
+        if(returnHome)
+          this.dashboard.home();
       }
     })
+  }
+
+  refresh(){
+    this.getInfoContoCorrente(true);
   }
 
   /**------Azioni eseguite sia se non si ha un conto corrente sia se il saldo è negativo o positivo----- */

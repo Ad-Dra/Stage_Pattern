@@ -25,8 +25,8 @@
 </div>
 
 <app-chi-siamo *ngIf="dashboard.typeComp=='ChiSiamoComponent'"></app-chi-siamo>
-<app-bonifico  *ngIf="dashboard.typeComp=='BonificoComponent'" [contiCorrente]="contiCorrente" (refreshDash)="getInfoContoCorrente()"></app-bonifico>
-<app-ricarica-telefonica *ngIf="dashboard.typeComp=='RicaricaTelefonicaComponent'" [contiCorrente]="contiCorrente" (refreshDash)="getInfoContoCorrente()"></app-ricarica-telefonica>
+<app-bonifico  *ngIf="dashboard.typeComp=='BonificoComponent'" [contiCorrente]="contiCorrente" (refreshDash)="refresh()"></app-bonifico>
+<app-ricarica-telefonica *ngIf="dashboard.typeComp=='RicaricaTelefonicaComponent'" [contiCorrente]="contiCorrente" (refreshDash)="refresh()"></app-ricarica-telefonica>
 <app-info-account *ngIf="dashboard.typeComp=='InfoAccountComponent'"></app-info-account>
 <app-movimenti *ngIf="dashboard.typeComp=='MovimentiComponent'"></app-movimenti>
-<app-prestito *ngIf="dashboard.typeComp=='PrestitoComponent'" [contiCorrente]="contiCorrente" (refreshDash)="getInfoContoCorrente()"></app-prestito>
+<app-prestito *ngIf="dashboard.typeComp=='PrestitoComponent'" [contiCorrente]="contiCorrente" (refreshDash)="refresh()"></app-prestito>

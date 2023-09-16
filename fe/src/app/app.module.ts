@@ -85,7 +85,7 @@ import { PrestitoComponent } from './prestito/prestito.component';
       },
     })
   ],
-  providers: [LoginComponent,DashboardComponent,RipristinaCredenzialiComponent,CreaUtenzaComponent,ConfermaCreazioneAccountComponent,ChiSiamoComponent,BonificoComponent,RicaricaTelefonicaComponent,InfoAccountComponent,MovimentiComponent,DashboardAdminComponent,{ provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor,multi: true},{ provide: COMPONENT_B_TOKEN, useValue: LoginComponent}],
+  providers: [AppComponent,LoginComponent,DashboardComponent,RipristinaCredenzialiComponent,CreaUtenzaComponent,ConfermaCreazioneAccountComponent,ChiSiamoComponent,BonificoComponent,RicaricaTelefonicaComponent,InfoAccountComponent,MovimentiComponent,DashboardAdminComponent,{ provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor,multi: true},{ provide: COMPONENT_B_TOKEN, useValue: LoginComponent}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
