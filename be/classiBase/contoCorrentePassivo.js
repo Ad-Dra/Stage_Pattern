@@ -3,7 +3,8 @@ const logger = require("../logger.js");
 const sql = require('../config/db.js');
 
 
-const UtenzaLogin = require("../models/utente.model.js");
+const ContoCorrenteAttivoJunior = require("./contoCorrenteAttivoJunior");
+const ContoCorrenteAttivoSenior = require("./ContoCorrenteAttivoSenior");
 
 class ContoCorrentePassivo extends ContoCorrente{
 
@@ -30,42 +31,33 @@ class ContoCorrentePassivo extends ContoCorrente{
                 }
 
                 if(sum>0){
-                    let idUtente=await this.findIdUtenteByIdContoCorrente();
+                    let idRuolo=await this.findRuoloUtenteByIdContoCorrente();
 
-                    console.log("id",idUtente);
-                    console.log("this",this);
-                    let contoCorrente=await UtenzaLogin.getClienti();
-
-                    console.log("contoCorrente",contoCorrente);
-
-                    /*contoCorrente=await contoCorrente[idUtente].getContiCorrenti();
-
-                    console.log("pree",contoCorrente);
-
-                    contoCorrente=contoCorrente[this.idContoCorrente];
-
-                    Object.setPrototypeOf(contoCorrente, new ContoCorrenteAttivoJunior(this.idContoCorrente));
-
-                    console.log("post",contoCorrente);*/
+                    if(idRuolo==2)
+                        this.renew(new ContoCorrenteAttivoJunior(this.idContoCorrente));
+                    else
+                        this.renew(new ContoCorrenteAttivoSenior(this.idContoCorrente));
                 }
-                //TO DO evoluzione in Attivo
-                //this.renew()
+
                 resolve("ok");
             })  
         });
     }
 
-
-
-    findIdUtenteByIdContoCorrente(){
+    /**
+     * Il seguente metodo individua l'idRuolo partendo dall'idContoCorrente
+     * 
+     * @returns idRuolo dell'utente
+     */
+    findRuoloUtenteByIdContoCorrente(){
         return new Promise(resolve =>{
-            sql.query("SELECT idUtente FROM contoCorrente WHERE idContoCorrente = ?;", this.idContoCorrente,(err, data) => {
+            sql.query("SELECT idRuolo FROM Utente INNER JOIN ContoCorrente on utente.idUtente=contoCorrente.idUtente WHERE idContoCorrente = ?;", this.idContoCorrente,(err, data) => {
                 if (err) {
                     console.log("error: ", err);
                     resolve({message:err.message});
                 }
 
-                resolve(JSON.parse(JSON.stringify(data))[0].idUtente);
+                resolve(JSON.parse(JSON.stringify(data))[0].idRuolo);
             })
         }); 
     }

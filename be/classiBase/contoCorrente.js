@@ -102,8 +102,13 @@ class ContoCorrente extends Stage{
                     console.log("error: ", err);
                     resolve({message:err.message});
                 }
-                
-                resolve(JSON.parse(JSON.stringify(data))[0].idContoCorrente);
+
+                let idContoCorrente=null;
+
+                if(JSON.parse(JSON.stringify(data)).length>0)
+                    idContoCorrente=JSON.parse(JSON.stringify(data))[0].idContoCorrente
+
+                resolve(idContoCorrente);
             })  
         });
     }
