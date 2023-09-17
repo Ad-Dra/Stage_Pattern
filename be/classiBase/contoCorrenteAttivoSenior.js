@@ -22,6 +22,10 @@ class ContoCorrenteAttivoSenior extends ContoCorrenteAttivoJunior{
     acquistoCartaCredito(importo){
 
     }
+
+    prestito(importo){
+       
+    }
 }
 
 

@@ -50,7 +50,7 @@ UtentiAutenticati.login = (utenzaLogin,result) => {
 			if(res.idRuolo==2)
 				clienti[res.idUtente]=new ClienteJunior(res.idUtente);
 			else if(res.idRuolo==3)
-				clienti[res.idUtente]=new ClienteSenior(res.idUtente);
+				clienti[res.idUtente]=new ClienteSenior(res.idUtente,res.cartaCredito);
 
 			let anagrafica=await clienti[res.idUtente].getAnagrafica();
 
