@@ -9,7 +9,7 @@ class ClienteJunior extends Cliente{
         super(idUtente,2);
     }
 
-    async renew(cliente,cartaDiCredito){
+    async renew(cliente){
         let newCliente= await new ClienteSenior(this.idUtente);
         await newCliente.getAnagrafica();
         await newCliente.getContiCorrenti();
