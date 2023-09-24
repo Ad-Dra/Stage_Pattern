@@ -13,15 +13,15 @@ class ContoCorrente extends Stage{
      * 
      * @returns msg
      */
-    delete(){
+    static delete(idContoCorrente){
         return new Promise(resolve =>{
-            sql.query("DELETE FROM Movimento WHERE idContoCorrente = ?;", this.idContoCorrente,(err, res) => {
+            sql.query("DELETE FROM Movimento WHERE idContoCorrente = ?;",idContoCorrente,(err, res) => {
                 if (err) {
                     console.log("error: ", err);
                     resolve({message:err.message});
                 }
 
-                sql.query("DELETE FROM ContoCorrente WHERE idContoCorrente = ?;", this.idContoCorrente, (err, data) => {
+                sql.query("DELETE FROM ContoCorrente WHERE idContoCorrente = ?;", idContoCorrente, (err, data) => {
                     if (err) {
                         console.log("error: ", err);
                         result(err, null);
@@ -87,6 +87,7 @@ class ContoCorrente extends Stage{
      * @returns msg
      */
     versamento(importo){
+        throw new Error('Versamento non è implementato!');
     }
 
    /**
@@ -95,7 +96,7 @@ class ContoCorrente extends Stage{
     * @param {*} iban contoCorrente beneficiario
     * @returns idContoCorrente beneficiario
     */
-   static getIdByIBAN(iban){
+    static getIdByIBAN(iban){
         return new Promise(resolve =>{
             sql.query("SELECT idContoCorrente FROM ContoCorrente WHERE iban = ?;", iban,(err, data) => {
                 if (err) {
@@ -124,6 +125,24 @@ class ContoCorrente extends Stage{
                 resolve(JSON.parse(JSON.stringify(data))[0].idUtente);
             })  
         });
+    }
+
+    /**
+     * Il seguente metodo individua l'idRuolo partendo dall'idContoCorrente
+     * 
+     * @returns idRuolo dell'utente
+     */
+    findRuoloUtenteByIdContoCorrente(){
+        return new Promise(resolve =>{
+            sql.query("SELECT idRuolo FROM Utente INNER JOIN ContoCorrente on utente.idUtente=contoCorrente.idUtente WHERE idContoCorrente = ?;", this.idContoCorrente,(err, data) => {
+                if (err) {
+                    console.log("error: ", err);
+                    resolve({message:err.message});
+                }
+
+                resolve(JSON.parse(JSON.stringify(data))[0].idRuolo);
+            })
+        }); 
     }
 }
 
