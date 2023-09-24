@@ -9,7 +9,13 @@ exports.verifyToken=async (req,res,next)=>{
     if(req.originalUrl!='/api/login.json' && !req.originalUrl.includes('/api/auth')){
         token=JSON.parse(JSON.stringify(req.headers)).authorization;
         let idUtente = await this.getIdUtente(req);
-        let utente=await clienti.getClienti();
+        let datiUtente= await this.getDatiUtente(idUtente);
+        datiUtente=JSON.parse(JSON.stringify(datiUtente))[0];
+        
+        let utente;
+
+        if(datiUtente.idRuolo>1)
+          utente=await clienti.getClienti();
 
         if(token!="null" && token!=undefined){
             jwt.verify(token,tokenConfig.KEY, async function(err, _tokendata) {
@@ -24,7 +30,7 @@ exports.verifyToken=async (req,res,next)=>{
 
               //let utente=await clienti.getClienti()[idUtente];
 
-              if(utente && utente.length>0)
+              if((utente && utente.length>0) || datiUtente.idRuolo==1)
                 next();
               else
                 res.status(403).send({message:"Effettuare l'autenticazione"});
@@ -151,7 +157,7 @@ exports.isActiveUser=(dati,email)=>{
 
   exports.getDatiUtente=(identificativo)=>{
     return new Promise(resolve =>{
-      sql.query(`select email,idUtente,username from utente where email= BINARY "${identificativo}" or username= BINARY "${identificativo}"`,(err, res) => {
+      sql.query(`select idRuolo,email,idUtente,username from utente where email= BINARY "${identificativo}" or username= BINARY "${identificativo}" or idUtente="${identificativo}"`,(err, res) => {
         if (err) {
           console.log("error: ", err);
           res.status(500).send({message:err.message})

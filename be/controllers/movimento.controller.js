@@ -32,11 +32,7 @@ exports.creaBonifico = async (req, res) => {
                 if(!(cliente instanceof ClienteSenior))
                     await checkEvoluzioneCliente(cliente);
 
-                console.log("iabnnnn",req.body.ibanBeneficiario)
-
                 let idContoCorrenteBen=await ContoCorrente.getIdByIBAN(req.body.ibanBeneficiario);
-
-                console.log("idContoCorrente",idContoCorrenteBen);
 
                 if(idContoCorrenteBen){
                     req.body.importo=req.body.importo*(-1);
@@ -45,30 +41,20 @@ exports.creaBonifico = async (req, res) => {
                     let contiCorrentiBeneficiario=[];
                     let risp;
 
-                    console.log("entra",await clienti.getClienti()[idUtenteBeneficiario]);
-
                     if(await clienti.getClienti()[idUtenteBeneficiario]){
-                        
                         contiCorrentiBeneficiario=await clienti.getClienti()[idUtenteBeneficiario].getContiCorrenti();
-                        console.log("pre",await clienti.getClienti()[idUtenteBeneficiario]);
                         risp=await contiCorrentiBeneficiario[idContoCorrenteBen].versamento(req.body.importo);
-                        console.log("post",await clienti.getClienti());
-                        let id=await contiCorrentiBeneficiario[idContoCorrenteBen].getIdContoCorrente();
-                        console.log("id",id);
+                        await contiCorrentiBeneficiario[idContoCorrenteBen].getIdContoCorrente();
                     }
                     else{
-
-                        console.log("Cliente non loggato");
-
                         let idRuolo=await Cliente.getIdRuoloByIdUtente(idUtenteBeneficiario);
                         
                         let clienteBeneficiario;
 
                         if(idRuolo==2)
                             clienteBeneficiario=new ClienteJunior(idUtenteBeneficiario);
-                        else if(idRuolo==3){
+                        else if(idRuolo==3)
                             clienteBeneficiario=new ClienteSenior(idUtenteBeneficiario);
-                        }
                         
                         contiBen=await clienteBeneficiario.getContiCorrenti();
                         risp=await contiBen[idContoCorrenteBen].versamento(req.body.importo);
@@ -108,8 +94,8 @@ exports.creaRicaricaTelefonica = async (req,res)=>{
         req.body.importo=parseFloat(req.body.importo);
 
         if(req.body.importo>0){
-
-            let contoCorrente=await clienti.getClienti()[req.body.idUtente].getContiCorrenti();
+            let cliente=await clienti.getClienti()[req.body.idUtente];
+            let contoCorrente=await cliente.getContiCorrenti();
             contoCorrente=contoCorrente[req.body.idContoCorrente];
 
             if (await contoCorrente.getSaldo() >= req.body.importo) {
@@ -124,6 +110,9 @@ exports.creaRicaricaTelefonica = async (req,res)=>{
                 // Creo il movimento in uscita
                 await Movimenti.create(req.body);
 
+                if(!(cliente instanceof ClienteSenior))
+                    await checkEvoluzioneCliente(cliente);
+
                 res.status(200).send({message: "Ricarica effettuata con successo."});
             }
             else
@@ -137,35 +126,32 @@ exports.creaRicaricaTelefonica = async (req,res)=>{
 }
 
 exports.creaPrestito = async (req, res) => {
-    let username = await Utility.getUsername(req);
-    //logger.info(username+": la dashboard si è evoluta in prestito");
+
     req.body.importo=req.body.importo.replace(/\./g,'').replace(',', '.');
 
     // Per ora consideriamo 3000 come valore MAX per il prestito
     if(req.body.importo > 0 && req.body.importo <= 3000){
         req.body.idUtente = await Utility.getIdUtente(req);
-        ContoCorrente.ricevi(req.body.idContoCorrente, req.body.importo, username, async (err, data) => {
-            if (err) {
-                res.status(500).send({ message: err.message });
-                return;
-            } 
 
-            if(data.saldoPrec<=0 && data.saldoCorr>0)
-                logger.info(await Utility.getDescriptionForEvolution(username,1));
+        let cliente=await clienti.getClienti()[req.body.idUtente];
+        contoCorrente=await cliente.getContiCorrenti();
+        contoCorrente=contoCorrente[req.body.idContoCorrente];
 
+        let risp=await contoCorrente.prestito(req.body.importo);
+
+        if(risp){
             req.body.tipologiaBonifico=9;
             req.body.causale="Prestito dalla City Safe Bank";
 
-            const mov=new Movimenti(req.body);
-                       
-            Movimenti.create(mov, (err, data) => {
-                if (err) {
-                    res.status(500).send({ message: err.message });
-                    return;
-                } 
-                res.status(200).send({message: "Il prestito gli è stato concesso."})
-            });
-        })
+            risp=await Movimenti.create(req.body);
+
+            if(risp=="ok")
+                res.status(200).send({message: "Il prestito gli è stato concesso."});
+            else
+                res.status(500).send(risp);
+        }
+        else
+            res.status(500).send(risp);
     }
     else if(req.body.importo<=0)
         res.status(500).send({ message: "Non si può effettuare un prestito <= di zero!"});
