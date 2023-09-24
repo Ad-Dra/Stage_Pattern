@@ -52,15 +52,22 @@ UtentiAutenticati.login = (utenzaLogin,result) => {
 			else if(res.idRuolo==3)
 				clienti[res.idUtente]=new ClienteSenior(res.idUtente,res.cartaCredito);
 
-			let anagrafica=await clienti[res.idUtente].getAnagrafica();
+			let token;
 
-			let token=jwt.sign({identificativo:utenzaLogin.identificativo,ruolo:desc,cognome:anagrafica.cognome,nome:anagrafica.nome},tokenConfig.KEY, {expiresIn : '3h'});
-			//let token = await Utility.createToken({identificativo:utenzaLogin.identificativo,ruolo:desc,cognome:anagrafica.cognome,nome:anagrafica.nome},'3h');
+			if(res.idRuolo>1){
+				let anagrafica=await clienti[res.idUtente].getAnagrafica();
+				await clienti[res.idUtente].getContiCorrenti();
+				token=jwt.sign({identificativo:utenzaLogin.identificativo,ruolo:desc,cognome:anagrafica.cognome,nome:anagrafica.nome},tokenConfig.KEY, {expiresIn : '3h'});
+			}
+			else
+				token=jwt.sign({identificativo:utenzaLogin.identificativo,ruolo:desc,cognome:"Admin",nome:"Admin"},tokenConfig.KEY, {expiresIn : '3h'});
+			
+			if(res.idRuolo>1)
+				logger.info("L'utente "+res.username+" si è evoluto in cliente "+ (res.idRuolo==2 ? "junior" : "senior"));
 
 			result(null, {status:'200',token: token});
-			//TO DO per i log
-			//let contiCorrenti=await clienti[res.idUtente].getContiCorrenti();
 		}
 	});
 }
+
 module.exports={UtentiAutenticati, getClienti: () => clienti};

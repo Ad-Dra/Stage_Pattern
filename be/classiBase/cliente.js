@@ -1,6 +1,6 @@
 const Stage = require("../stage/Stage");
 
-const ContoCorrentePassivo = require("./contoCorrentePassivo.js");
+const ContoCorrentePassivo = require("./contoCorrentePassivoJunior.js");
 const ContoCorrenteAttivoJunior = require("./contoCorrenteAttivoJunior.js");
 const ContoCorrenteAttivoSenior = require("./ContoCorrenteAttivoSenior.js");
 
@@ -38,7 +38,7 @@ class Cliente extends Stage{
 
     async getContiCorrenti(){
         return new Promise(resolve =>{
-            sql.query("SELECT dataCreazione,descrizione,saldo,idContoCorrente FROM utente INNER JOIN contocorrente ON utente.idUtente=contocorrente.idUtente WHERE utente.idUtente= ?;", this.idUtente,async (err, data) => {
+            sql.query("SELECT dataCreazione,descrizione,saldo,idContoCorrente,iban, FROM utente INNER JOIN contocorrente ON utente.idUtente=contocorrente.idUtente WHERE utente.idUtente= ?;", this.idUtente,async (err, data) => {
                 if (err) {
                     console.log("error: ", err);
                     resolve({message:err.message});
