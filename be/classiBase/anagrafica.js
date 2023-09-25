@@ -51,6 +51,19 @@ class Anagrafica {
             })  
         });
     }
+
+    static delete(idUtente){
+        return new Promise(resolve =>{
+            sql.query("DELETE FROM anagrafica WHERE idUtente = ?;", idUtente,(err, res) => {
+                if (err) {
+                    console.log("error: ", err);
+                    resolve({message:err.message});
+                }
+                
+                resolve("ok");
+            })  
+        });
+    }
 }
 
 module.exports = Anagrafica;
