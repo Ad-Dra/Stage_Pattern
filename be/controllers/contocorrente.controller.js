@@ -1,5 +1,6 @@
 
 const ContoCorrenteAttivoSenior = require("../classiBase/ContoCorrenteAttivoSenior.js");
+const Cliente = require("../classiBase/cliente.js");
 const ContoCorrente = require("../classiBase/contoCorrente.js");
 const ContoCorrenteAttivoJunior = require("../classiBase/contoCorrenteAttivoJunior.js");
 const Utility = require("../controllers/utility.controller.js");
@@ -57,7 +58,7 @@ exports.deleteContoCorrente = async (req, res) => {
             message: "Il contenuto non può essere vuoto!"
         });
     
-    let risp=await ContoCorrente.delete(req.body.idContoCorrente)
+    let risp=await ContoCorrente.deleteByIdDoc(req.body.idContoCorrente)
 
     if(risp && risp.message){
         let cliente=await clienti.getClienti()[req.body.idUtente];
@@ -84,4 +85,16 @@ exports.getDettagliContoCorrente=async (req,res)=>{
     let contiCorrenti=await cliente.getContiCorrenti();
     
     res.send(contiCorrenti);
+}
+
+/**
+ * Il seguente metodo si occupa di individuare i conti correnti di un determinato cliente invocato dall'admin
+ * 
+ * @param {*} req parametri richiesti
+ * @param {*} res conti correnti di un determinato cliente
+ */
+exports.getDettagliContoCorrenteByIdUtente=async (req,res)=>{
+    let cliente=new Cliente(req.params.idUtente,null);
+    
+    res.send(await cliente.getContiCorrenti());
 }

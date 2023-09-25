@@ -1,5 +1,6 @@
 const sql = require('../config/db.js');
 const Stage = require('../stage/Stage.js');
+const Movimento = require("../classiBase/movimento.js");
 
 class ContoCorrente extends Stage{
 
@@ -13,24 +14,43 @@ class ContoCorrente extends Stage{
      * 
      * @returns msg
      */
-    static delete(idContoCorrente){
-        return new Promise(resolve =>{
-            sql.query("DELETE FROM Movimento WHERE idContoCorrente = ?;",idContoCorrente,(err, res) => {
-                if (err) {
-                    console.log("error: ", err);
-                    resolve({message:err.message});
-                }
+    static deleteByIdDoc(idContoCorrente){
+        return new Promise(async resolve =>{
 
+            let risp=await Movimento.removeAllMovimentiByIdCC(idContoCorrente);
+
+            if(risp=="ok"){
                 sql.query("DELETE FROM ContoCorrente WHERE idContoCorrente = ?;", idContoCorrente, (err, data) => {
                     if (err) {
                         console.log("error: ", err);
-                        result(err, null);
+                        resolve(err);
                         return;
                     }
                     resolve({message:"Cancellazione avvenuta con successo"});
                 })
-               
-            })  
+            }
+            else 
+                resolve(risp);
+        }); 
+    }
+
+    static deleteByIdUtente(idUtente){
+        return new Promise(async resolve =>{
+
+            let risp=await Movimento.removeAllMovimentiByIdUtente(idUtente);
+
+            if(risp=="ok"){
+                sql.query("DELETE FROM ContoCorrente WHERE idUtente = ?;", idUtente, (err, data) => {
+                    if (err) {
+                        console.log("error: ", err);
+                        resolve(err);
+                        return;
+                    }
+                    resolve({message:"Cancellazione avvenuta con successo"});
+                })
+            }
+            else 
+                resolve(risp);
         }); 
     }
 
