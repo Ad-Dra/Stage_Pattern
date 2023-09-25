@@ -65,7 +65,7 @@ UtentiAutenticati.login = (utenzaLogin,result) => {
 			if(res.idRuolo>1)
 				logger.info("L'utente "+res.username+" si è evoluto in cliente "+ (res.idRuolo==2 ? "junior" : "senior"));
 
-			result(null, {status:'200',token: token});
+			result(null, {status:'200',token: token,cliente:cliente[res.idUtente]});
 		}
 	});
 }

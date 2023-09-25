@@ -24,6 +24,7 @@ router.delete("*",utility.verifyToken);
 
 router.post("/api/login.json",utente.login);
 router.post("/api/logout.json", utente.logout);
+router.post("/api/updateInfoAccount",utente.updateInfoAccount);
 
 router.get("/api/getInfoAccount.json",utente.getInfoAccount);
 router.get("/api/getInfoContoCorrente.json",contoCorrente.getDettagliContoCorrente);
@@ -44,7 +45,7 @@ router.delete("/api/admin/deleteContoCorrente.json", utility.checkRuolo, contoCo
 
 router.get("/api/admin/getUtenti.json",          utility.checkRuolo, utente.getUtentiTotali);
 router.delete("/api/admin/deleteAccount.json",   utility.checkRuolo, utente.delete); 
-//router.get("/api/admin/getContiCorrenti/:idUtente.json",   utility.checkRuolo, utente.getContiCorrentiForUtente); 
+router.get("/api/admin/getContiCorrenti/:idUtente.json",   utility.checkRuolo, contoCorrente.getDettagliContoCorrenteByIdUtente); 
 
 router.get("/api/getOperatori.json",operatoreTelefonico.getOperatori);
 router.get("/api/getImporti/:idOperatore.json",operatoreTelefonico.getImportiForOperatore);

@@ -1,7 +1,7 @@
 
 const UtenzaLogin = require("../models/utente.model.js");
 const Utility = require("./utility.controller.js");
-const Utenza = require("../classiBase/utenza.js");
+const Utente = require("../classiBase/utente.js");
 const Anagrafica = require("../classiBase/anagrafica.js");
 const clienti = require('../models/utente.model.js');
 
@@ -21,7 +21,7 @@ exports.create = async (req,res) => {
   let isExist=await Utility.isExist(null,dati.email,dati.username);
 
   if(isExist.length==0){
-      const utenza = new Utenza(dati.email,dati.username,dati.passwordUtente);
+      const utenza = new Utente(dati.email,dati.username,dati.passwordUtente);
       let ris=await utenza.create();
 
       if(ris && ris.insertId){
@@ -60,7 +60,7 @@ exports.delete = async (req, res) => {
       message: "Content can not be empty!"
     });
 
-  let risp=await Utenza.delete(req.body.idUtente);
+  let risp=await Utente.delete(req.body.idUtente);
 
   let clientiAutenticati=await clienti.getClienti();
   
@@ -118,7 +118,7 @@ exports.updateStateUtenza=async (req,result)=>{
 
 
   if(risultato.length>0 && risultatoToken.email!=undefined){
-    let risp=await Utenza.updateStateUtenza(req.body.email,req.body.utenzaAttiva);
+    let risp=await Utente.updateStateUtenza(req.body.email,req.body.utenzaAttiva);
 
     result.send(risp);
   }
@@ -148,7 +148,7 @@ exports.updatePswUtenza=async (req,result)=>{
 
 
   if(risultato.length>0 && risultatoToken.email!=undefined){
-    let risp=await Utenza.updatePswUtenza(req.body.email,req.body.passwordUtente);
+    let risp=await Utente.updatePswUtenza(req.body.email,req.body.passwordUtente);
 
     result.send(risp);
   }
@@ -219,7 +219,7 @@ exports.logout=async (req,result)=>{
  * @param {*} res utenti registrati al nostro sito
  */
 exports.getUtentiTotali=async (req,res)=>{
-  let risp=await Utenza.getUtenti();
+  let risp=await Utente.getUtenti();
 
   if (risp && risp.message)
       res.status(500).send({message:risp.message});
@@ -237,9 +237,33 @@ exports.getInfoAccount=async (req,res)=>{
   let idUtente=await Utility.getIdUtente(req);
 
   let datiUtente=JSON.parse(JSON.stringify(await Utility.getDatiUtente(idUtente)))[0];
-  let user= new Utenza(datiUtente.email,datiUtente.username,null);
+  let user= new Utente(datiUtente.email,datiUtente.username,null);
 
   let ris=await user.getInfoAccount();
+
+  if (ris && ris.message)
+    res.status(500).send({message:ris.message});
+  else
+    res.send(ris);
+}
+
+/**
+ * Il seguente metodo si occupa di aggiornare le informazioni relative all'account 
+ * 
+ * @param {*} req parametri richiesti
+ * @param {*} res msg be
+ */
+exports.updateInfoAccount=async (req,res)=>{
+  let idUtente=await Utility.getIdUtente(req);
+
+  let clientiAutenticati=await clienti.getClienti();
+
+ /* clientiAutenticati[idUtente].
+
+  let datiUtente=JSON.parse(JSON.stringify(await Utility.getDatiUtente(idUtente)))[0];
+  let user= new Utenza(datiUtente.email,datiUtente.username,null);
+
+  let ris=await user.getInfoAccount();*/
 
   if (ris && ris.message)
     res.status(500).send({message:ris.message});
