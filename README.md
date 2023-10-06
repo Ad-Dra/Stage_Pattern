@@ -32,6 +32,7 @@ npm i
 npm start
 ```
 ## Credits
+- Professor Rosario Culmone for the idea of the pattern stage
 - [ad.dra](https://github.com/Ad-Dra)
 - [th.pertic](https://github.com/thpertic)
 
