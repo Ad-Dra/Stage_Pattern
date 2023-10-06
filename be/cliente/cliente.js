@@ -7,7 +7,6 @@ const ContoCorrenteAttivoSenior = require("../contoCorrente/ContoCorrenteAttivoS
 
 const sql = require('../config/db.js');
 
-
 class Cliente extends Stage{
 
     constructor(idUtente,idRuolo){

@@ -71,5 +71,4 @@ class ClienteSenior extends Cliente{
     }
 }
 
-
 module.exports = ClienteSenior;
