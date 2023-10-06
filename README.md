@@ -32,7 +32,7 @@ npm i
 npm start
 ```
 ## Credits
-- [ad.dra](https://github.com/draibineAdnane)
+- [ad.dra](https://github.com/Ad-Dra)
 - [th.pertic](https://github.com/thpertic)
 
 ## License
