@@ -15,7 +15,7 @@ The technologies used to develop this project is:
 node express js and Angular was used because are the most popular in the web context.
 
 ## Installation
-Start by cloning this repository
+Start by cloning this repository:
 ```sh
 git clone https://github.com/draibineAdnane/Stage_Pattern.git
 ```
