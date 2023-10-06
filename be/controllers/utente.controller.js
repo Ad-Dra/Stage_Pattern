@@ -1,11 +1,10 @@
+const Utility = require("../controllers/utility.controller.js");
+const Utente = require("../utente/utente.js");
+const Anagrafica = require("../utente/anagrafica.js");
+const UtentiAutenticati = require("../utente/utentiAutenticati.js");
+const logger = require("../logger.js");
 
-const UtenzaLogin = require("../models/utente.model.js");
-const Utility = require("./utility.controller.js");
-const Utente = require("../classiBase/utente.js");
-const Anagrafica = require("../classiBase/anagrafica.js");
-const clienti = require('../models/utente.model.js');
-
-
+var utenti = [];
 /**
  * crea una nuova utenza se non è già esistente
  * 
@@ -62,10 +61,8 @@ exports.delete = async (req, res) => {
 
   let risp=await Utente.delete(req.body.idUtente);
 
-  let clientiAutenticati=await clienti.getClienti();
-  
-  if(clientiAutenticati[req.body.idUtente]!=null)
-    clientiAutenticati.splice(req.body.idUtente,1);
+  if( UtentiAutenticati.clienti[req.body.idUtente]!=null)
+    UtentiAutenticati.clienti.splice(req.body.idUtente,1);
 
   res.send(risp);
 }
@@ -113,8 +110,8 @@ exports.updateStateUtenza=async (req,result)=>{
     });
   }
 
-  let risultato= await Utility.isExist(null,body.email,null);
-  let risultatoToken=await Utility.verifyTokenForEmail(body.token);
+  let risultato= await Utility.isExist(null,req.body.email,null);
+  let risultatoToken=await Utility.verifyTokenForEmail(req.body.token);
 
 
   if(risultato.length>0 && risultatoToken.email!=undefined){
@@ -143,14 +140,17 @@ exports.updatePswUtenza=async (req,result)=>{
     });
   }
 
-  let risultato= await Utility.isExist(null,body.email,null);
-  let risultatoToken=await Utility.verifyTokenForEmail(body.token);
+  let risultato= await Utility.isExist(null,req.body.email,null);
+  let risultatoToken=await Utility.verifyTokenForEmail(req.body.token);
 
 
   if(risultato.length>0 && risultatoToken.email!=undefined){
     let risp=await Utente.updatePswUtenza(req.body.email,req.body.passwordUtente);
 
-    result.send(risp);
+    if(risp && risp.message)
+      result.status(500).send(risp);
+    else
+      result.send({message:"Password ripristinata con successo"});
   }
   else{
     if(risultatoToken.email==undefined)
@@ -170,7 +170,6 @@ exports.updatePswUtenza=async (req,result)=>{
  *                  - se l'accesso non è autorizzato ritorna 401
  */
 exports.login=async (req,res)=>{
-  const utenzaLogin = new UtenzaLogin.UtentiAutenticati(req.body);
 
   let isExist=await Utility.isExist(req.body,null);
 
@@ -178,12 +177,60 @@ exports.login=async (req,res)=>{
     let risp=await Utility.isActiveUser(req.body,null);
     
     if(risp.status==200){
-      UtenzaLogin.UtentiAutenticati.login(utenzaLogin,(err, data) => {
-        if (err)
-          res.status(500).send({message:err.message});
-        else 
-          res.send(data);
-      });
+      
+      let utente = new Utente(req.body.identificativo,req.body.identificativo,req.body.password);
+
+      risp = await utente.login();
+
+      if(risp.message){
+
+        if(!utenti[req.body.identificativo])
+          utenti[req.body.identificativo]={numTentativi:0};
+        else if(utenti[req.body.identificativo].numTentativi>=0 && utenti[req.body.identificativo].numTentativi<=3)
+          utenti[req.body.identificativo].numTentativi=utenti[req.body.identificativo].numTentativi+=1;
+
+         
+
+        console.log(utenti[req.body.identificativo]);
+
+        if(utenti[req.body.identificativo].numTentativi>3){
+          if(!utenti[req.body.identificativo].isTriggered){
+            res.status(500).send({message:"L'utenza è bloccata per 2 minuti"});
+            utenti[req.body.identificativo].isTriggered=true;
+            console.log(utenti[req.body.identificativo].isTriggered)
+            setTimeout(function(){unlockAccount(req.body.identificativo);},2*60*1000);
+          }
+          else
+            res.status(500).send({message:"Attendere utenza ancora bloccata"});
+        }else
+          res.status(500).send({message:risp.message});
+      }else{
+        if(utenti[req.body.identificativo]){
+          utenti[req.body.identificativo].numTentativi=0;
+          utenti[req.body.identificativo].isTriggered=false;
+        }
+
+        let token;
+
+        if(risp.cliente!=null){
+          UtentiAutenticati.clienti[risp.cliente.getIdUtente()]=risp.cliente;
+          let anagrafica=await  UtentiAutenticati.clienti[risp.cliente.getIdUtente()].getAnagrafica();
+          let cc=await  UtentiAutenticati.clienti[risp.cliente.getIdUtente()].getContiCorrenti();
+          
+          for(let i=0;i<cc.length;i++){
+            if(cc[i]!=null)
+              cc[i]=await cc[i].getInfo();
+          }
+
+          token= await Utility.createToken({cliente:UtentiAutenticati.clienti[risp.cliente.getIdUtente()],identificativo:req.body.identificativo,ruolo:risp.descRuolo,cognome:anagrafica.cognome,nome:anagrafica.nome},'3h')
+          res.send({cliente: UtentiAutenticati.clienti[risp.cliente.getIdUtente()],token:token});
+        }
+        else{
+          token= await Utility.createToken({identificativo:req.body.identificativo,ruolo:risp.descRuolo,cognome:"Admin",nome:"Admin"},'3h');
+			
+          res.send({token:token});
+        }
+      }
     }
     else
       res.status(401).send({message:risp.message});
@@ -192,6 +239,10 @@ exports.login=async (req,res)=>{
     res.status(500).send({message:"Utenza inesistente"});
 }
 
+function unlockAccount(identificativo){
+  utenti[identificativo].numTentativi=0;
+  utenti[identificativo].isTriggered=false;
+}
 /**
  * Il seguente metodo effettua la logout dell'utente
  * 
@@ -203,9 +254,7 @@ exports.logout=async (req,result)=>{
   let username=await Utility.getUsername(req);
   let idUtente=await Utility.getIdUtente(req);
 
-  let clientiAutenticati=await clienti.getClienti();
-
-  clientiAutenticati.splice(idUtente,1);
+  UtentiAutenticati.clienti.splice(idUtente,1);
 
   logger.info("Il cliente "+username+" si è evoluto in utente");
 
@@ -256,17 +305,26 @@ exports.getInfoAccount=async (req,res)=>{
 exports.updateInfoAccount=async (req,res)=>{
   let idUtente=await Utility.getIdUtente(req);
 
-  let clientiAutenticati=await clienti.getClienti();
+  let risp=await Utente.updateInfoAccount(req.body,idUtente);
 
- /* clientiAutenticati[idUtente].
+  if(UtentiAutenticati.clienti[idUtente])
+    await UtentiAutenticati.clienti[idUtente].getAnagrafica();
 
-  let datiUtente=JSON.parse(JSON.stringify(await Utility.getDatiUtente(idUtente)))[0];
-  let user= new Utenza(datiUtente.email,datiUtente.username,null);
-
-  let ris=await user.getInfoAccount();*/
-
-  if (ris && ris.message)
+  if (risp && risp.message)
     res.status(500).send({message:ris.message});
   else
-    res.send(ris);
+    res.send({message:"Dati utente aggiornati con successo"});
+}
+
+exports.refreshUtente=async (req,res)=>{
+  let idUtente=await Utility.getIdUtente(req);
+
+  let cc=await  UtentiAutenticati.clienti[idUtente].getContiCorrenti();
+          
+  for(let i=0;i<cc.length;i++){
+    if(cc[i]!=null)
+      cc[i]=await cc[i].getInfo();
+  }
+
+  res.send(UtentiAutenticati.clienti[idUtente]);
 }

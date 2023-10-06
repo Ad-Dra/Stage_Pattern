@@ -1,25 +1,19 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-import { DashboardComponent } from '../dashboard/dashboard.component';
 import { NotifierService } from 'angular-notifier';
-import { RipristinaCredenzialiComponent } from '../ripristina-credenziali/ripristina-credenziali.component';
-import { CreaUtenzaComponent } from '../crea-utenza/crea-utenza.component';
-import { DashboardAdminComponent } from '../dashboard-admin/dashboard-admin.component';
-import { Utente } from '../stage/utente';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent extends Utente{
+export class LoginComponent{
   
   public loginForm:FormGroup;
-  @Output() changeType: EventEmitter<any>= new EventEmitter<any>();
   
-  constructor(private notifier: NotifierService,private fb:FormBuilder,private http:HttpClient,private dashboard:DashboardComponent,private ripristinaCred:RipristinaCredenzialiComponent,private creaUtenza:CreaUtenzaComponent,private dashboardAdmin:DashboardAdminComponent){
-    super();
+  constructor(private route: Router,private notifier: NotifierService,private fb:FormBuilder,private http:HttpClient){
 
     this.loginForm =  this.fb.group({
       identificativo: [null,Validators.required],
@@ -35,14 +29,11 @@ export class LoginComponent extends Utente{
     this.http.post("/api/login.json",this.loginForm.value).subscribe((res:any)=>{
       if(res){
         sessionStorage.setItem("token",res.token);
-        if(this.getRole()!="Admin"){
-          this.renew(this,this.dashboard);
-          this.changeType.emit({comp:DashboardComponent});
-        }
-        else{
-          this.renew(this,this.dashboardAdmin);
-          this.changeType.emit({comp:DashboardAdminComponent});
-        }
+        
+        if(this.getRole()!="Admin")
+          this.route.navigate(["/dashboard"]);
+        else
+          this.route.navigate(["/dashboardAdmin"]);
       }
     })
   }
@@ -55,12 +46,10 @@ export class LoginComponent extends Utente{
   }
 
   ripristinaPassword(){
-    this.renew(this,this.ripristinaCred);
-    this.changeType.emit({comp:RipristinaCredenzialiComponent});
+    this.route.navigate(["/ripristinaCredenziali"]);
   }
 
   creaAccount(){
-    this.renew(this,this.creaUtenza);
-    this.changeType.emit({comp:CreaUtenzaComponent});
+    this.route.navigate(["/creaAccount"]);
   }
 }

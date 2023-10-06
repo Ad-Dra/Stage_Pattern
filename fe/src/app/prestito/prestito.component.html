@@ -12,8 +12,8 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-md-12 col-md-12" *ngIf="contiCorrente.length>1">
-                            <app-select [title]="'contoCorrenteDaUsare'" [items]="contiCorrente"   [bindLabel]="'descrizione'"  [bindValue]="'idContoCorrente'"  [formField]="'idContoCorrente'" [formId]="'formId'" [formParent]="form" [required]="true" [maxLen]="'45'"></app-select>        
+                        <div class="col-md-12 col-md-12" *ngIf="cc.length>1">
+                            <app-select [title]="'contoCorrenteDaUsare'" [items]="cc"   [bindLabel]="'descrizione'"  [bindValue]="'idContoCorrente'"  [formField]="'idContoCorrente'" [formId]="'formId'" [formParent]="form" [required]="true" [maxLen]="'45'"></app-select>        
                         </div>
                     </div>
 

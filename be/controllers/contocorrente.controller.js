@@ -1,10 +1,10 @@
 
-const ContoCorrenteAttivoSenior = require("../classiBase/ContoCorrenteAttivoSenior.js");
-const Cliente = require("../classiBase/cliente.js");
-const ContoCorrente = require("../classiBase/contoCorrente.js");
-const ContoCorrenteAttivoJunior = require("../classiBase/contoCorrenteAttivoJunior.js");
+const ContoCorrenteAttivoSenior = require("../contoCorrente/ContoCorrenteAttivoSenior.js");
+const Cliente = require("../cliente/cliente.js");
+const ContoCorrente = require("../contoCorrente/contoCorrente.js");
+const ContoCorrenteAttivoJunior = require("../contoCorrente/contoCorrenteAttivoJunior.js");
 const Utility = require("../controllers/utility.controller.js");
-const clienti = require('../models/utente.model.js');
+const UtentiAutenticati = require("../utente/utentiAutenticati.js");
 
 /**
  * Si occupa della creazione del conto corrente dell'utente
@@ -29,7 +29,6 @@ exports.creaContoCorrente=async (req,res)=>{
         datiUtente=JSON.parse(JSON.stringify(datiUtente))[0];
 
         let risp;
-        let cliente=await clienti.getClienti()[datiUtente.idUtente];
 
         if(datiUtente.idRuolo==2){
             risp=await ContoCorrenteAttivoJunior.create(req.body);
@@ -37,8 +36,8 @@ exports.creaContoCorrente=async (req,res)=>{
             risp= await ContoCorrenteAttivoSenior.create(req.body);
         
         //Per aggiornare l'array
-        if(cliente!=null)
-            await cliente.getContiCorrenti();
+        if(UtentiAutenticati.clienti[datiUtente.idUtente]!=null)
+            await UtentiAutenticati.clienti[datiUtente.idUtente].getContiCorrenti();
 
         res.send(risp);
     }
@@ -61,30 +60,12 @@ exports.deleteContoCorrente = async (req, res) => {
     let risp=await ContoCorrente.deleteByIdDoc(req.body.idContoCorrente)
 
     if(risp && risp.message){
-        let cliente=await clienti.getClienti()[req.body.idUtente];
 
-        if(cliente!=null)
-            cliente.contiCorrenti.splice(req.body.idContoCorrente,1);
+        if(UtentiAutenticati.clienti[req.body.idUtente]!=null)
+            UtentiAutenticati.clienti[req.body.idUtente].contiCorrenti.splice(req.body.idContoCorrente,1);
     }
 
     res.send(risp);
-}
-
-/**
- * Il seguente metodo si occupa di individuare i conti correnti di un determinato cliente
- * 
- * @param {*} req parametri richiesti
- * @param {*} res conti correnti di un determinato cliente
- */
-exports.getDettagliContoCorrente=async (req,res)=>{
-
-    let idUtente=await Utility.getIdUtente(req);
-
-    let cliente=await clienti.getClienti()[idUtente];
-
-    let contiCorrenti=await cliente.getContiCorrenti();
-    
-    res.send(contiCorrenti);
 }
 
 /**
@@ -96,5 +77,14 @@ exports.getDettagliContoCorrente=async (req,res)=>{
 exports.getDettagliContoCorrenteByIdUtente=async (req,res)=>{
     let cliente=new Cliente(req.params.idUtente,null);
     
-    res.send(await cliente.getContiCorrenti());
+    let cc=await cliente.getContiCorrenti();
+    
+    let contiCorrenti=[];
+
+    for(let i=0;i<cc.length;i++){
+        if(cc[i]!=null)
+            contiCorrenti.push(await cc[i].getInfo());
+    }
+
+    res.send(contiCorrenti);
 }

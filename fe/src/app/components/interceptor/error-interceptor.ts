@@ -1,17 +1,15 @@
 import {HttpErrorResponse, HttpEvent,HttpHandler,HttpHeaders,HttpInterceptor,HttpRequest, HttpResponse,} from '@angular/common/http';
-import { EventEmitter, Injectable, Output} from '@angular/core';
+import { Injectable} from '@angular/core';
+import { Router } from '@angular/router';
 import { NotifierService } from 'angular-notifier';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Observable, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
-import { LoginComponent } from 'src/app/login/login.component';
-import { Stage } from 'src/app/stage/stage';
 
 @Injectable()
-export class ErrorInterceptor implements HttpInterceptor,Stage{
-  @Output() changeType: EventEmitter<any>= new EventEmitter<any>();
+export class ErrorInterceptor implements HttpInterceptor{
   
-  constructor(private spinner: NgxSpinnerService,private notifier: NotifierService,private login:LoginComponent) {
+  constructor(private spinner: NgxSpinnerService,private notifier: NotifierService,private route: Router) {
   }
 
   intercept(request: HttpRequest<any>,next: HttpHandler): Observable<HttpEvent<any>> {
@@ -34,8 +32,8 @@ export class ErrorInterceptor implements HttpInterceptor,Stage{
         this.hideLoader();
         if(error.status==403){
           sessionStorage.clear();
-          this.renew(this.login);
-          this.changeType.emit({comp:LoginComponent});
+          
+          this.route.navigate(["/login"]);
         }
           
         this.notifier.notify('error', error && error.error && error.error.message );
@@ -50,10 +48,6 @@ export class ErrorInterceptor implements HttpInterceptor,Stage{
   }
   private hideLoader(): void {
       this.spinner.hide();
-  }
-
-  renew(newType: Stage): void {
-    Object.setPrototypeOf(this, newType);
   }
 }
 

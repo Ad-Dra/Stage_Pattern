@@ -1,10 +1,9 @@
-<app-login  *ngIf="type=='LoginComponent'" (changeType)="refreshTypeObject($event)"></app-login>
-<app-dashboard *ngIf="type=='DashboardComponent'" (changeType)="refreshTypeObject($event)" [denominazione]="denominazione"></app-dashboard>
-<app-dashboard-admin *ngIf="type=='DashboardAdminComponent'" (changeType)="refreshTypeObject($event)" [denominazione]="denominazione"></app-dashboard-admin>
-<app-ripristina-credenziali *ngIf="type=='RipristinaCredenzialiComponent'" (changeType)="refreshTypeObject($event)"></app-ripristina-credenziali>
-<app-crea-utenza  *ngIf="type=='CreaUtenzaComponent'" (changeType)="refreshTypeObject($event)"></app-crea-utenza>
-<app-conferma-creazione-account *ngIf="type=='ConfermaCreazioneAccountComponent'" (changeType)="refreshTypeObject($event)"></app-conferma-creazione-account>
+<app-nav-bar-junior-attivo *ngIf="type=='juniorAttivo'"></app-nav-bar-junior-attivo>
+<app-nav-bar-junior-passivo *ngIf="type=='juniorPassivo'"></app-nav-bar-junior-passivo>
+<app-nav-bar-not-conto-corrente *ngIf="type=='notContoCorrente'"></app-nav-bar-not-conto-corrente>
+<app-nav-bar-senior-attivo *ngIf="type=='seniorAttivo'"></app-nav-bar-senior-attivo>
+<app-nav-bar-senior-attivo *ngIf="type=='seniorPassivo'"></app-nav-bar-senior-attivo>
+<app-nav-bar-admin *ngIf="type=='admin'"></app-nav-bar-admin>
 
-
-<!--<app-nav-bar *ngIf="showNavBar" (changeType)="refreshTypeObject($event)"></app-nav-bar>-->
+<router-outlet></router-outlet>
 <notifier-container></notifier-container>

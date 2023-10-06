@@ -14,6 +14,10 @@
             <div class="row">
                 <button class="btn" (click)="inviaEmail()" title="Invia email">Invia email</button>
             </div>
+            
+            <div class="row">
+                <button class="btn" (click)="indietro()" title="Indietro">Indietro</button>
+            </div>
         </form>
         <form id="formId" [formGroup]="formRipristinaPsw" *ngIf="!ripristinaPasswordFlag">
             <div class="row">
@@ -25,6 +29,7 @@
             <div class="row">
                 <p  *ngIf="!formRipristinaPsw.valid">Compilare i campi obbligatori</p>
             </div>
+
             
             <div class="row">
                 <button class="btn" (click)="ripristinaPassword()" title="Riemposta password">Riemposta password</button>

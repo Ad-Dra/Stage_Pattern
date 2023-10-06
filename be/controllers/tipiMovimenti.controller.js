@@ -1,4 +1,4 @@
-const TipologieBonifico = require('../classiBase/tipologiaBonifico.js');
+const TipologieBonifico = require('../movimento/tipologiaBonifico.js');
 
 /**
  * Il seguente metodo individua le tipologie di bonifico

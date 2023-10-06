@@ -1,13 +1,12 @@
-const Movimenti = require('../classiBase/movimento.js');
+const Movimenti = require('../movimento/movimento.js');
 const Utility = require("../controllers/utility.controller.js");
-const logger = require("../logger.js");
-const ContoCorrente = require('../classiBase/contoCorrente.js');
+const ContoCorrente = require('../contoCorrente/contoCorrente.js');
+const ClienteJunior = require("../cliente/clienteJunior.js");
+const ClienteSenior = require("../cliente/clienteSenior.js");
 
-const ClienteJunior = require("../classiBase/clienteJunior.js");
-const ClienteSenior = require("../classiBase/clienteSenior.js");
+const UtentiAutenticati = require("../utente/utentiAutenticati.js");
 
-const clienti = require('../models/utente.model.js');
-const Cliente = require('../classiBase/cliente.js');
+const Cliente = require('../cliente/cliente.js');
 
 exports.creaBonifico = async (req, res) => {
     if (req.body) {
@@ -16,7 +15,7 @@ exports.creaBonifico = async (req, res) => {
 
         if(req.body.importo>0){
             
-            let cliente=await clienti.getClienti()[req.body.idUtente];
+            let cliente=UtentiAutenticati.clienti[req.body.idUtente];
             contoCorrente=await cliente.getContiCorrenti();
             contoCorrente=contoCorrente[req.body.idContoCorrente];
             
@@ -41,8 +40,8 @@ exports.creaBonifico = async (req, res) => {
                     let contiCorrentiBeneficiario=[];
                     let risp;
 
-                    if(await clienti.getClienti()[idUtenteBeneficiario]){
-                        contiCorrentiBeneficiario=await clienti.getClienti()[idUtenteBeneficiario].getContiCorrenti();
+                    if(UtentiAutenticati.clienti[idUtenteBeneficiario]){
+                        contiCorrentiBeneficiario=await UtentiAutenticati.clienti[idUtenteBeneficiario].getContiCorrenti();
                         risp=await contiCorrentiBeneficiario[idContoCorrenteBen].versamento(req.body.importo);
                         await contiCorrentiBeneficiario[idContoCorrenteBen].getIdContoCorrente();
                     }
@@ -94,7 +93,7 @@ exports.creaRicaricaTelefonica = async (req,res)=>{
         req.body.importo=parseFloat(req.body.importo);
 
         if(req.body.importo>0){
-            let cliente=await clienti.getClienti()[req.body.idUtente];
+            let cliente=UtentiAutenticati.clienti[req.body.idUtente];
             let contoCorrente=await cliente.getContiCorrenti();
             contoCorrente=contoCorrente[req.body.idContoCorrente];
 
@@ -133,8 +132,7 @@ exports.creaPrestito = async (req, res) => {
     if(req.body.importo > 0 && req.body.importo <= 3000){
         req.body.idUtente = await Utility.getIdUtente(req);
 
-        let cliente=await clienti.getClienti()[req.body.idUtente];
-        contoCorrente=await cliente.getContiCorrenti();
+        contoCorrente=await UtentiAutenticati.clienti[req.body.idUtente].getContiCorrenti();
         contoCorrente=contoCorrente[req.body.idContoCorrente];
 
         let risp=await contoCorrente.prestito(req.body.importo);

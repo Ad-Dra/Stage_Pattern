@@ -6,13 +6,12 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
-import { DashboardComponent } from './dashboard/dashboard.component';
 import { InputTextComponent } from './components/input/inputText/input-text/input-text.component';
 import { ShowHidePswComponent } from './components/input/show-hide-psw/show-hide-psw.component';
 import { ErrorInterceptor } from './components/interceptor/error-interceptor';
 import { NotifierModule } from 'angular-notifier';
 import { NgxSpinnerModule } from 'ngx-spinner';
-import { NavBarComponent } from './components/nav-bar/nav-bar.component';
+
 import { RipristinaCredenzialiComponent } from './ripristina-credenziali/ripristina-credenziali.component';
 import { CreaUtenzaComponent } from './crea-utenza/crea-utenza.component';
 import { ConfermaCreazioneAccountComponent } from './conferma-creazione-account/conferma-creazione-account.component';
@@ -34,14 +33,22 @@ import { NgxSmartModalModule } from 'ngx-smart-modal';
 import { ConfermaCancellazioneComponent } from './conferma-cancellazione/conferma-cancellazione.component';
 import { ModificaContiCorrrentiUtenteComponent } from './modifica-conti-corrrenti-utente/modifica-conti-corrrenti-utente.component';
 import { PrestitoComponent } from './prestito/prestito.component';
+import { ParserComponent } from './parser/parser.component';
+import { AuthGuard } from './components/guards/auth.guard';
+import { NavBarJuniorAttivoComponent } from './components/nav-bar-junior-attivo/nav-bar-junior-attivo.component';
+import { NavBarJuniorPassivoComponent } from './components/nav-bar-junior-passivo/nav-bar-junior-passivo.component';
+import { ParserService } from './parser/parserService';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { NavBarSeniorAttivoComponent } from './components/nav-bar-senior-attivo/nav-bar-senior-attivo.component';
+import { NavBarSeniorPassivoComponent } from './components/nav-bar-senior-passivo/nav-bar-senior-passivo.component';
+import { NavBarNotContoCorrenteComponent } from './components/nav-bar-not-conto-corrente/nav-bar-not-conto-corrente.component';
+
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    DashboardComponent,
     InputTextComponent,
     ShowHidePswComponent,
-    NavBarComponent,
     RipristinaCredenzialiComponent,
     CreaUtenzaComponent,
     ConfermaCreazioneAccountComponent,
@@ -58,7 +65,14 @@ import { PrestitoComponent } from './prestito/prestito.component';
     CreaContoCorrenteClienteComponent,
     ConfermaCancellazioneComponent,
     ModificaContiCorrrentiUtenteComponent,
-    PrestitoComponent
+    PrestitoComponent,
+    ParserComponent,
+    NavBarJuniorAttivoComponent,
+    NavBarJuniorPassivoComponent,
+    DashboardComponent,
+    NavBarSeniorAttivoComponent,
+    NavBarSeniorPassivoComponent,
+    NavBarNotContoCorrenteComponent
   ],
   imports: [
     BrowserModule,
@@ -85,7 +99,7 @@ import { PrestitoComponent } from './prestito/prestito.component';
       },
     })
   ],
-  providers: [AppComponent,LoginComponent,DashboardComponent,RipristinaCredenzialiComponent,CreaUtenzaComponent,ConfermaCreazioneAccountComponent,ChiSiamoComponent,BonificoComponent,RicaricaTelefonicaComponent,InfoAccountComponent,MovimentiComponent,DashboardAdminComponent,{ provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor,multi: true},{ provide: COMPONENT_B_TOKEN, useValue: LoginComponent}],
+  providers: [AppComponent,ParserService,AuthGuard,ParserComponent,{ provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor,multi: true},{ provide: COMPONENT_B_TOKEN, useValue: LoginComponent}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

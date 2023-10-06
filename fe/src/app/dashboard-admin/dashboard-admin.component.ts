@@ -1,9 +1,5 @@
-import { Component, EventEmitter, Inject, Input, OnInit, Output } from '@angular/core';
-import { InfoAccountComponent } from '../info-account/info-account.component';
-import { Stage } from '../stage/stage';
-import { LoginComponent } from '../login/login.component';
+import { Component, Input, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { COMPONENT_B_TOKEN } from '../app.module';
 import { Colonne } from '../components/grids/grid/grid/grid.component';
 import { NgxSmartModalService } from 'ngx-smart-modal';
 
@@ -12,9 +8,8 @@ import { NgxSmartModalService } from 'ngx-smart-modal';
   templateUrl: './dashboard-admin.component.html',
   styleUrls: ['./dashboard-admin.component.scss']
 })
-export class DashboardAdminComponent implements Stage, OnInit{
-  public type:any=DashboardAdminComponent.name;
-  
+export class DashboardAdminComponent implements OnInit{
+
   @Input() denominazione:any;
   public responseOk:boolean=false;
   public clienti:any=[];
@@ -26,20 +21,12 @@ export class DashboardAdminComponent implements Stage, OnInit{
     {name:"Username", field:'username',isCurrency:false,isDate:false, persIcon:false}
   ]
 
-  @Output() changeType: EventEmitter<any>= new EventEmitter<any>();
-  
-  constructor(private http:HttpClient,@Inject(COMPONENT_B_TOKEN)private login:LoginComponent,public ngxSmartModalService: NgxSmartModalService){
+  constructor(private http:HttpClient,public ngxSmartModalService: NgxSmartModalService){
 
   }
 
   ngOnInit(): void {
-    if(sessionStorage.getItem("statusObject") && sessionStorage.getItem("statusObject")!=null && sessionStorage.getItem("statusObject")!='undefined')
-      this.type=sessionStorage.getItem("statusObject")!='DashboardAdminComponent' ? sessionStorage.getItem("statusObject")?.split("_")[1] : sessionStorage.getItem("statusObject");
-
-    if(this.type=="DashboardAdminComponent"){
-      //this.getInfoAccount();
-      this.getUtenti();
-    }
+    this.getUtenti();
   }
 
   getInfoAccount(){
@@ -57,28 +44,6 @@ export class DashboardAdminComponent implements Stage, OnInit{
         this.responseOk=true;
       }
     })
-  }
-
-  home() {
-    this.type=DashboardAdminComponent.name;
-    this.changeType.emit({comp:DashboardAdminComponent});
-    this.getInfoAccount();
-    this.getUtenti();
-  }
-
-  getInfAccount() {
-    this.changeType.emit({comp:InfoAccountComponent,isDashboard:"DashboardAdminComponent"});
-    this.type=InfoAccountComponent.name;
-  }
-
-  logOut() {
-    sessionStorage.clear();
-    this.renew(this.login);
-    this.changeType.emit({comp:LoginComponent});
-  }
-
-  renew(t: Stage) {
-    Object.setPrototypeOf(this, t);
   }
 
   azione(riga:any){

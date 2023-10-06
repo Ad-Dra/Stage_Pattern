@@ -17,8 +17,8 @@
                         <div class="col-md-6 col-md-6">
                             <app-select [title]="'importoRicarica'" [items]="importiRicarica"   [bindLabel]="'importo'" [bindValue]="'importo'"  [formField]="'importo'" [formId]="'formId'" [formParent]="form" [required]="true" [maxLen]="'2'" [readonly]="!this.form.controls['operatore'].value"></app-select>        
                         </div>
-                        <div class="col-md-6 col-md-6" *ngIf="contiCorrente.length>1">
-                            <app-select [title]="'contoCorrenteDaUsare'" [items]="contiCorrente"   [bindLabel]="'descrizione'"  [bindValue]="'idContoCorrente'"  [formField]="'idContoCorrente'" [formId]="'formId'" [formParent]="form" [required]="true" [maxLen]="'45'"></app-select>        
+                        <div class="col-md-6 col-md-6" *ngIf="cc.length>1">
+                            <app-select [title]="'contoCorrenteDaUsare'" [items]="cc"   [bindLabel]="'descrizione'"  [bindValue]="'idContoCorrente'"  [formField]="'idContoCorrente'" [formId]="'formId'" [formParent]="form" [required]="true" [maxLen]="'45'"></app-select>        
                         </div>
                     </div>
 

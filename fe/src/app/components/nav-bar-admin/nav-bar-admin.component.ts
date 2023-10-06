@@ -1,4 +1,5 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-nav-bar-admin',
@@ -6,22 +7,21 @@ import { Component, EventEmitter, Output } from '@angular/core';
   styleUrls: ['./nav-bar-admin.component.scss']
 })
 export class NavBarAdminComponent {
-
-  @Output() homeEmitter: EventEmitter<any>= new EventEmitter<any>();
-  @Output() getInfAccountEmitter: EventEmitter<any>= new EventEmitter<any>();
-  @Output() logOutEmitter: EventEmitter<any>= new EventEmitter<any>();
   
+  constructor(private route: Router){
+
+  }
 
   home(){
-    this.homeEmitter.emit();
+    this.route.navigate(["/dashboardAdmin"]);
   }
 
   getInfAccount(){
-    this.getInfAccountEmitter.emit();
+    this.route.navigate(["/infoAccount"]);
   }
 
   logOut(){
-    this.logOutEmitter.emit();
+    sessionStorage.clear();
+    this.route.navigate(["/login"]);
   }
-
 }

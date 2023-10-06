@@ -1,23 +1,18 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, EventEmitter, Inject, Output } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { COMPONENT_B_TOKEN } from '../app.module';
-import { LoginComponent } from '../login/login.component';
-import { Utente } from '../stage/utente';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-crea-utenza',
   templateUrl: './crea-utenza.component.html',
   styleUrls: ['./crea-utenza.component.scss']
 })
-export class CreaUtenzaComponent extends Utente{
+export class CreaUtenzaComponent{
 
   public form:any;
-  @Output() changeType: EventEmitter<any>= new EventEmitter<any>();
 
-  constructor(private http:HttpClient,private fb:FormBuilder,@Inject(COMPONENT_B_TOKEN)private login:LoginComponent) { 
-    super();
-
+  constructor(private http:HttpClient,private fb:FormBuilder, private router: Router) { 
     this.form =  this.fb.group({
       cognome: [null,[Validators.required,Validators.pattern('^[a-zA-Z ]*$')]],
       nome: [null,[Validators.required,Validators.pattern('^[a-zA-Z ]*$')]],
@@ -31,8 +26,7 @@ export class CreaUtenzaComponent extends Utente{
       comune:[null,[Validators.required,Validators.pattern('^[a-zA-Z ]*$')]],
       cap:[null,[Validators.required,Validators.pattern('[0-9]{1,5}')]],
       numCivico:[null,[Validators.required,Validators.pattern('[0-9]{1,5}')]],
-      provincia:[null,[Validators.required,Validators.pattern('^[a-zA-Z ]*$')]],
-      //cellulare:[null,[Validators.required,Validators.pattern('[0-9]{1,10}')]],
+      provincia:[null,[Validators.required,Validators.pattern('^[a-zA-Z ]*$')]]
     });
   }
 
@@ -41,10 +35,12 @@ export class CreaUtenzaComponent extends Utente{
       return;
 
     this.http.post("/api/auth/createUtenza.json",this.form.value).subscribe(data => {
-      if(data){
-        this.renew(this,this.login);
-        this.changeType.emit({comp:LoginComponent});
-      }
+      if(data)
+        this.indietro();
     });
+  }
+
+  indietro(){
+    this.router.navigate(["/login"]);
   }
 }

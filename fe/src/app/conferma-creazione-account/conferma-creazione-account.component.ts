@@ -1,9 +1,7 @@
-import { Component, EventEmitter, Inject, Output } from '@angular/core';
+import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { COMPONENT_B_TOKEN } from '../app.module';
-import { LoginComponent } from '../login/login.component';
-import {Location} from '@angular/common'; 
-import { Utente } from '../stage/utente';
+import {Location} from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-conferma-creazione-account',
@@ -11,24 +9,18 @@ import { Utente } from '../stage/utente';
   styleUrls: ['./conferma-creazione-account.component.scss']
 })
 
-export class ConfermaCreazioneAccountComponent extends Utente{
+export class ConfermaCreazioneAccountComponent{
 
   public username:string="";
   private token:string="";
   private email:string="";
-
-  @Output() changeType: EventEmitter<any>= new EventEmitter<any>();
   
-  constructor(private locations: Location,private http:HttpClient,@Inject(COMPONENT_B_TOKEN)private login:LoginComponent){
-    super();
-
-    if(location.hash.includes('#/confermaEmail')){
-      let url=location.hash.split("/");
-      if(url.length>3){
-        this.email=url[2];
-        this.username=url[3];
-        this.token=url[4]
-      }
+  constructor(private locations: Location,private http:HttpClient, private router:Router){
+    let url=location.hash.split("/");
+    if(url.length>3){
+      this.email=url[2];
+      this.username=url[3];
+      this.token=url[4]
     }
   }
 
@@ -43,14 +35,10 @@ export class ConfermaCreazioneAccountComponent extends Utente{
 
       this.http.post("/api/auth/aggiornaUtenza.json",parametri).subscribe(data=>{
         if(data){
-          if(parametri.utenzaAttiva==1){
-            this.locations.replaceState("");
-            this.renew(this,this.login);
-            this.changeType.emit({comp:LoginComponent});
-          }
-          else{
+          if(parametri.utenzaAttiva==1)
+           this.router.navigate(["/login"]);
+          else
             window.close();
-          }
         }
       });
     }

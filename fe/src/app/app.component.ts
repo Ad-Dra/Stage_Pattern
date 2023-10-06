@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { LoginComponent } from './login/login.component';
-import { RipristinaCredenzialiComponent } from './ripristina-credenziali/ripristina-credenziali.component';
-import { ConfermaCreazioneAccountComponent } from './conferma-creazione-account/conferma-creazione-account.component';
+import { ParserService } from './parser/parserService';
+import { ClienteJunior } from './stage/cliente/clienteJunior';
+import { ClienteSenior } from './stage/cliente/clienteSenior';
+import { NavigationEnd, Router } from '@angular/router';
+import { ParserComponent } from './parser/parser.component';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
@@ -10,69 +13,64 @@ import { ConfermaCreazioneAccountComponent } from './conferma-creazione-account/
 })
 export class AppComponent implements OnInit{
   title = 'Stage_Pattern';
-  public type:any=LoginComponent.name;
-  public showNavBar:boolean=false;
-  public denominazione:any;
+  public type:string='';
 
-  constructor(){
+  constructor(private route: Router,private parserService: ParserService,private router: Router,private parser:ParserComponent,private http:HttpClient){
+    router.events.subscribe((event:  any) => {
+      if (event instanceof NavigationEnd) {
+        if(sessionStorage.getItem("token") && this.getRole()=='Admin' && location.hash!='#/login' && location.hash!='#/confermaEmail'  && location.hash!='#/ripristinaCredenziali' && location.hash!='#/creaAccount')
+          this.type='admin'
+        else if(sessionStorage.getItem("token") && location.hash!='#/login' && location.hash!='#/confermaEmail'  && location.hash!='#/ripristinaCredenziali' && location.hash!='#/creaAccount'){
+          this.http.get("/api/refreshCliente.json").subscribe((res:any)=>{
+            if(res)
+              this.parser.parseData(res);
+          });
+        }else
+          this.type='';
+
+        if(location.hash=='#/login')
+          this.route.navigate(["/dashboard"]);
+        else if( location.hash=='#/confermaEmail'  || location.hash=='#/ripristinaCredenziali' || location.hash=='#/creaAccount')
+          sessionStorage.clear();
+      }
+    });
   }
 
   ngOnInit(): void {
-    if(location.hash.includes('#/ripristinaPassword'))
-      this.type=RipristinaCredenzialiComponent.name;
-    else if(location.hash.includes('#/confermaEmail'))
-      this.type=ConfermaCreazioneAccountComponent.name;
-
-    if(sessionStorage.getItem("statusObject") && sessionStorage.getItem("statusObject")!=null && sessionStorage.getItem("statusObject")!='undefined')
-      this.type=sessionStorage.getItem("statusObject");
-
-    this.showOrHideNavBar();
-    this.setStatusObject();
-
-    if(this.type.includes("DashboardAdminComponent"))
-      this.type="DashboardAdminComponent";
-    else if(this.type.includes("DashboardComponent"))
-      this.type="DashboardComponent";
-
-    if(this.type.includes("DashboardAdminComponent") || this.type.includes("DashboardComponent"))
-      this.denominazione=this.getDenominazione();
+    this.parserService.getCliente().subscribe((val) => {
+      let cliente=val;
+      if((cliente instanceof  ClienteJunior) ||  (cliente instanceof  ClienteSenior))
+        this.refresh(cliente);
+    });
   }
 
-  showOrHideNavBar(){
-    if(this.type!="LoginComponent" && this.type!="RipristinaCredenzialiComponent" && this.type!="CreaUtenzaComponent" && this.type!="ConfermaCreazioneAccountComponent")
-      this.showNavBar=true;
-    else
-      this.showNavBar=false;
-  }
+  refresh(cliente:ClienteJunior | ClienteSenior){
+    let cc : any=cliente.getContiCorrenti();
+    let haveMoney:boolean=false;
 
-  refreshTypeObject(typeObject:any){
-    this.type=typeObject.comp.name;
-    this.showOrHideNavBar();
-    this.setStatusObject(typeObject.isDashboard);
-
-    if(this.type.includes("DashboardAdminComponent") || this.type.includes("DashboardComponent"))
-      this.denominazione=this.getDenominazione();
-
-    if(typeObject.isDashboard)
-      this.type=typeObject.isDashboard;
-
-    
-  }
-
-  setStatusObject(isDashboard?:string){
-    if(this.type && this.type!="")
-      if(isDashboard)
-        sessionStorage.setItem("statusObject",isDashboard+"_"+this.type);
-      else
-        sessionStorage.setItem("statusObject",this.type);
-  }
-
-  getDenominazione(){
-    if(sessionStorage.getItem("token")){
-        let token:any=sessionStorage.getItem("token")?.split('.')[1];
-        return JSON.parse(atob(token)).cognome+" "+JSON.parse(atob(token)).nome;
+    for(let i=0;i<cc.length;i++){
+      if(cc[i].getSaldo()>0){
+        haveMoney=true;
+        break;
+      }
     }
+    
+    if(cc.length==0)
+      this.type="notContoCorrente";
+    else if(cliente.getIdRuolo()==2 && haveMoney)
+      this.type="juniorAttivo";
+    else if(cliente.getIdRuolo()==2 && !haveMoney)
+      this.type="juniorPassivo";
+    else if(cliente.getIdRuolo()==3 && haveMoney)
+      this.type="seniorAttivo";
     else
-      return "";
+      this.type="seniorPassivo";
+  }
+
+  getRole(){
+    if(sessionStorage.getItem("token")){
+      let token:any=sessionStorage.getItem("token")?.split('.')[1];
+      return JSON.parse(atob(token)).ruolo;
+    }
   }
 }

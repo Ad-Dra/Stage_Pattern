@@ -1,4 +1,4 @@
-const OperatoreTelefonico = require("../classiBase/operatoreTelefonico.js");
+const OperatoreTelefonico = require("../operatore/operatoreTelefonico.js");
 
 /**
  * Il seguente metodo ritona gli operatori disponibili

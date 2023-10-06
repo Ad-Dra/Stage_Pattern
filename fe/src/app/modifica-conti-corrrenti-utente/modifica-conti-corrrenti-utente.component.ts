@@ -58,7 +58,7 @@ export class ModificaContiCorrrentiUtenteComponent {
   cancellaContoCorrente(){
     let riga:any=this.ngxSmartModalService.getModalData("confermaCancellazione");
 
-    this.http.delete("/api/admin/deleteContoCorrente.json",{body:{"idContoCorrente":riga.idContoCorrente}}).subscribe((res:any)=>{
+    this.http.delete("/api/admin/deleteContoCorrente.json",{body:{"idContoCorrente":riga.idContoCorrente,"idUtente":this.idUtente}}).subscribe((res:any)=>{
       if(res && res.message){
         this.onCloseConfCanc();
         this.contiCorrente.splice(riga.index,1);

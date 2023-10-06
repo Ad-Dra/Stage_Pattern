@@ -21,13 +21,13 @@ router.post("*",utility.verifyToken);
 router.put("*",utility.verifyToken);
 router.delete("*",utility.verifyToken);
 
-
 router.post("/api/login.json",utente.login);
 router.post("/api/logout.json", utente.logout);
-router.post("/api/updateInfoAccount",utente.updateInfoAccount);
+router.post("/api/updateInfoAccount.json",utente.updateInfoAccount);
+router.get("/api/refreshCliente.json",utente.refreshUtente);
+
 
 router.get("/api/getInfoAccount.json",utente.getInfoAccount);
-router.get("/api/getInfoContoCorrente.json",contoCorrente.getDettagliContoCorrente);
 
 router.post("/api/auth/createUtenza.json",       utente.create); 
 router.post("/api/auth/ripristinaPassword.json", utente.ripristinaPassword); 
