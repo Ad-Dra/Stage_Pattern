@@ -3,7 +3,7 @@ var jwt = require('jsonwebtoken');
 const sql = require("../config/db.js");
 const tokenConfig = require("../config/token.config");
 const nodeMailer=require("nodemailer");
-const clienti = require('../models/utente.model.js');
+const UtentiAutenticati = require('../utente/utentiAutenticati.js');
 
 exports.verifyToken=async (req,res,next)=>{
     if(req.originalUrl!='/api/login.json' && !req.originalUrl.includes('/api/auth')){
@@ -15,7 +15,7 @@ exports.verifyToken=async (req,res,next)=>{
         let utente;
 
         if(datiUtente.idRuolo>1)
-          utente=await clienti.getClienti();
+          utente=UtentiAutenticati.clienti;
 
         if(token!="null" && token!=undefined){
             jwt.verify(token,tokenConfig.KEY, async function(err, _tokendata) {
@@ -119,10 +119,7 @@ exports.isActiveUser=(dati,email)=>{
         host:"smtp.gmail.com",
         port: 587,
         secure:false,
-        auth: {
-          user: 'draibinadnan@gmail.com',
-          pass: 'skuyywrswdfdpxvc'
-        }
+        
       })
       
   
