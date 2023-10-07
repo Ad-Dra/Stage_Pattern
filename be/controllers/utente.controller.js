@@ -185,8 +185,8 @@ exports.login=async (req,res)=>{
       if(risp.message){
 
         if(!utenti[req.body.identificativo])
-          utenti[req.body.identificativo]={numTentativi:0};
-        else if(utenti[req.body.identificativo].numTentativi>=0 && utenti[req.body.identificativo].numTentativi<=3)
+          utenti[req.body.identificativo]={numTentativi:1};
+        else if(utenti[req.body.identificativo].numTentativi>=0 && utenti[req.body.identificativo].numTentativi<3)
           utenti[req.body.identificativo].numTentativi=utenti[req.body.identificativo].numTentativi+=1;
 
          
