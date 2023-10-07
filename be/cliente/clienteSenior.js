@@ -51,7 +51,7 @@ class ClienteSenior extends Cliente{
      * Il seguente metodo si occupa di memorizzare nel db la carta di credito e di invocare il metodo
      * che aggiorna la crataCredito sulla tabella utente
      * 
-     * @returns 
+     * @returns msg 
      */
     createCartaDiCredito(){
         let dataCreazione=new Date();

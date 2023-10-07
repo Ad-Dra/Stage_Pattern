@@ -1,9 +1,9 @@
-const Cliente = require("./cliente");
-const ClienteSenior = require("./clienteSenior");
 const logger = require("../logger.js");
 
-class ClienteJunior extends Cliente{
+const Cliente = require("./cliente");
+const ClienteSenior = require("./clienteSenior");
 
+class ClienteJunior extends Cliente{
 
     constructor(idUtente){
         super(idUtente,2);
@@ -13,6 +13,7 @@ class ClienteJunior extends Cliente{
      * Il seguente metodo si occupa di far evolvere un Cliente Junior in Cliente Senior
      *  
      * @param {*} cliente da far evolvere
+     * 
      * @returns cliente evoluto
      */
     async renew(cliente){

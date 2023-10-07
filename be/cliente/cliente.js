@@ -1,11 +1,10 @@
 const Stage = require("../stage/Stage");
+const sql = require('../config/db.js');
 
 const ContoCorrentePassivoJunior = require("../contoCorrente/contoCorrentePassivoJunior.js");
 const ContoCorrentePassivoSenior = require("../contoCorrente/contoCorrentePassivoSenior.js");
 const ContoCorrenteAttivoJunior = require("../contoCorrente/contoCorrenteAttivoJunior.js");
 const ContoCorrenteAttivoSenior = require("../contoCorrente/ContoCorrenteAttivoSenior.js");
-
-const sql = require('../config/db.js');
 
 class Cliente extends Stage{
 
@@ -17,14 +16,21 @@ class Cliente extends Stage{
 
         this.anagrafica=null;
         this.contiCorrenti=[];
-
-        //this.getContiCorrenti();
     }
 
+    /**
+     * 
+     * @returns id utente
+     */
     getIdUtente(){
         return this.idUtente;
     }
 
+    /**
+     * Il seguente metodo si occupa di ritornare l'anagrafica del cliente
+     * 
+     * @returns l'anagrafica     
+     **/
     getAnagrafica(){
         return new Promise(resolve =>{
             sql.query("SELECT username,email,cognome,nome,dataNascita,via,numCivico,cap,provincia,comune FROM anagrafica INNER JOIN utente ON utente.idUtente=anagrafica.idUtente WHERE anagrafica.idUtente= ?;", this.idUtente,(err, data) => {
@@ -40,6 +46,11 @@ class Cliente extends Stage{
         });
     }
 
+    /**
+     * Il seguente metodo individua i conti correnti di un cliente
+     * 
+     * @returns conti correnti
+     */
     async getContiCorrenti(){
         return new Promise(resolve =>{
             sql.query("SELECT idContoCorrente,saldo FROM utente INNER JOIN contocorrente ON utente.idUtente=contocorrente.idUtente WHERE utente.idUtente= ?;", this.idUtente,async (err, data) => {
@@ -55,6 +66,11 @@ class Cliente extends Stage{
         });
     }
 
+    /**
+     * Il seguente metodo si occupa di creare istanze di conti correnti in base alla loro tipologia
+     * 
+     * @param {*} contiCorrenti array di conti correnti
+     */
     setContiCorrenti(contiCorrenti){
         for(let i=0;i<contiCorrenti.length;i++){
             if(contiCorrenti[i]){
@@ -70,6 +86,12 @@ class Cliente extends Stage{
         }
     }
 
+    /**
+     * Il seguente metodo individua il codice del ruolo del cliente
+     * 
+     * @param {*} idUtente codice dell'utente 
+     * @returns l'idRuolo dell'cliente
+     */
     static getIdRuoloByIdUtente(idUtente){
         return new Promise(resolve =>{
             sql.query("SELECT idRuolo FROM  Utente  WHERE idUtente = ?;", idUtente,(err, data) => {
@@ -83,6 +105,11 @@ class Cliente extends Stage{
         });
     }
 
+    /**
+     * Il seguente metodo si occupa di individuare il numero di movimenti effettuati da un cliente
+     * 
+     * @returns Il numero di movimenti di uno specifico cliente
+     */
     getNMovimenti(){
         return new Promise(resolve =>{
             sql.query("SELECT COUNT(*) as numMovimenti FROM Movimento WHERE idUtente = ? and (importo<0 or causale='prestito');", this.idUtente,(err, res) => {
@@ -114,6 +141,5 @@ class Cliente extends Stage{
         }); 
     }
 }
-
 
 module.exports = Cliente;
