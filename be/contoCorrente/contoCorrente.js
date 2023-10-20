@@ -1,6 +1,8 @@
 const sql = require('../config/db.js');
 const Stage = require('../stage/Stage.js');
 const Movimento = require("../movimento/movimento.js");
+//const EvoluzioniContoCorrente = require('./evoluzioniContoCorrente.js');
+
 
 class ContoCorrente extends Stage{
 
@@ -34,6 +36,10 @@ class ContoCorrente extends Stage{
         }); 
     }
 
+    /**
+     * 
+     * @returns info conto corrente
+     */
     getInfo(){
         return new Promise(resolve =>{
             sql.query("SELECT dataCreazione,descrizione,saldo,idContoCorrente,iban FROM contocorrente WHERE idContoCorrente = ?;", this.idContoCorrente,async (err, data) => {
@@ -47,6 +53,12 @@ class ContoCorrente extends Stage{
         });
     }
 
+    /**
+     * Il seguente metodo si occupa di cancellare il conto corrente e i riletavi movimenti
+     *  
+     * @param {*} idUtente id utente
+     * @returns msg
+     */
     static deleteByIdUtente(idUtente){
         return new Promise(async resolve =>{
 
@@ -147,6 +159,12 @@ class ContoCorrente extends Stage{
         });
     }
 
+    /**
+     * Questo metodo si occupa di individuare l'idUtente partendo dall'iban
+     * 
+     * @param {*} iban 
+     * @returns idUtente 
+     */
     static getIdUtenteByIBAN(iban){
         return new Promise(resolve =>{
             sql.query("SELECT utente.idUtente FROM  Utente INNER JOIN contoCorrente ON utente.idUtente=contoCorrente.idUtente WHERE iban = ?;", iban,(err, data) => {
@@ -177,6 +195,17 @@ class ContoCorrente extends Stage{
             })
         }); 
     }
+
+    /*renew(nameObject,value){
+        /*if(nameObject=="ContoCorrentePassivoSenior")
+            super.renew(new [nameObject](value));*/
+       /*else if(this.nameObject=="contoCorrenteAttivoJunior")
+            super.renew(new ContoCorrenteAttivoJunior(this.value));
+        else if(this.nameObject=="contoCorrentePassivoSenior")
+            super.renew(new ContoCorrentePassivoSenior(this.value));
+        else if(this.nameObject=="contoCorrenteAttivoSenior")
+            super.renew(new ContoCorrenteAttivoSenior(this.value));
+    }*/
 }
 
 module.exports = ContoCorrente;

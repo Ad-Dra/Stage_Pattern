@@ -4,7 +4,7 @@ const sql = require('../config/db.js');
 const ContoCorrentePassivoJunior = require("../contoCorrente/contoCorrentePassivoJunior.js");
 const ContoCorrentePassivoSenior = require("../contoCorrente/contoCorrentePassivoSenior.js");
 const ContoCorrenteAttivoJunior = require("../contoCorrente/contoCorrenteAttivoJunior.js");
-const ContoCorrenteAttivoSenior = require("../contoCorrente/ContoCorrenteAttivoSenior.js");
+const ContoCorrenteAttivoSenior = require("../contoCorrente/contoCorrenteAttivoSenior.js");
 
 class Cliente extends Stage{
 

@@ -2,7 +2,6 @@ import { Anagrafica } from "../anagrafica";
 import { ContoCorrente } from "../contoCorrente/contoCorrente";
 import { Cliente } from "./cliente";
 
-
 export class ClienteSenior extends Cliente{
     
     private cartaCredito:string | undefined;

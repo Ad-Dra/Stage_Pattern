@@ -1,4 +1,3 @@
-
 class UtentiAutenticati{
     static clienti = [];
 
