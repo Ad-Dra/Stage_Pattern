@@ -1,6 +1,5 @@
 const sql = require('../config/db.js');
 const logger = require("../logger.js");
-const ContoCorrenteAttivoSenior = require('./ContoCorrenteAttivoSenior.js');
 const ContoCorrente = require('./contoCorrente.js');
 
 class ContoCorrentePassivoSenior extends ContoCorrente{
@@ -43,3 +42,4 @@ class ContoCorrentePassivoSenior extends ContoCorrente{
 }
 
 module.exports = ContoCorrentePassivoSenior;
+const ContoCorrenteAttivoSenior = require('./contoCorrenteAttivoSenior.js');

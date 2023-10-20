@@ -1,5 +1,5 @@
 
-const ContoCorrenteAttivoSenior = require("../contoCorrente/ContoCorrenteAttivoSenior.js");
+const ContoCorrenteAttivoSenior = require("../contoCorrente/contoCorrenteAttivoSenior.js");
 const Cliente = require("../cliente/cliente.js");
 const ContoCorrente = require("../contoCorrente/contoCorrente.js");
 const ContoCorrenteAttivoJunior = require("../contoCorrente/contoCorrenteAttivoJunior.js");

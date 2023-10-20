@@ -100,13 +100,11 @@ class Utente extends Stage{
                     let cliente;
 
                     if(res.idRuolo==2){
-                        this.renew(new ClienteJunior(res.idUtente));
                         cliente = new ClienteJunior(res.idUtente);
-                     //   clienti[res.idUtente]=new ClienteJunior(res.idUtente);
+                        this.renew(cliente);
                     }else if(res.idRuolo==3){
-                        this.renew(new ClienteSenior(res.idUtente,res.cartaCredito));
                         cliente = new ClienteSenior(res.idUtente,res.cartaCredito);
-                       // clienti[res.idUtente]=new ClienteSenior(res.idUtente,res.cartaCredito);
+                        this.renew(cliente);
                     }
 
                     if(res.idRuolo>1)
