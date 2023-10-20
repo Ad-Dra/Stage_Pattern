@@ -29,6 +29,15 @@ body{
     overflow: hidden;
 }
 
+.boxCreaUtenza{
+    position: relative;
+    width: 700px;
+    height: 520px;
+    background: #1c1c1c;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
 .boxCreaAcc{
     background: #1c1c1c;
     border-radius: 8px;
@@ -207,6 +216,13 @@ a{
     color: #8f8f8f;
 }
 
+.btn:hover {     
+    background-color:#95b1e4 !important;    
+}
+
+.width50{
+    width: 50% !important;
+}
 
 /*
 input:valid ~ label,
