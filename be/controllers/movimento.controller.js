@@ -22,7 +22,7 @@ exports.creaBonifico = async (req, res) => {
 
             if (await contoCorrente.getSaldo() >= req.body.importo) {
               
-                contoCorrente.bonifico(req.body.importo);
+                await contoCorrente.bonifico(req.body.importo);
 
                 req.body.importo=req.body.importo*(-1);
 
@@ -140,6 +140,7 @@ exports.creaPrestito = async (req, res) => {
         if(risp){
             req.body.tipologiaBonifico=9;
             req.body.causale="Prestito dalla City Safe Bank";
+            req.body.beneficiario="/";
 
             risp=await Movimenti.create(req.body);
 

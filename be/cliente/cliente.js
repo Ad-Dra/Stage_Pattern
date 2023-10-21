@@ -78,7 +78,7 @@ class Cliente extends Stage{
                     this.contiCorrenti[contiCorrenti[i].idContoCorrente]=new ContoCorrenteAttivoJunior(contiCorrenti[i].idContoCorrente);
                 else if(contiCorrenti[i].saldo>0 && this.idRuolo==3)
                     this.contiCorrenti[contiCorrenti[i].idContoCorrente]=new ContoCorrenteAttivoSenior(contiCorrenti[i].idContoCorrente);
-                else if(contiCorrenti[i].saldo<0 && this.idRuolo==2)
+                else if(contiCorrenti[i].saldo<=0 && this.idRuolo==2)
                     this.contiCorrenti[contiCorrenti[i].idContoCorrente]=new ContoCorrentePassivoJunior(contiCorrenti[i].idContoCorrente);
                 else
                     this.contiCorrenti[contiCorrenti[i].idContoCorrente]=new ContoCorrentePassivoSenior(contiCorrenti[i].idContoCorrente);

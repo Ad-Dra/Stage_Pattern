@@ -18,11 +18,13 @@ class ClienteJunior extends Cliente{
      */
     async renew(cliente){
         let newCliente= await new ClienteSenior(this.idUtente);
-        await newCliente.getAnagrafica();
+        let anagrafica=await newCliente.getAnagrafica();
         await newCliente.getContiCorrenti();
         Object.setPrototypeOf(cliente,newCliente);
         await Object.assign(cliente,newCliente);
         await cliente.refreshRuolo();
+
+        logger.info("Il cliente junior "+anagrafica.username+" si è evoluto in cliente senior");
 
         return cliente;
     }

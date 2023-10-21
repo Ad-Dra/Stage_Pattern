@@ -64,8 +64,8 @@ class ContoCorrenteAttivoJunior extends ContoCorrente{
    * @param {*} importo da versare
    * @param {*} iban msg
    */
-  bonifico(importo){
-      this.prelievo(importo);
+  async bonifico(importo){
+    await this.prelievo(importo);
   }
 
   /**
@@ -88,7 +88,7 @@ class ContoCorrenteAttivoJunior extends ContoCorrente{
           
           if(diff<=0){
             this.renew(new ContoCorrentePassivo(this.idContoCorrente));
-            logger.info("Il cliente "+await this.getUsername()+" junior il suo conto corrente "+this.idContoCorrente+" si è evoluto da conto corrente attivo a conto corrente passivo");
+            logger.info("Il cliente "+await this.getUsername()+" junior il suo conto corrente con id "+this.idContoCorrente+" si è evoluto da conto corrente attivo a conto corrente passivo");
           }
 
           resolve(data1);
