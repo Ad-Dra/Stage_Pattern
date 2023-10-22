@@ -18,7 +18,7 @@ class ContoCorrenteAttivoJunior extends ContoCorrente{
     const cc = {
         idUtente : data.idUtente,
         iban : data.iban,
-        saldo : data.saldo,
+        saldo : parseFloat(data.saldo.replace(/\./g,'').replace(',', '.')),
         dataCreazione : new Date(),
         descrizione : data.descrizione,
         idOperatoreInserimento : data.idOperatoreInserimento

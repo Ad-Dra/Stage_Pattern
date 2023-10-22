@@ -20,7 +20,7 @@ exports.creaBonifico = async (req, res) => {
             contoCorrente=contoCorrente[req.body.idContoCorrente];
             
 
-            if (await contoCorrente.getSaldo() >= req.body.importo) {
+            if (parseFloat(await contoCorrente.getSaldo()) >= parseFloat(req.body.importo)) {
               
                 await contoCorrente.bonifico(req.body.importo);
 
@@ -96,7 +96,7 @@ exports.creaRicaricaTelefonica = async (req,res)=>{
             let contoCorrente=await cliente.getContiCorrenti();
             contoCorrente=contoCorrente[req.body.idContoCorrente];
 
-            if (await contoCorrente.getSaldo() >= req.body.importo) {
+            if (parseFloat(await contoCorrente.getSaldo()) >= parseFloat(req.body.importo)) {
 
                 contoCorrente.ricaricaTelefonica(req.body.importo);
 

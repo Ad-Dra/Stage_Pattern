@@ -254,7 +254,7 @@ exports.logout=async (req,result)=>{
   let username=await Utility.getUsername(req);
   let idUtente=await Utility.getIdUtente(req);
 
-  UtentiAutenticati.clienti.splice(idUtente,1);
+  delete UtentiAutenticati.clienti[idUtente];
 
   logger.info("Il cliente "+username+" si è evoluto in utente");
 

@@ -15,12 +15,11 @@ class ContoCorrenteAttivoSenior extends ContoCorrente{
    * @returns msg
    */
   static create(data){
-    data.saldo=data.saldo.replace(/\./g,'').replace(',', '.');
 
     const cc = {
         idUtente : data.idUtente,
         iban : data.iban,
-        saldo : data.saldo,
+        saldo : parseFloat(data.saldo.replace(/\./g,'').replace(',', '.')),
         dataCreazione : new Date(),
         descrizione : data.descrizione,
         idOperatoreInserimento : data.idOperatoreInserimento

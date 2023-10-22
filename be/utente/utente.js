@@ -109,10 +109,13 @@ class Utente extends Stage{
                     delete this.email;
                     delete this.password;
 
-                    if(res.idRuolo>1)
+                    if(res.idRuolo>1){
                         logger.info("L'utente "+res.username+" si è evoluto in cliente "+ (res.idRuolo==2 ? "junior" : "senior"));
 
-                    resolve({cliente:this,descRuolo:desc});
+                        resolve({cliente:this,descRuolo:desc});
+                    }
+                    else
+                        resolve({descRuolo:desc});
                 }
             });  
         }); 
