@@ -1,8 +1,6 @@
 const sql = require('../config/db.js');
 const Stage = require('../stage/Stage.js');
 const Movimento = require("../movimento/movimento.js");
-//const EvoluzioniContoCorrente = require('./evoluzioniContoCorrente.js');
-
 
 class ContoCorrente extends Stage{
 
@@ -195,17 +193,6 @@ class ContoCorrente extends Stage{
             })
         }); 
     }
-
-    /*renew(nameObject,value){
-        /*if(nameObject=="ContoCorrentePassivoSenior")
-            super.renew(new [nameObject](value));*/
-       /*else if(this.nameObject=="contoCorrenteAttivoJunior")
-            super.renew(new ContoCorrenteAttivoJunior(this.value));
-        else if(this.nameObject=="contoCorrentePassivoSenior")
-            super.renew(new ContoCorrentePassivoSenior(this.value));
-        else if(this.nameObject=="contoCorrenteAttivoSenior")
-            super.renew(new ContoCorrenteAttivoSenior(this.value));
-    }*/
 }
 
 module.exports = ContoCorrente;

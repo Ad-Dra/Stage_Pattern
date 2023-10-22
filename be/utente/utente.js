@@ -97,20 +97,22 @@ class Utente extends Stage{
                         break;
                     }
 
-                    let cliente;
-
                     if(res.idRuolo==2){
-                        cliente = new ClienteJunior(res.idUtente);
-                        this.renew(cliente);
+                        this.renew(ClienteJunior.prototype);
+                        Object.assign(this,{idUtente:res.idUtente,idRuolo:2,contiCorrenti:[]});
                     }else if(res.idRuolo==3){
-                        cliente = new ClienteSenior(res.idUtente,res.cartaCredito);
-                        this.renew(cliente);
+                        this.renew(ClienteSenior.prototype);
+                        Object.assign(this,{idUtente:res.idUtente,idRuolo:3,cartaCredito:res.cartaCredito,contiCorrenti:[]});
                     }
+
+                    delete this.username;
+                    delete this.email;
+                    delete this.password;
 
                     if(res.idRuolo>1)
                         logger.info("L'utente "+res.username+" si è evoluto in cliente "+ (res.idRuolo==2 ? "junior" : "senior"));
 
-                    resolve({cliente:cliente,descRuolo:desc});
+                    resolve({cliente:this,descRuolo:desc});
                 }
             });  
         }); 

@@ -82,9 +82,8 @@ exports.creaBonifico = async (req, res) => {
 async function checkEvoluzioneCliente(cliente){
     let numMovimenti=await cliente.getNMovimenti();
     //50 = max movimenti
-    if(numMovimenti>=50){
-        cliente=await cliente.renew(cliente);
-    }
+    if(numMovimenti>=50)
+        await cliente.renew();
 }
 
 exports.creaRicaricaTelefonica = async (req,res)=>{

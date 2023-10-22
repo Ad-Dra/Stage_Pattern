@@ -1,3 +1,15 @@
 2023-10-21T09:00:18.686Z - [INFO] - L'utente th.pertic si è evoluto in cliente senior
 2023-10-21T09:00:56.628Z - [INFO] - Il cliente th.pertic senior il suo conto corrente con id 25 si è evoluto da conto corrente passivo a conto corrente attivo
 2023-10-21T09:01:38.101Z - [INFO] - Il cliente th.pertic si è evoluto in utente
+2023-10-22T11:31:56.202Z - [INFO] - L'utente dra.ad si è evoluto in cliente junior
+2023-10-22T11:33:37.203Z - [INFO] - Il cliente dra.ad si è evoluto in utente
+2023-10-22T11:34:01.547Z - [INFO] - L'utente th.pertic si è evoluto in cliente senior
+2023-10-22T11:39:47.646Z - [INFO] - L'utente th.pertic si è evoluto in cliente senior
+2023-10-22T15:25:59.024Z - [INFO] - L'utente ad.dra si è evoluto in cliente junior
+2023-10-22T15:26:24.330Z - [INFO] - Il cliente ad.dra junior il suo conto corrente con id 15 si è evoluto da conto corrente attivo a conto corrente passivo
+2023-10-22T15:29:42.612Z - [INFO] - Il cliente junior ad.dra si è evoluto in cliente senior
+2023-10-22T15:31:40.342Z - [INFO] - L'utente ad.dra si è evoluto in cliente junior
+2023-10-22T15:32:02.850Z - [INFO] - Il cliente ad.dra junior il suo conto corrente con id 15 si è evoluto da conto corrente attivo a conto corrente passivo
+2023-10-22T15:34:35.529Z - [INFO] - L'utente ad.dra si è evoluto in cliente junior
+2023-10-22T15:34:50.472Z - [INFO] - Il cliente ad.dra junior il suo conto corrente con id 15 si è evoluto da conto corrente attivo a conto corrente passivo
+2023-10-22T15:35:12.462Z - [INFO] - Il cliente junior ad.dra si è evoluto in cliente senior

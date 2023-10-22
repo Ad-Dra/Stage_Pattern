@@ -7,12 +7,12 @@ class ClienteSenior extends Cliente{
         super(idUtente,3);
         
         //in caso se non si proviene dalla login ma da un'evoluzione
-        if(!cartaDiCredito){
+        /*if(!cartaDiCredito){
             this.cartaDiCredito=this.generaCartaDiCredito();
 
             this.createCartaDiCredito();
         }
-        else
+        else*/
             this.cartaDiCredito=cartaDiCredito;
     }
 
@@ -28,7 +28,7 @@ class ClienteSenior extends Cliente{
         for(let i=0;i<16-(this.idUtente.toString().length);i++)
             risultato += caratteriValidi.charAt(Math.floor(Math.random() * caratteriValidi.length));
 
-        return this.idUtente+risultato;
+        this.cartaDiCredito=this.idUtente+risultato;
     }
 
     /**

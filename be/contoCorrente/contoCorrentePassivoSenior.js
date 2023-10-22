@@ -27,7 +27,7 @@ class ContoCorrentePassivoSenior extends ContoCorrente{
                 }
 
                 if(sum>0){
-                    this.renew(new ContoCorrenteAttivoSenior(this.idContoCorrente));
+                    this.renew(ContoCorrenteAttivoSenior.prototype);
                     logger.info("Il cliente "+await this.getUsername()+" senior il suo conto corrente con id "+this.idContoCorrente+" si è evoluto da conto corrente passivo a conto corrente attivo");
                 }
 
