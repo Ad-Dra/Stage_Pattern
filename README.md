@@ -17,7 +17,7 @@ node express js and Angular was used because are the most popular in the web con
 ## Installation
 Start by cloning this repository:
 ```sh
-git clone https://github.com/draibineAdnane/Stage_Pattern.git
+git clone https://github.com/Ad-Dra/Stage_Pattern.git
 ```
 open terminal for frontend:
 ```sh
